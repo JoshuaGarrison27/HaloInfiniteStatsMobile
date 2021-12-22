@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:HaloInfiniteMobileApp.Behaviors;assembly=HaloInfiniteMobileApp"
+             xmlns:templates="clr-namespace:HaloInfiniteMobileApp.Templates;assembly=HaloInfiniteMobileApp"
+             x:Class="HaloInfiniteMobileApp.Views.HomeView"
+             xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utility;assembly=HaloInfiniteMobileApp"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             Title="Welcome" BackgroundColor="Black" 
+             x:Name="HomeViewPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Halo Infinite Stats!"
+                    TextColor="WhiteSmoke"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+            <Button Text="Button Test" Command="{Binding Source={x:Reference HomeViewPage}, Path=BindingContext.AddToCartCommand}" CommandParameter="{Binding}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
