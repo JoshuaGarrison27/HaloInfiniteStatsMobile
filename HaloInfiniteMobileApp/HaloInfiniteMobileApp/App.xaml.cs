@@ -22,7 +22,7 @@ namespace HaloInfiniteMobileApp
         private async Task InitializeNavigation()
         {
             var navigationService = ServiceProvider.GetService<INavigationService>();
-            await navigationService.InitializeAsync();
+            await navigationService.InitializeAsync().ConfigureAwait(false);
         }
 
         protected override void OnStart()

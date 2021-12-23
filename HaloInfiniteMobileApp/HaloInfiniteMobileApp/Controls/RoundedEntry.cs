@@ -16,7 +16,18 @@ namespace HaloInfiniteMobileApp.Controls
 
         public static readonly BindableProperty BorderWidthProperty =
             BindableProperty.Create(nameof(BorderWidth), typeof(int),
-                typeof(RoundedEntry), Device.OnPlatform<int>(1, 2, 2));
+                typeof(RoundedEntry), BorderWidthDevicePlatform());
+
+        private static int BorderWidthDevicePlatform()
+        {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    return 1;
+                default:
+                    return 2;
+            }
+        }
 
         public int BorderWidth
         {
@@ -25,7 +36,18 @@ namespace HaloInfiniteMobileApp.Controls
         }
         public static readonly BindableProperty CornerRadiusProperty =
             BindableProperty.Create(nameof(CornerRadius),
-                typeof(double), typeof(RoundedEntry), Device.OnPlatform<double>(6, 7, 7));
+                typeof(double), typeof(RoundedEntry), CornerRadiusDevicePlatform());
+
+        private static double CornerRadiusDevicePlatform()
+        {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    return 6;
+                default:
+                    return 7;
+            }
+        }
 
         public double CornerRadius
         {

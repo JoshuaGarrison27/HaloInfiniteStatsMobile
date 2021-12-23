@@ -30,9 +30,9 @@ namespace HaloInfiniteMobileApp.ViewModels
 
         public override async Task InitializeAsync(object data)
         {
-            base.InitializeAsync(data);
+            await base.InitializeAsync(data).ConfigureAwait(false);
 
-            await GetPlayerAppearance();
+            await GetPlayerAppearance().ConfigureAwait(false);
         }
 
         private async Task GetPlayerAppearance()
@@ -50,12 +50,14 @@ namespace HaloInfiniteMobileApp.ViewModels
             }
         }
 
-        public ICommand TestButton => new Command(DoNothing);
+        public ICommand ClearCacheCommand => new Command(ClearCache);
 
-        private async void DoNothing()
+        private async void ClearCache()
         {
-            await _dialogService.ShowDialog("This button doesnt do anything.", "Button Clicked", "OK");
+            _haloInfiniteService.InvalidateHaloCache();
+            await _dialogService.ShowDialog("Halo Cache Cleared", "Cache Cleared", "OK");
         }
+
         public string Gamertag
         {
             get => _gamertag;

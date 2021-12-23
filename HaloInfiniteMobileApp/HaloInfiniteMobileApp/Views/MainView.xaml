@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+<FlyoutPage xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:views="clr-namespace:HaloInfiniteMobileApp.Views"
-                    xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utility;assembly=HaloInfiniteMobileApp"
+                    xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
                     utility:ViewModelLocator.AutoWireViewModel="True"
                     x:Class="HaloInfiniteMobileApp.Views.MainView"
                     Title="Halo Infinite"
-                    MasterBehavior="Popover"
                   >
-    <MasterDetailPage.Master>
+    <FlyoutPage.Flyout>
         <views:MenuView BindingContext="{Binding MenuViewModel}" />
-    </MasterDetailPage.Master>
-    <MasterDetailPage.Detail>
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
         <ContentPage></ContentPage>
-    </MasterDetailPage.Detail>
-</MasterDetailPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>

@@ -2,6 +2,7 @@
 using HaloInfiniteMobileApp.Constants;
 using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
+using HaloInfiniteMobileApp.Utilities;
 using System;
 using System.Threading.Tasks;
 
@@ -10,11 +11,12 @@ namespace HaloInfiniteMobileApp.Services
     public class HaloInfiniteService : BaseService, IHaloInfiniteService
     {
         private readonly IGenericRepository _genericRepository;
-        private const string HaloApiAuthToken = "tok_dev_nPKdkn5CgUXNbXd38NKAK4eZXfXJg4C8k13FSM8FAVT6UpxGovCeUsSujwQHpK7N";
+        private readonly string _haloApiAuthToken;
 
         public HaloInfiniteService(IGenericRepository genericRepository, IBlobCache cache = null) : base(cache)
         {
             _genericRepository = genericRepository;
+            _haloApiAuthToken = UserSecretsManager.Settings["HaloApiToken"] ?? string.Empty;
         }
 
         public NewsArticles GetNewsArticles()
@@ -43,12 +45,17 @@ namespace HaloInfiniteMobileApp.Services
                     Gamertag = gamertag
                 };
 
-                var playerAppearance = await _genericRepository.PostAsync<PlayerAppearanceRequest, PlayerAppearance>(apiUrl, playerAppearanceRequest, HaloApiAuthToken);
+                var playerAppearance = await _genericRepository.PostAsync<PlayerAppearanceRequest, PlayerAppearance>(apiUrl, playerAppearanceRequest, _haloApiAuthToken);
 
                 Cache.InsertObject(CacheNameConstrants.PlayerAppearance, playerAppearance, DateTimeOffset.Now.AddMinutes(2));
 
                 return playerAppearance;
             }
+        }
+
+        public void InvalidateHaloCache()
+        {
+            InvalidateCacheKey(CacheNameConstrants.PlayerAppearance);
         }
     }
 }

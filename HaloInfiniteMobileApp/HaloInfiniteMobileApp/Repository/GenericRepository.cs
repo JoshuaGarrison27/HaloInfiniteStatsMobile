@@ -115,25 +115,23 @@ namespace HaloInfiniteMobileApp.Repository
 
                 string jsonResult = string.Empty;
 
-                //var responseMessage = await Policy
-                //.Handle<WebException>(ex =>
-                //{
-                //    Debug.WriteLine($"{ex.GetType().Name + " : " + ex.Message}");
-                //    return true;
-                //})
-                //.WaitAndRetryAsync
-                //(
-                //    5,
-                //    retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
-                //)
-                //.ExecuteAsync(async () => await httpClient.PostAsync(uri, content));
-                var responseMessage = await httpClient.PostAsync(uri, content);
+                var responseMessage = await Policy
+                .Handle<WebException>(ex =>
+                {
+                    Debug.WriteLine($"{ex.GetType().Name + " : " + ex.Message}");
+                    return true;
+                })
+                .WaitAndRetryAsync
+                (
+                    5,
+                    retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
+                )
+                .ExecuteAsync(async () => await httpClient.PostAsync(uri, content));
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     jsonResult = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    var json = JsonConvert.DeserializeObject<TR>(jsonResult);
-                    return json;
+                    return JsonConvert.DeserializeObject<TR>(jsonResult);
                 }
 
                 if (responseMessage.StatusCode == HttpStatusCode.Forbidden ||
@@ -142,9 +140,7 @@ namespace HaloInfiniteMobileApp.Repository
                     throw new ServiceAuthenticationException(jsonResult);
                 }
 
-                //throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
-                return default(TR);
-
+                throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
             }
             catch (Exception e)
             {

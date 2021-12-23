@@ -12,7 +12,7 @@
                 Grid.Column="0"
                 Source="{Binding MenuItemType, Converter={StaticResource LocalMenuIconConverter}}"
                 WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
-            <Label Grid.Column="1" Text="{Binding MenuText}" VerticalOptions="Center"/>
+            <Label Grid.Column="1" Text="{Binding MenuText}" TextColor="WhiteSmoke" VerticalOptions="Center"/>
         </Grid>
     </ContentView.Content>
 </ContentView>

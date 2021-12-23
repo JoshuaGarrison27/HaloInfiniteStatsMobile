@@ -5,8 +5,6 @@ using HaloInfiniteMobileApp.ViewModels.Base;
 using HaloInfiniteMobileApp.Views;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -142,7 +140,7 @@ namespace HaloInfiniteMobileApp.Services
                     }
                 }
 
-                await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
+              await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
             } catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());

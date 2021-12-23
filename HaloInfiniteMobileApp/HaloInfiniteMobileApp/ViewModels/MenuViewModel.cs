@@ -13,19 +13,20 @@ namespace HaloInfiniteMobileApp.ViewModels
     {
         private ObservableCollection<MainMenuItem> _menuItems;
         private readonly ISettingsService _settingsService;
+        private readonly IHaloInfiniteService _haloInfiniteService;
 
         public MenuViewModel(IConnectionService connectionService,
             INavigationService navigationService, IDialogService dialogService,
-            ISettingsService settingsService)
+            ISettingsService settingsService, IHaloInfiniteService haloInfiniteService)
             : base(connectionService, navigationService, dialogService)
         {
             _settingsService = settingsService;
+            _haloInfiniteService = haloInfiniteService;
             MenuItems = new ObservableCollection<MainMenuItem>();
             LoadMenuItems();
         }
 
         public string WelcomeText => "Hello " + _settingsService.GetItem(SettingsConstants.Gamertag);
-
         public ICommand MenuItemTappedCommand => new Command(OnMenuItemTapped);
 
         public ObservableCollection<MainMenuItem> MenuItems
@@ -61,34 +62,6 @@ namespace HaloInfiniteMobileApp.ViewModels
                 ViewModelToLoad = typeof(MainViewModel),
                 MenuItemType = MenuItemType.Home
             });
-
-            //MenuItems.Add(new MainMenuItem
-            //{
-            //    MenuText = "Pies",
-            //    ViewModelToLoad = typeof(PieCatalogViewModel),
-            //    MenuItemType = MenuItemType.Pies
-            //});
-
-            //MenuItems.Add(new MainMenuItem
-            //{
-            //    MenuText = "Cart",
-            //    ViewModelToLoad = typeof(ShoppingCartViewModel),
-            //    MenuItemType = MenuItemType.ShoppingCart
-            //});
-
-            //MenuItems.Add(new MainMenuItem
-            //{
-            //    MenuText = "Contact us",
-            //    ViewModelToLoad = typeof(ContactViewModel),
-            //    MenuItemType = MenuItemType.Contact
-            //});
-
-            //MenuItems.Add(new MainMenuItem
-            //{
-            //    MenuText = "Log out",
-            //    ViewModelToLoad = typeof(LoginViewModel),
-            //    MenuItemType = MenuItemType.Logout
-            //});
         }
     }
 }

@@ -7,5 +7,6 @@ namespace HaloInfiniteMobileApp.Interfaces
     {
         NewsArticles GetNewsArticles();
         Task<PlayerAppearance> GetPlayerAppearance(string gamertag);
+        void InvalidateHaloCache();
     }
 }

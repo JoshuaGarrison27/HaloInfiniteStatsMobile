@@ -31,5 +31,10 @@ namespace HaloInfiniteMobileApp.Services
         {
             Cache.InvalidateAll();
         }
+
+        public void InvalidateCacheKey(string key)
+        {
+            Cache.Invalidate(key);
+        }
     }
 }

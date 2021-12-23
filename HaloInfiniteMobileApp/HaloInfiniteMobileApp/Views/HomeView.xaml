@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HaloInfiniteMobileApp.Views.HomeView"
-             xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utility;assembly=HaloInfiniteMobileApp"
+             xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
              utility:ViewModelLocator.AutoWireViewModel="True"
              Title="Welcome" BackgroundColor="{StaticResource DarkBackgroundColor}" 
              x:Name="HomeViewPage">
@@ -21,7 +21,7 @@
                    Margin="10"
                     VerticalOptions="Center" 
                     HorizontalOptions="Center" />
-            <Button Text="Button Test" Command="{Binding TestButton}"></Button>
+            <Button Text="Clear Cache" Command="{Binding ClearCacheCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
