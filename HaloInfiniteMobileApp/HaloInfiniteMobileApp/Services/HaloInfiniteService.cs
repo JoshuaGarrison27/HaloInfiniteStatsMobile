@@ -4,6 +4,7 @@ using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace HaloInfiniteMobileApp.Services
@@ -19,9 +20,24 @@ namespace HaloInfiniteMobileApp.Services
             _haloApiAuthToken = UserSecretsManager.Settings["HaloApiToken"] ?? string.Empty;
         }
 
-        public NewsArticles GetNewsArticles()
+        public async Task<NewsArticles> GetNewsArticles()
         {
-            throw new NotImplementedException();
+            NewsArticles newsArticlesFromCache = await GetFromCache<NewsArticles>(CacheNameConstrants.NewsArticles);
+
+            if(newsArticlesFromCache != null)
+            {
+                return newsArticlesFromCache;
+            } else
+            {
+                const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.Articles;
+                var newsArticlesRequest = new NewsArticlesRequest();
+
+                var newsArticles = await _genericRepository.PostAsync<NewsArticlesRequest, NewsArticles>(apiUrl, newsArticlesRequest, _haloApiAuthToken);
+
+                Cache.InsertObject(CacheNameConstrants.NewsArticles, newsArticles, DateTimeOffset.Now.AddMinutes(2));
+
+                return newsArticles;
+            }
         }
 
         public async Task<PlayerAppearance> GetPlayerAppearance(string gamertag)
@@ -33,13 +49,7 @@ namespace HaloInfiniteMobileApp.Services
                 return playerAppearanceFromCache;
             } else
             {
-                UriBuilder builder = new UriBuilder(HaloApiConstants.BaseApiUrl)
-                {
-                    Path = HaloApiConstants.AppearanceEndpoint
-                };
-
-                var apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.AppearanceEndpoint;
-
+                const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.AppearanceEndpoint;
                 var playerAppearanceRequest = new PlayerAppearanceRequest
                 {
                     Gamertag = gamertag

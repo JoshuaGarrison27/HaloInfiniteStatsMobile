@@ -28,7 +28,6 @@ namespace HaloInfiniteMobileApp.Services
         public async Task InitializeAsync()
         {
             var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
-            //await NavigateToAsync<MainViewModel>();
             if (string.IsNullOrWhiteSpace(gamertag))
             {
                 await NavigateToAsync<OnboardingViewModel>();
@@ -140,7 +139,7 @@ namespace HaloInfiniteMobileApp.Services
                     }
                 }
 
-              await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
+                await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
             } catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
@@ -177,13 +176,21 @@ namespace HaloInfiniteMobileApp.Services
             _mappings.Add(typeof(MenuViewModel), typeof(MenuView));
             _mappings.Add(typeof(HomeViewModel), typeof(HomeView));
             _mappings.Add(typeof(OnboardingViewModel), typeof(OnboardingView));
-            //_mappings.Add(typeof(LoginViewModel), typeof(LoginView));
-            //_mappings.Add(typeof(CheckoutViewModel), typeof(CheckoutView));
-            //_mappings.Add(typeof(ContactViewModel), typeof(ContactView));
-            //_mappings.Add(typeof(PieCatalogViewModel), typeof(PieCatalogView));
-            //_mappings.Add(typeof(PieDetailViewModel), typeof(PieDetailView));
-            //_mappings.Add(typeof(RegistrationViewModel), typeof(RegistrationView));
-            //_mappings.Add(typeof(ShoppingCartViewModel), typeof(ShoppingCartView));
+            _mappings.Add(typeof(HaloNewsViewModel), typeof(HaloNewsView));
+        }
+
+        public IEnumerable<Page> GetNavigationStack()
+        {
+            if (CurrentApplication.MainPage is MainView mainPage)
+            {
+                return mainPage.Detail.Navigation.NavigationStack;
+            }
+            else if (CurrentApplication.MainPage != null)
+            {
+                return CurrentApplication.MainPage.Navigation.NavigationStack;
+            }
+
+            return default;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using HaloInfiniteMobileApp.Views;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HaloInfiniteMobileApp.ViewModels
@@ -29,11 +30,22 @@ namespace HaloInfiniteMobileApp.ViewModels
 
         public override async Task InitializeAsync(object data)
         {
-            await Task.WhenAll
-            (
-                _menuViewModel.InitializeAsync(data),
-                _navigationService.NavigateToAsync<HomeViewModel>()
-            );
+            var pages = _navigationService.GetNavigationStack().ToList();
+
+            if(pages.Any(page => page.GetType() == typeof(HomeView)))
+            {
+                await Task.WhenAll
+                (
+                    _menuViewModel.InitializeAsync(data)
+                );
+            } else
+            {
+                await Task.WhenAll
+                (
+                    _menuViewModel.InitializeAsync(data),
+                    _navigationService.NavigateToAsync<HomeViewModel>()
+                );
+            }
         }
     }
 }

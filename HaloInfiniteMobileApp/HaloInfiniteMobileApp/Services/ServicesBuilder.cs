@@ -18,6 +18,7 @@ namespace HaloInfiniteMobileApp.Services
             services.AddTransient<MenuViewModel>();
             services.AddTransient<HomeViewModel>();
             services.AddTransient<OnboardingViewModel>();
+            services.AddTransient<HaloNewsViewModel>();
 
             //Services
             services.AddTransient<IConnectionService, ConnectionService>();

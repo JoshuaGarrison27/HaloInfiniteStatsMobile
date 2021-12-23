@@ -62,6 +62,13 @@ namespace HaloInfiniteMobileApp.ViewModels
                 ViewModelToLoad = typeof(MainViewModel),
                 MenuItemType = MenuItemType.Home
             });
+
+            MenuItems.Add(new MainMenuItem
+            {
+                MenuText = "Halo News",
+                ViewModelToLoad = typeof(HaloNewsViewModel),
+                MenuItemType = MenuItemType.HaloNews
+            });
         }
     }
 }

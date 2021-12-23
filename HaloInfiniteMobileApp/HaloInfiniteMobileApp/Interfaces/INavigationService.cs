@@ -1,9 +1,8 @@
 ﻿using HaloInfiniteMobileApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace HaloInfiniteMobileApp.Interfaces
 {
@@ -26,5 +25,7 @@ namespace HaloInfiniteMobileApp.Interfaces
         Task RemoveLastFromBackStackAsync();
 
         Task PopToRootAsync();
+
+        IEnumerable<Page> GetNavigationStack();
     }
 }

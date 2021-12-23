@@ -5,7 +5,7 @@ namespace HaloInfiniteMobileApp.Interfaces
 {
     public interface IHaloInfiniteService
     {
-        NewsArticles GetNewsArticles();
+        Task<NewsArticles> GetNewsArticles();
         Task<PlayerAppearance> GetPlayerAppearance(string gamertag);
         void InvalidateHaloCache();
     }

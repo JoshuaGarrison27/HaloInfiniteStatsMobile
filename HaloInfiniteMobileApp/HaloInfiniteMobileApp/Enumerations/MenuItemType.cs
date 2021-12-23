@@ -8,6 +8,7 @@ namespace HaloInfiniteMobileApp.Enumerations
 {
     public enum MenuItemType
     {
-        Home
+        Home,
+        HaloNews
     }
 }
