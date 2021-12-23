@@ -37,6 +37,7 @@
             <Color x:Key="LightGrey">#cccccc</Color>
             <Color x:Key="EntryGrey">Gray</Color>
             <Color x:Key="LightForeground">White</Color>
+            <Color x:Key="DarkBackgroundColor">#1F1F1F</Color>
 
             <Style x:Key="PageHeaderStyle" TargetType="{x:Type Label}">
                 <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"></Setter>

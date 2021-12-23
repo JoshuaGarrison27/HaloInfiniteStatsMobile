@@ -1,4 +1,5 @@
-﻿using HaloInfiniteMobileApp.Interfaces;
+﻿using HaloInfiniteMobileApp.Constants;
+using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.ViewModels;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using HaloInfiniteMobileApp.Views;
@@ -28,16 +29,16 @@ namespace HaloInfiniteMobileApp.Services
 
         public async Task InitializeAsync()
         {
-            var gamertag = _settingsService.GetItem("Gamertag");
-            await NavigateToAsync<MainViewModel>();
-            //if (string.IsNullOrWhiteSpace(gamertag))
-            //{
-            //    //await NavigateToAsync<LoginViewModel>();
-            //}
-            //else
-            //{
-            //    await NavigateToAsync<MainViewModel>();
-            //}
+            var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
+            //await NavigateToAsync<MainViewModel>();
+            if (string.IsNullOrWhiteSpace(gamertag))
+            {
+                await NavigateToAsync<OnboardingViewModel>();
+            }
+            else
+            {
+                await NavigateToAsync<MainViewModel>();
+            }
         }
 
         public async Task ClearBackStack()
@@ -102,18 +103,11 @@ namespace HaloInfiniteMobileApp.Services
             {
                 var page = CreatePage(viewModelType, parameter);
 
-                /*
-                if (page is MainView || page is RegistrationView)
+                if (page is MainView || page is OnboardingView)
                 {
                     CurrentApplication.MainPage = page;
                 }
-                else if (page is LoginView)
-                {
-                    CurrentApplication.MainPage = page;
-                }
-                else 
-                */
-                if (CurrentApplication.MainPage is MainView)
+                else if (CurrentApplication.MainPage is MainView)
                 {
                     var mainPage = CurrentApplication.MainPage as MainView;
 
@@ -184,6 +178,7 @@ namespace HaloInfiniteMobileApp.Services
             _mappings.Add(typeof(MainViewModel), typeof(MainView));
             _mappings.Add(typeof(MenuViewModel), typeof(MenuView));
             _mappings.Add(typeof(HomeViewModel), typeof(HomeView));
+            _mappings.Add(typeof(OnboardingViewModel), typeof(OnboardingView));
             //_mappings.Add(typeof(LoginViewModel), typeof(LoginView));
             //_mappings.Add(typeof(CheckoutViewModel), typeof(CheckoutView));
             //_mappings.Add(typeof(ContactViewModel), typeof(ContactView));

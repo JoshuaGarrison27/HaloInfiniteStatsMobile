@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HaloInfiniteMobileApp.Views.OnboardingView"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utility;assembly=HaloInfiniteMobileApp"
+             utility:ViewModelLocator.AutoWireViewModel="True">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0"
+                Text="Welcome to the Unoffical Halo Infinite Stats App!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        <Entry Grid.Column="0" Grid.Row="1"
+               Placeholder="Gamertag" 
+               Text="{Binding Gamertag, Mode=TwoWay}" />
+        <Button Grid.Column="0" Grid.Row="2"
+                Style="{StaticResource RegularButton}" 
+                Text="Continue" 
+                Command="{Binding ContinueCommand, Mode=TwoWay}"></Button>
+    </Grid>
+</ContentPage>

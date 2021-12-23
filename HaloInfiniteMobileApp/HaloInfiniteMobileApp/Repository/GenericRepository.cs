@@ -17,7 +17,7 @@ namespace HaloInfiniteMobileApp.Repository
         {
             try
             {
-                HttpClient httpClient = CreateHttpClient(uri);
+                HttpClient httpClient = CreateHttpClient(authToken);
                 string jsonResult = string.Empty;
 
                 var responseMessage = await Policy
@@ -61,7 +61,7 @@ namespace HaloInfiniteMobileApp.Repository
         {
             try
             {
-                HttpClient httpClient = CreateHttpClient(uri);
+                HttpClient httpClient = CreateHttpClient(authToken);
 
                 var content = new StringContent(JsonConvert.SerializeObject(data));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -108,25 +108,26 @@ namespace HaloInfiniteMobileApp.Repository
         {
             try
             {
-                HttpClient httpClient = CreateHttpClient(uri);
-
-                var content = new StringContent(JsonConvert.SerializeObject(data));
+                HttpClient httpClient = CreateHttpClient(authToken);
+                var jsonContent = JsonConvert.SerializeObject(data);
+                var content = new StringContent(jsonContent);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                 string jsonResult = string.Empty;
 
-                var responseMessage = await Policy
-                    .Handle<WebException>(ex =>
-                    {
-                        Debug.WriteLine($"{ex.GetType().Name + " : " + ex.Message}");
-                        return true;
-                    })
-                    .WaitAndRetryAsync
-                    (
-                        5,
-                        retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
-                    )
-                    .ExecuteAsync(async () => await httpClient.PostAsync(uri, content));
+                //var responseMessage = await Policy
+                //.Handle<WebException>(ex =>
+                //{
+                //    Debug.WriteLine($"{ex.GetType().Name + " : " + ex.Message}");
+                //    return true;
+                //})
+                //.WaitAndRetryAsync
+                //(
+                //    5,
+                //    retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
+                //)
+                //.ExecuteAsync(async () => await httpClient.PostAsync(uri, content));
+                var responseMessage = await httpClient.PostAsync(uri, content);
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
@@ -141,7 +142,8 @@ namespace HaloInfiniteMobileApp.Repository
                     throw new ServiceAuthenticationException(jsonResult);
                 }
 
-                throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
+                //throw new HttpRequestExceptionEx(responseMessage.StatusCode, jsonResult);
+                return default(TR);
 
             }
             catch (Exception e)
@@ -155,7 +157,7 @@ namespace HaloInfiniteMobileApp.Repository
         {
             try
             {
-                HttpClient httpClient = CreateHttpClient(uri);
+                HttpClient httpClient = CreateHttpClient(authToken);
 
                 var content = new StringContent(JsonConvert.SerializeObject(data));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -215,7 +217,5 @@ namespace HaloInfiniteMobileApp.Repository
             }
             return httpClient;
         }
-
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using HaloInfiniteMobileApp.Enumerations;
+﻿using HaloInfiniteMobileApp.Constants;
+using HaloInfiniteMobileApp.Enumerations;
 using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
@@ -23,7 +24,7 @@ namespace HaloInfiniteMobileApp.ViewModels
             LoadMenuItems();
         }
 
-        public string WelcomeText => "Hello " + _settingsService.UserNameSetting;
+        public string WelcomeText => "Hello " + _settingsService.GetItem(SettingsConstants.Gamertag);
 
         public ICommand MenuItemTappedCommand => new Command(OnMenuItemTapped);
 
