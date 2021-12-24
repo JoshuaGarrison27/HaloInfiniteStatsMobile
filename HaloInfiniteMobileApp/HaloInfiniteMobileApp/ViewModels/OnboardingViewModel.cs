@@ -23,6 +23,7 @@ namespace HaloInfiniteMobileApp.ViewModels
 
         private async void ContinueOnboarding()
         {
+            IsBusy = true;
             if (!string.IsNullOrWhiteSpace(Gamertag))
             {
                 try
@@ -40,6 +41,7 @@ namespace HaloInfiniteMobileApp.ViewModels
                     await _dialogService.ShowDialog("Invalid Gamertag Entered", "Invalid", "Try Again");
                 }
             }
+            IsBusy = false;
         }
 
         public string Gamertag

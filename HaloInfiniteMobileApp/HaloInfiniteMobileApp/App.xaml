@@ -58,6 +58,7 @@
             <Color x:Key="LightGrey">#cccccc</Color>
             <Color x:Key="EntryGrey">Gray</Color>
             <Color x:Key="HeaderGrey">#aaaaaa</Color>
+            <Color x:Key="LightBlue">#70cddf</Color>
 
             <Style x:Key="PageHeaderStyle" TargetType="{x:Type Label}">
                 <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"></Setter>
@@ -105,7 +106,13 @@
                 <Setter Property="Margin" Value="5"></Setter>
             </Style>
 
-
+            <Style x:Key="HaloInfiniteWhiteButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="BackgroundColor" Value="#fefefe"></Setter>
+                <Setter Property="TextColor" Value="#222222"></Setter>
+                <Setter Property="BorderWidth" Value="1"></Setter>
+                <Setter Property="CornerRadius" Value="1"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+            </Style>
 
 
             <Color x:Key="BethanyPurple">#a594c1</Color>

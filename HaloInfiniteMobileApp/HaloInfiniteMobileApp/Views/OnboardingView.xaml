@@ -2,30 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HaloInfiniteMobileApp.Views.OnboardingView"
-             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
-             utility:ViewModelLocator.AutoWireViewModel="True">
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             BackgroundColor="{StaticResource DarkBackgroundColor}"
+             BackgroundImageSource="halo_ring_wallpaper.jpg">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+    <Frame VerticalOptions="Center" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" CornerRadius="10" Opacity="0.9" Margin="10">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0"
-                Text="Welcome to the Unoffical Halo Infinite Stats App!"
+            <Label Grid.Column="0" Grid.Row="0" Opacity="1"
+                Text="Welcome to the&#10; Unoffical Halo Infinite Stats App!"
+               Style="{StaticResource ArticleTitleStyle}"
+                   HorizontalTextAlignment="Center"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-        <Entry Grid.Column="0" Grid.Row="1"
-               Placeholder="Gamertag" 
+            <Entry Grid.Column="0" Grid.Row="1" TextColor="WhiteSmoke" Opacity="1"
+               Placeholder="Enter your Gamertag" PlaceholderColor="WhiteSmoke"
                Text="{Binding Gamertag, Mode=TwoWay}" />
-        <Button Grid.Column="0" Grid.Row="2"
-                Style="{StaticResource RegularButton}" 
-                Text="Continue" 
+            <Button Grid.Column="0" Grid.Row="2" Margin="50, 5, 50, 5" Opacity="1"
+                Style="{StaticResource HaloInfiniteWhiteButtonStyle}" 
+                Text="Continue"
                 Command="{Binding ContinueCommand, Mode=TwoWay}"></Button>
-    </Grid>
+            <ActivityIndicator Grid.Column="0" Grid.Row="3" Color="{StaticResource LightBlue}" IsRunning="{Binding IsBusy}" />
+        </Grid>
+    </Frame>
 </ContentPage>
