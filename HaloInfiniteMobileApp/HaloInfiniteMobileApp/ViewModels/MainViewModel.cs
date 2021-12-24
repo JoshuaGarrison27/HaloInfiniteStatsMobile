@@ -12,8 +12,8 @@ namespace HaloInfiniteMobileApp.ViewModels
 
         public MainViewModel(IConnectionService connectionService,
             INavigationService navigationService, IDialogService dialogService,
-            MenuViewModel menuViewModel)
-            : base(connectionService, navigationService, dialogService)
+            MenuViewModel menuViewModel, IHaloInfiniteService haloInfiniteService)
+            : base(connectionService, navigationService, dialogService, haloInfiniteService)
         {
             _menuViewModel = menuViewModel;
         }

@@ -10,13 +10,15 @@ namespace HaloInfiniteMobileApp.ViewModels.Base
         protected readonly IConnectionService _connectionService;
         protected readonly INavigationService _navigationService;
         protected readonly IDialogService _dialogService;
+        protected readonly IHaloInfiniteService _haloInfiniteService;
 
         public ViewModelBase(IConnectionService connectionService, INavigationService navigationService,
-            IDialogService dialogService)
+            IDialogService dialogService, IHaloInfiniteService haloInfiniteService)
         {
             _connectionService = connectionService;
             _navigationService = navigationService;
             _dialogService = dialogService;
+            _haloInfiniteService = haloInfiniteService;
         }
 
         private bool _isBusy;

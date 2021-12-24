@@ -4,6 +4,7 @@ using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -13,20 +14,32 @@ namespace HaloInfiniteMobileApp.ViewModels
     {
         private ObservableCollection<MainMenuItem> _menuItems;
         private readonly ISettingsService _settingsService;
-        private readonly IHaloInfiniteService _haloInfiniteService;
+        private PlayerAppearance _playerAppearance;
+        private string _heroText;
 
         public MenuViewModel(IConnectionService connectionService,
             INavigationService navigationService, IDialogService dialogService,
             ISettingsService settingsService, IHaloInfiniteService haloInfiniteService)
-            : base(connectionService, navigationService, dialogService)
+            : base(connectionService, navigationService, dialogService, haloInfiniteService)
         {
             _settingsService = settingsService;
-            _haloInfiniteService = haloInfiniteService;
             MenuItems = new ObservableCollection<MainMenuItem>();
             LoadMenuItems();
         }
 
-        public string WelcomeText => "Hello " + _settingsService.GetItem(SettingsConstants.Gamertag);
+        public async override Task InitializeAsync(object data)
+        {
+            await base.InitializeAsync(data);
+
+            var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
+
+            if (gamertag != null)
+            {
+                HeroText = gamertag;
+                PlayerAppearance = await _haloInfiniteService.GetPlayerAppearance(gamertag);
+            }
+        }
+
         public ICommand MenuItemTappedCommand => new Command(OnMenuItemTapped);
 
         public ObservableCollection<MainMenuItem> MenuItems
@@ -60,15 +73,37 @@ namespace HaloInfiniteMobileApp.ViewModels
             {
                 MenuText = "Home",
                 ViewModelToLoad = typeof(MainViewModel),
-                MenuItemType = MenuItemType.Home
+                MenuItemType = MenuItemType.Home,
+                MenuItemFontAwesomeCode = "\uf015"
             });
 
             MenuItems.Add(new MainMenuItem
             {
                 MenuText = "Halo News",
                 ViewModelToLoad = typeof(HaloNewsViewModel),
-                MenuItemType = MenuItemType.HaloNews
+                MenuItemType = MenuItemType.HaloNews,
+                MenuItemFontAwesomeCode = "\uf1ea"
             });
+        }
+
+        public string HeroText
+        {
+            get => _heroText;
+            set
+            {
+                _heroText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public PlayerAppearance PlayerAppearance
+        {
+            get => _playerAppearance;
+            set
+            {
+                _playerAppearance = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

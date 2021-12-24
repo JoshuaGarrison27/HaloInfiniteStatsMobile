@@ -15,16 +15,14 @@ namespace HaloInfiniteMobileApp.ViewModels
     public class HomeViewModel : ViewModelBase
     {
         private readonly ISettingsService _settingsService;
-        private readonly IHaloInfiniteService _haloInfiniteService;
         private string _gamertag;
         private string _emblemUrl;
 
         public HomeViewModel(IConnectionService connectionService,
             INavigationService navigationService,
-            IDialogService dialogService, ISettingsService settingsService, IHaloInfiniteService haloInfiniteService) : base(connectionService, navigationService, dialogService)
+            IDialogService dialogService, ISettingsService settingsService, IHaloInfiniteService haloInfiniteService) : base(connectionService, navigationService, dialogService, haloInfiniteService)
         {
             _settingsService = settingsService;
-            _haloInfiniteService = haloInfiniteService;
             Gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
         }
 

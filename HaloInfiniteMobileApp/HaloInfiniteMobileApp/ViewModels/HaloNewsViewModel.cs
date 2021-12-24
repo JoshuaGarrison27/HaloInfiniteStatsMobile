@@ -11,13 +11,11 @@ namespace HaloInfiniteMobileApp.ViewModels
 {
     public class HaloNewsViewModel : ViewModelBase
     {
-        private readonly IHaloInfiniteService _haloInfiniteService;
         private ObservableCollection<Article> _articles;
         public HaloNewsViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService,
             IHaloInfiniteService haloInfiniteService)
-            : base(connectionService, navigationService, dialogService)
+            : base(connectionService, navigationService, dialogService, haloInfiniteService)
         {
-            _haloInfiniteService = haloInfiniteService;
         }
         public ICommand ArticleTappedCommand => new Command<Article>(OnArticleTapped);
 

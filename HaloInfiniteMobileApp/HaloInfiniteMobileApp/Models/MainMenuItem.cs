@@ -9,6 +9,7 @@ namespace HaloInfiniteMobileApp.Models
         private string _menuText;
         private MenuItemType _menuItemType;
         private Type _viewModelToLoad;
+        private string _menuItemFontAwesomeCode;
 
         public MenuItemType MenuItemType
         {
@@ -32,6 +33,18 @@ namespace HaloInfiniteMobileApp.Models
             set
             {
                 _menuText = value;
+                OnPropertyChanged();
+            }
+        }
+        public string MenuItemFontAwesomeCode
+        {
+            get
+            {
+                return _menuItemFontAwesomeCode;
+            }
+            set
+            {
+                _menuItemFontAwesomeCode = value;
                 OnPropertyChanged();
             }
         }

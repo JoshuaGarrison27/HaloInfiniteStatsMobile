@@ -1,4 +1,5 @@
 ﻿using HaloInfiniteMobileApp.Constants;
+using HaloInfiniteMobileApp.Exceptions;
 using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using System;
@@ -12,24 +13,32 @@ namespace HaloInfiniteMobileApp.ViewModels
         private readonly ISettingsService _settingsService;
         private string _gamertag;
 
-        public OnboardingViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, ISettingsService settingsService)
-            : base(connectionService, navigationService, dialogService)
+        public OnboardingViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
+            : base(connectionService, navigationService, dialogService, haloInfiniteService)
         {
             _settingsService = settingsService;
         }
 
         public ICommand ContinueCommand => new Command(ContinueOnboarding);
 
-        private void ContinueOnboarding()
+        private async void ContinueOnboarding()
         {
             if (!string.IsNullOrWhiteSpace(Gamertag))
             {
-                _settingsService.AddItem(SettingsConstants.Gamertag, Gamertag);
-                _navigationService.NavigateToAsync<MainViewModel>();
-            }
-            else
-            {
-                _dialogService.ShowToast("Invalid Gamertag Entered");
+                try
+                {
+                    var player = await _haloInfiniteService.GetPlayerAppearance(Gamertag);
+
+                    if (player != null)
+                    {
+                        _settingsService.AddItem(SettingsConstants.Gamertag, player.Additional.Gamertag);
+                        await _navigationService.NavigateToAsync<MainViewModel>();
+                        return;
+                    }
+                } catch (Exception)
+                {
+                    await _dialogService.ShowDialog("Invalid Gamertag Entered", "Invalid", "Try Again");
+                }
             }
         }
 
