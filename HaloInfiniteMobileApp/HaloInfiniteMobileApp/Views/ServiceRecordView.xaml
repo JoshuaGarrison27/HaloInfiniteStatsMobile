@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HaloInfiniteMobileApp.Views.ServiceRecordView"
+             xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             Title="Service Record"
+             BackgroundColor="{StaticResource DarkBackgroundColor}">
+    <!--Pages can be added as references or inline-->
+    <ContentPage Title="Ranked">
+        <StackLayout BindingContext="{Binding RankedSR.Data}">
+            <Label Text="Ranked" TextColor="{StaticResource LightGrey}" Style="{StaticResource ArticleTitleStyle}" HorizontalTextAlignment="Center" />
+            <Grid Margin="5" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" RowSpacing="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="Kills" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Core.Summary.Kills}" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="0" Text="Assists" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Core.Summary.Assists}" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="2" Grid.Column="0" Text="Deaths" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Core.Summary.Deaths}" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center" />
+            </Grid>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Social">
+        <StackLayout BindingContext="{Binding SocialSR.Data}">
+            <Label Text="Social" TextColor="{StaticResource LightGrey}" Style="{StaticResource ArticleTitleStyle}" HorizontalTextAlignment="Center" />
+            <Grid Margin="5" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" RowSpacing="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="Kills" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Core.Summary.Kills}" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="0" Text="Assists" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Core.Summary.Assists}" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="2" Grid.Column="0" Text="Deaths" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Core.Summary.Deaths}" TextColor="{StaticResource LightGrey}" HorizontalTextAlignment="Center" />
+            </Grid>
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

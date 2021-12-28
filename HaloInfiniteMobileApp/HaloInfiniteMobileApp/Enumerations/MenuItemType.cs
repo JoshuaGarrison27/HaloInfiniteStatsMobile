@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace HaloInfiniteMobileApp.Enumerations;
 
-namespace HaloInfiniteMobileApp.Enumerations
+public enum MenuItemType
 {
-    public enum MenuItemType
-    {
-        Home,
-        HaloNews
-    }
+    Home,
+    HaloNews,
+    ServiceRecord,
+    Medals
 }

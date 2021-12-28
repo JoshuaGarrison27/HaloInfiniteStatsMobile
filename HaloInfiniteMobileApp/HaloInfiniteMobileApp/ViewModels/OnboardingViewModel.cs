@@ -1,57 +1,56 @@
 ﻿using HaloInfiniteMobileApp.Constants;
-using HaloInfiniteMobileApp.Exceptions;
 using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace HaloInfiniteMobileApp.ViewModels
+namespace HaloInfiniteMobileApp.ViewModels;
+
+public class OnboardingViewModel : ViewModelBase
 {
-    public class OnboardingViewModel : ViewModelBase
+    private readonly ISettingsService _settingsService;
+    private string _gamertag;
+
+    public OnboardingViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
+        : base(connectionService, navigationService, dialogService, haloInfiniteService)
     {
-        private readonly ISettingsService _settingsService;
-        private string _gamertag;
+        _settingsService = settingsService;
+    }
 
-        public OnboardingViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-            : base(connectionService, navigationService, dialogService, haloInfiniteService)
+    public ICommand ContinueCommand => new Command(ContinueOnboarding);
+
+    private async void ContinueOnboarding()
+    {
+        IsBusy = true;
+        if (!string.IsNullOrWhiteSpace(Gamertag))
         {
-            _settingsService = settingsService;
-        }
-
-        public ICommand ContinueCommand => new Command(ContinueOnboarding);
-
-        private async void ContinueOnboarding()
-        {
-            IsBusy = true;
-            if (!string.IsNullOrWhiteSpace(Gamertag))
+            try
             {
-                try
-                {
-                    var player = await _haloInfiniteService.GetPlayerAppearance(Gamertag);
+                var player = await _haloInfiniteService.GetPlayerAppearance(Gamertag);
 
-                    if (player != null)
-                    {
-                        _settingsService.AddItem(SettingsConstants.Gamertag, player.Additional.Gamertag);
-                        await _navigationService.NavigateToAsync<MainViewModel>();
-                        return;
-                    }
-                } catch (Exception)
+                if (player != null)
                 {
-                    await _dialogService.ShowDialog("Invalid Gamertag Entered", "Invalid", "Try Again");
+                    _settingsService.AddItem(SettingsConstants.Gamertag, player.Additional.Gamertag);
+                    await _navigationService.NavigateToAsync<MainViewModel>();
+                    return;
                 }
             }
-            IsBusy = false;
-        }
-
-        public string Gamertag
-        {
-            get => _gamertag;
-            set
+            catch (Exception)
             {
-                _gamertag = value;
-                OnPropertyChanged();
+                await _dialogService.ShowDialog("Invalid Gamertag Entered", "Invalid", "Try Again");
             }
+        }
+        IsBusy = false;
+    }
+
+    public string Gamertag
+    {
+        get => _gamertag;
+        set
+        {
+            _gamertag = value;
+            OnPropertyChanged();
         }
     }
 }

@@ -1,14 +1,13 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HaloInfiniteMobileApp.Templates
+namespace HaloInfiniteMobileApp.Templates;
+
+[XamlCompilation(XamlCompilationOptions.Compile)]
+public partial class MenuItemTemplate : ContentView
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuItemTemplate : ContentView
+    public MenuItemTemplate()
     {
-        public MenuItemTemplate()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

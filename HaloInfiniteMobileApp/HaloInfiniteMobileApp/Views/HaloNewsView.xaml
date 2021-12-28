@@ -51,19 +51,6 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            <ListView.FooterTemplate>
-                <DataTemplate>
-                    <Grid RowSpacing="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="1" BackgroundColor="{StaticResource DarkBackgroundColor}">
-                            <Label Text="© 2021 Joshua Garrison" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource RegularStyle}"></Label>
-                        </Grid>
-                    </Grid>
-                </DataTemplate>
-            </ListView.FooterTemplate>
         </ListView>
     </Grid>
 </ContentPage>

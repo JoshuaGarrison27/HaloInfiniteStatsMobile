@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace HaloInfiniteMobileApp.Views;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class HaloNewsView : ContentPage
+public partial class MedalsView : ContentPage
 {
-    public HaloNewsView()
+    public MedalsView()
     {
         InitializeComponent();
     }

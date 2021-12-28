@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Plugin.Connectivity.Abstractions;
+﻿using Plugin.Connectivity.Abstractions;
 
-namespace HaloInfiniteMobileApp.Interfaces
+namespace HaloInfiniteMobileApp.Interfaces;
+
+public interface IConnectionService
 {
-    public interface IConnectionService
-    {
-        bool IsConnected { get; }
-        event ConnectivityChangedEventHandler ConnectivityChanged;
-    }
+    bool IsConnected { get; }
+    event ConnectivityChangedEventHandler ConnectivityChanged;
 }

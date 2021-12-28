@@ -4,48 +4,48 @@ using HaloInfiniteMobileApp.Views;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HaloInfiniteMobileApp.ViewModels
+namespace HaloInfiniteMobileApp.ViewModels;
+
+public class MainViewModel : ViewModelBase
 {
-    public class MainViewModel : ViewModelBase
+    private MenuViewModel _menuViewModel;
+
+    public MainViewModel(IConnectionService connectionService,
+        INavigationService navigationService, IDialogService dialogService,
+        MenuViewModel menuViewModel, IHaloInfiniteService haloInfiniteService)
+        : base(connectionService, navigationService, dialogService, haloInfiniteService)
     {
-        private MenuViewModel _menuViewModel;
+        _menuViewModel = menuViewModel;
+    }
 
-        public MainViewModel(IConnectionService connectionService,
-            INavigationService navigationService, IDialogService dialogService,
-            MenuViewModel menuViewModel, IHaloInfiniteService haloInfiniteService)
-            : base(connectionService, navigationService, dialogService, haloInfiniteService)
+    public MenuViewModel MenuViewModel
+    {
+        get => _menuViewModel;
+        set
         {
-            _menuViewModel = menuViewModel;
+            _menuViewModel = value;
+            OnPropertyChanged();
         }
+    }
 
-        public MenuViewModel MenuViewModel
+    public override async Task Initialize(object data)
+    {
+        var pages = _navigationService.GetNavigationStack().ToList();
+
+        if (pages.Any(page => page.GetType() == typeof(HomeView)))
         {
-            get => _menuViewModel;
-            set
-            {
-                _menuViewModel = value;
-                OnPropertyChanged();
-            }
+            await Task.WhenAll
+            (
+                _menuViewModel.Initialize(data)
+            );
         }
-
-        public override async Task InitializeAsync(object data)
+        else
         {
-            var pages = _navigationService.GetNavigationStack().ToList();
-
-            if(pages.Any(page => page.GetType() == typeof(HomeView)))
-            {
-                await Task.WhenAll
-                (
-                    _menuViewModel.InitializeAsync(data)
-                );
-            } else
-            {
-                await Task.WhenAll
-                (
-                    _menuViewModel.InitializeAsync(data),
-                    _navigationService.NavigateToAsync<HomeViewModel>()
-                );
-            }
+            await Task.WhenAll
+            (
+                _menuViewModel.Initialize(data),
+                _navigationService.NavigateToAsync<HomeViewModel>()
+            );
         }
     }
 }

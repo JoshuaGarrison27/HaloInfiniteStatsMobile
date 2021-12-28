@@ -1,10 +1,9 @@
-﻿namespace HaloInfiniteMobileApp.Interfaces
+﻿namespace HaloInfiniteMobileApp.Interfaces;
+
+public interface ISettingsService
 {
-    public interface ISettingsService
-    {
-        void AddItem(string key, string value);
-        string GetItem(string key);
-        string UserNameSetting { get; set; }
-        string UserIdSetting { get; set; }
-    }
+    void AddItem(string key, string value);
+    string GetItem(string key);
+    string UserNameSetting { get; set; }
+    string UserIdSetting { get; set; }
 }

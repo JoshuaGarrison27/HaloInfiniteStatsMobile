@@ -8,189 +8,191 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace HaloInfiniteMobileApp.Services
+namespace HaloInfiniteMobileApp.Services;
+
+public class NavigationService : INavigationService
 {
-    public class NavigationService : INavigationService
+    private readonly ISettingsService _settingsService;
+    private readonly Dictionary<Type, Type> _mappings;
+
+    protected Application CurrentApplication => Application.Current;
+
+    public NavigationService(ISettingsService settingsService)
     {
-        private readonly ISettingsService _settingsService;
-        private readonly Dictionary<Type, Type> _mappings;
+        _settingsService = settingsService;
+        _mappings = new Dictionary<Type, Type>();
 
-        protected Application CurrentApplication => Application.Current;
+        CreatePageViewModelMappings();
+    }
 
-        public NavigationService(ISettingsService settingsService)
+    public async Task InitializeAsync()
+    {
+        var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
+        if (string.IsNullOrWhiteSpace(gamertag))
         {
-            _settingsService = settingsService;
-            _mappings = new Dictionary<Type, Type>();
+            await NavigateToAsync<OnboardingViewModel>();
+        }
+        else
+        {
+            await NavigateToAsync<MainViewModel>();
+        }
+    }
 
-            CreatePageViewModelMappings();
+    public async Task ClearBackStack()
+    {
+        await CurrentApplication.MainPage.Navigation.PopToRootAsync();
+    }
+
+    public async Task NavigateBackAsync()
+    {
+        if (CurrentApplication.MainPage is MainView mainPage)
+        {
+            await mainPage.Detail.Navigation.PopAsync();
+        }
+        else if (CurrentApplication.MainPage != null)
+        {
+            await CurrentApplication.MainPage.Navigation.PopAsync();
+        }
+    }
+
+    public virtual Task RemoveLastFromBackStackAsync()
+    {
+        if (CurrentApplication.MainPage is MainView mainPage)
+        {
+            mainPage.Detail.Navigation.RemovePage(
+                mainPage.Detail.Navigation.NavigationStack[mainPage.Detail.Navigation.NavigationStack.Count - 2]);
         }
 
-        public async Task InitializeAsync()
+        return Task.FromResult(true);
+    }
+
+    public async Task PopToRootAsync()
+    {
+        if (CurrentApplication.MainPage is MainView mainPage)
         {
-            var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
-            if (string.IsNullOrWhiteSpace(gamertag))
+            await mainPage.Detail.Navigation.PopToRootAsync();
+        }
+    }
+
+    public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
+    {
+        return InternalNavigateToAsync(typeof(TViewModel), null);
+    }
+
+    public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
+    {
+        return InternalNavigateToAsync(typeof(TViewModel), parameter);
+    }
+
+    public Task NavigateToAsync(Type viewModelType)
+    {
+        return InternalNavigateToAsync(viewModelType, null);
+    }
+
+    public Task NavigateToAsync(Type viewModelType, object parameter)
+    {
+        return InternalNavigateToAsync(viewModelType, parameter);
+    }
+
+    protected virtual async Task InternalNavigateToAsync(Type viewModelType, object parameter)
+    {
+        try
+        {
+            var page = CreatePage(viewModelType, parameter);
+
+            if (page is MainView || page is OnboardingView)
             {
-                await NavigateToAsync<OnboardingViewModel>();
+                CurrentApplication.MainPage = page;
             }
-            else
+            else if (CurrentApplication.MainPage is MainView)
             {
-                await NavigateToAsync<MainViewModel>();
-            }
-        }
+                var mainPage = CurrentApplication.MainPage as MainView;
 
-        public async Task ClearBackStack()
-        {
-            await CurrentApplication.MainPage.Navigation.PopToRootAsync();
-        }
-
-        public async Task NavigateBackAsync()
-        {
-            if (CurrentApplication.MainPage is MainView mainPage)
-            {
-                await mainPage.Detail.Navigation.PopAsync();
-            }
-            else if (CurrentApplication.MainPage != null)
-            {
-                await CurrentApplication.MainPage.Navigation.PopAsync();
-            }
-        }
-
-        public virtual Task RemoveLastFromBackStackAsync()
-        {
-            if (CurrentApplication.MainPage is MainView mainPage)
-            {
-                mainPage.Detail.Navigation.RemovePage(
-                    mainPage.Detail.Navigation.NavigationStack[mainPage.Detail.Navigation.NavigationStack.Count - 2]);
-            }
-
-            return Task.FromResult(true);
-        }
-
-        public async Task PopToRootAsync()
-        {
-            if (CurrentApplication.MainPage is MainView mainPage)
-            {
-                await mainPage.Detail.Navigation.PopToRootAsync();
-            }
-        }
-
-        public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
-        {
-            return InternalNavigateToAsync(typeof(TViewModel), null);
-        }
-
-        public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
-        {
-            return InternalNavigateToAsync(typeof(TViewModel), parameter);
-        }
-
-        public Task NavigateToAsync(Type viewModelType)
-        {
-            return InternalNavigateToAsync(viewModelType, null);
-        }
-
-        public Task NavigateToAsync(Type viewModelType, object parameter)
-        {
-            return InternalNavigateToAsync(viewModelType, parameter);
-        }
-
-        protected virtual async Task InternalNavigateToAsync(Type viewModelType, object parameter)
-        {
-            try
-            {
-                var page = CreatePage(viewModelType, parameter);
-
-                if (page is MainView || page is OnboardingView)
+                if (mainPage.Detail is AppNavigationPage navigationPage)
                 {
-                    CurrentApplication.MainPage = page;
-                }
-                else if (CurrentApplication.MainPage is MainView)
-                {
-                    var mainPage = CurrentApplication.MainPage as MainView;
+                    var currentPage = navigationPage.CurrentPage;
 
-                    if (mainPage.Detail is AppNavigationPage navigationPage)
-                    {
-                        var currentPage = navigationPage.CurrentPage;
-
-                        if (currentPage.GetType() != page.GetType())
-                        {
-                            await navigationPage.PushAsync(page);
-                        }
-                    }
-                    else
-                    {
-                        navigationPage = new AppNavigationPage(page);
-                        mainPage.Detail = navigationPage;
-                    }
-
-                    mainPage.IsPresented = false;
-                }
-                else
-                {
-                    var navigationPage = CurrentApplication.MainPage as AppNavigationPage;
-
-                    if (navigationPage != null)
+                    if (currentPage.GetType() != page.GetType())
                     {
                         await navigationPage.PushAsync(page);
                     }
-                    else
-                    {
-                        CurrentApplication.MainPage = new AppNavigationPage(page);
-                    }
+                }
+                else
+                {
+                    navigationPage = new AppNavigationPage(page);
+                    mainPage.Detail = navigationPage;
                 }
 
-                await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
-            } catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                mainPage.IsPresented = false;
             }
-        }
+            else
+            {
+                var navigationPage = CurrentApplication.MainPage as AppNavigationPage;
 
-        protected Type GetPageTypeForViewModel(Type viewModelType)
+                if (navigationPage != null)
+                {
+                    await navigationPage.PushAsync(page);
+                }
+                else
+                {
+                    CurrentApplication.MainPage = new AppNavigationPage(page);
+                }
+            }
+
+            await (page.BindingContext as ViewModelBase).Initialize(parameter);
+        }
+        catch (Exception ex)
         {
-            if (!_mappings.ContainsKey(viewModelType))
-            {
-                throw new KeyNotFoundException($"No map for ${viewModelType} was found on navigation mappings");
-            }
-
-            return _mappings[viewModelType];
+            System.Diagnostics.Debug.WriteLine(ex.ToString());
         }
+    }
 
-        protected Page CreatePage(Type viewModelType, object parameter)
+    protected Type GetPageTypeForViewModel(Type viewModelType)
+    {
+        if (!_mappings.ContainsKey(viewModelType))
         {
-            Type pageType = GetPageTypeForViewModel(viewModelType);
-
-            if (pageType == null)
-            {
-                throw new Exception($"Mapping type for {viewModelType} is not a page");
-            }
-
-            Page page = Activator.CreateInstance(pageType) as Page;
-
-            return page;
+            throw new KeyNotFoundException($"No map for ${viewModelType} was found on navigation mappings");
         }
 
-        private void CreatePageViewModelMappings()
+        return _mappings[viewModelType];
+    }
+
+    protected Page CreatePage(Type viewModelType, object parameter)
+    {
+        Type pageType = GetPageTypeForViewModel(viewModelType);
+
+        if (pageType == null)
         {
-            _mappings.Add(typeof(MainViewModel), typeof(MainView));
-            _mappings.Add(typeof(MenuViewModel), typeof(MenuView));
-            _mappings.Add(typeof(HomeViewModel), typeof(HomeView));
-            _mappings.Add(typeof(OnboardingViewModel), typeof(OnboardingView));
-            _mappings.Add(typeof(HaloNewsViewModel), typeof(HaloNewsView));
+            throw new Exception($"Mapping type for {viewModelType} is not a page");
         }
 
-        public IEnumerable<Page> GetNavigationStack()
+        Page page = Activator.CreateInstance(pageType) as Page;
+
+        return page;
+    }
+
+    private void CreatePageViewModelMappings()
+    {
+        _mappings.Add(typeof(MainViewModel), typeof(MainView));
+        _mappings.Add(typeof(MenuViewModel), typeof(MenuView));
+        _mappings.Add(typeof(HomeViewModel), typeof(HomeView));
+        _mappings.Add(typeof(OnboardingViewModel), typeof(OnboardingView));
+        _mappings.Add(typeof(HaloNewsViewModel), typeof(HaloNewsView));
+        _mappings.Add(typeof(ServiceRecordViewModel), typeof(ServiceRecordView));
+        _mappings.Add(typeof(MedalsViewModel), typeof(MedalsView));
+    }
+
+    public IEnumerable<Page> GetNavigationStack()
+    {
+        if (CurrentApplication.MainPage is MainView mainPage)
         {
-            if (CurrentApplication.MainPage is MainView mainPage)
-            {
-                return mainPage.Detail.Navigation.NavigationStack;
-            }
-            else if (CurrentApplication.MainPage != null)
-            {
-                return CurrentApplication.MainPage.Navigation.NavigationStack;
-            }
-
-            return default;
+            return mainPage.Detail.Navigation.NavigationStack;
         }
+        else if (CurrentApplication.MainPage != null)
+        {
+            return CurrentApplication.MainPage.Navigation.NavigationStack;
+        }
+
+        return default;
     }
 }

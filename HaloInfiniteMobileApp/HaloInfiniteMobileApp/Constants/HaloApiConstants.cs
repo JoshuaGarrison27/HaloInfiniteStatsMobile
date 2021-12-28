@@ -1,9 +1,10 @@
-﻿namespace HaloInfiniteMobileApp.Constants
+﻿namespace HaloInfiniteMobileApp.Constants;
+
+public static class HaloApiConstants
 {
-    public static class HaloApiConstants
-    {
-        public const string BaseApiUrl = "https://halo.api.stdlib.com/infinite@0.2.3/";
-        public const string AppearanceEndpoint = "appearance/";
-        public const string Articles = "articles/";
-    }
+    public const string BaseApiUrl = "https://halo.api.stdlib.com/infinite@0.3.2/";
+    public const string Appearance = "appearance/";
+    public const string Articles = "articles/list/";
+    public const string ServiceRecordMultiplayer = "stats/service-record/multiplayer/";
+    public const string MedalsList = "metadata/medals/list/";
 }

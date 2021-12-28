@@ -3,47 +3,46 @@ using System.Globalization;
 using System.Reflection;
 using Xamarin.Forms;
 
-namespace HaloInfiniteMobileApp.Utilities
+namespace HaloInfiniteMobileApp.Utilities;
+
+public class ViewModelLocator
 {
-    public class ViewModelLocator
+    public static readonly BindableProperty AutoWireViewModelProperty =
+        BindableProperty.CreateAttached("AutoWireViewModel", typeof(bool),
+            typeof(ViewModelLocator), default(bool),
+            propertyChanged: OnAutoWireViewModelChanged);
+
+    public static bool GetAutoWireViewModel(BindableObject bindable)
     {
-        public static readonly BindableProperty AutoWireViewModelProperty =
-            BindableProperty.CreateAttached("AutoWireViewModel", typeof(bool),
-                typeof(ViewModelLocator), default(bool),
-                propertyChanged: OnAutoWireViewModelChanged);
+        return (bool)bindable.GetValue(AutoWireViewModelProperty);
+    }
 
-        public static bool GetAutoWireViewModel(BindableObject bindable)
+    public static void SetAutoWireViewModel(BindableObject bindable, bool value)
+    {
+        bindable.SetValue(AutoWireViewModelProperty, value);
+    }
+
+    private static void OnAutoWireViewModelChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (!(bindable is Element view))
         {
-            return (bool)bindable.GetValue(AutoWireViewModelProperty);
+            return;
         }
 
-        public static void SetAutoWireViewModel(BindableObject bindable, bool value)
+        var viewType = view.GetType();
+        if (viewType.FullName != null)
         {
-            bindable.SetValue(AutoWireViewModelProperty, value);
-        }
+            var viewName = viewType.FullName.Replace(".Views.", ".ViewModels.");
+            var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
+            var viewModelName = string.Format(CultureInfo.InvariantCulture, "{0}Model, {1}", viewName, viewAssemblyName);
 
-        private static void OnAutoWireViewModelChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (!(bindable is Element view))
+            var viewModelType = Type.GetType(viewModelName);
+            if (viewModelType == null)
             {
                 return;
             }
-
-            var viewType = view.GetType();
-            if (viewType.FullName != null)
-            {
-                var viewName = viewType.FullName.Replace(".Views.", ".ViewModels.");
-                var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
-                var viewModelName = string.Format(CultureInfo.InvariantCulture, "{0}Model, {1}", viewName, viewAssemblyName);
-
-                var viewModelType = Type.GetType(viewModelName);
-                if (viewModelType == null)
-                {
-                    return;
-                }
-                var viewModel = App.ServiceProvider.GetService(viewModelType);
-                view.BindingContext = viewModel;
-            }
+            var viewModel = App.ServiceProvider.GetService(viewModelType);
+            view.BindingContext = viewModel;
         }
     }
 }

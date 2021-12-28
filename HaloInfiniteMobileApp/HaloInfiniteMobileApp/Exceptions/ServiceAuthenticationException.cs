@@ -1,13 +1,12 @@
 ﻿using System;
 
-namespace HaloInfiniteMobileApp.Exceptions
+namespace HaloInfiniteMobileApp.Exceptions;
+
+public class ServiceAuthenticationException : Exception
 {
-    public class ServiceAuthenticationException : Exception
+    public string Content { get; set; }
+    public ServiceAuthenticationException(string content)
     {
-        public string Content { get; set; }
-        public ServiceAuthenticationException(string content)
-        {
-            Content = content;
-        }
+        Content = content;
     }
 }

@@ -4,28 +4,27 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace HaloInfiniteMobileApp.Interfaces
+namespace HaloInfiniteMobileApp.Interfaces;
+
+public interface INavigationService
 {
-    public interface INavigationService
-    {
-        Task InitializeAsync();
+    Task InitializeAsync();
 
-        Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase;
+    Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase;
 
-        Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase;
+    Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase;
 
-        Task NavigateToAsync(Type viewModelType);
+    Task NavigateToAsync(Type viewModelType);
 
-        Task ClearBackStack();
+    Task ClearBackStack();
 
-        Task NavigateToAsync(Type viewModelType, object parameter);
+    Task NavigateToAsync(Type viewModelType, object parameter);
 
-        Task NavigateBackAsync();
+    Task NavigateBackAsync();
 
-        Task RemoveLastFromBackStackAsync();
+    Task RemoveLastFromBackStackAsync();
 
-        Task PopToRootAsync();
+    Task PopToRootAsync();
 
-        IEnumerable<Page> GetNavigationStack();
-    }
+    IEnumerable<Page> GetNavigationStack();
 }

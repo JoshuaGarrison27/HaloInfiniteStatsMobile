@@ -2,64 +2,63 @@
 using System;
 using Xamarin.Forms;
 
-namespace HaloInfiniteMobileApp.Models
+namespace HaloInfiniteMobileApp.Models;
+
+public class MainMenuItem : BindableObject
 {
-    public class MainMenuItem : BindableObject
+    private string _menuText;
+    private MenuItemType _menuItemType;
+    private Type _viewModelToLoad;
+    private string _menuItemFontAwesomeCode;
+
+    public MenuItemType MenuItemType
     {
-        private string _menuText;
-        private MenuItemType _menuItemType;
-        private Type _viewModelToLoad;
-        private string _menuItemFontAwesomeCode;
-
-        public MenuItemType MenuItemType
+        get
         {
-            get
-            {
-                return _menuItemType;
-            }
-            set
-            {
-                _menuItemType = value;
-                OnPropertyChanged();
-            }
+            return _menuItemType;
         }
-
-        public string MenuText
+        set
         {
-            get
-            {
-                return _menuText;
-            }
-            set
-            {
-                _menuText = value;
-                OnPropertyChanged();
-            }
+            _menuItemType = value;
+            OnPropertyChanged();
         }
-        public string MenuItemFontAwesomeCode
-        {
-            get
-            {
-                return _menuItemFontAwesomeCode;
-            }
-            set
-            {
-                _menuItemFontAwesomeCode = value;
-                OnPropertyChanged();
-            }
-        }
+    }
 
-        public Type ViewModelToLoad
+    public string MenuText
+    {
+        get
         {
-            get
-            {
-                return _viewModelToLoad;
-            }
-            set
-            {
-                _viewModelToLoad = value;
-                OnPropertyChanged();
-            }
+            return _menuText;
+        }
+        set
+        {
+            _menuText = value;
+            OnPropertyChanged();
+        }
+    }
+    public string MenuItemFontAwesomeCode
+    {
+        get
+        {
+            return _menuItemFontAwesomeCode;
+        }
+        set
+        {
+            _menuItemFontAwesomeCode = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public Type ViewModelToLoad
+    {
+        get
+        {
+            return _viewModelToLoad;
+        }
+        set
+        {
+            _viewModelToLoad = value;
+            OnPropertyChanged();
         }
     }
 }
