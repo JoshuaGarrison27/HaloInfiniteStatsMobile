@@ -6,5 +6,6 @@ public enum MenuItemType
     HaloNews,
     ServiceRecord,
     Medals,
+    MatchList,
     LogOut
 }

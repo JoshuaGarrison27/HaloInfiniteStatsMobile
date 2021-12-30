@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HaloInfiniteMobileApp.Views.PlayerMatchesView"
+             xmlns:behaviors="clr-namespace:HaloInfiniteMobileApp.Behaviors;assembly=HaloInfiniteMobileApp"
+                xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
+                utility:ViewModelLocator.AutoWireViewModel="True"
+                Title="Recent Matches"
+             BackgroundColor="{StaticResource DarkBackgroundColor}">
+    <AbsoluteLayout>
+        <AbsoluteLayout VerticalOptions="Fill">
+            <ListView x:Name="MyListView"
+            ItemsSource="{Binding PlayerMatches.Matches}"
+            CachingStrategy="RecycleElement" HasUnevenRows="True">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding MatchSelectedCommand}" EventArgsConverter="{StaticResource LocalItemTappedConverter}"></behaviors:EventToCommandBehavior>
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame CornerRadius="5" Margin="2,5,2,5" Padding="0">
+                                <Grid BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="100"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Opacity="0.4"
+                                           Source="{Binding details.map.asset.thumbnail_url}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+                                    <StackLayout Grid.Row="2" Grid.Column="0" Margin="0" Padding="10,1,1,10">
+                                        <Label Text="{Binding details.category.name}" FontSize="16" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding details.map.name}" FontSize="12" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding duration.human}" FontSize="12" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding played_at, Converter={StaticResource LocalRelativeTimeConverter}}" Grid.Row="0" Grid.Column="1" FontSize="16" Margin="3,5,10,1" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="End"/>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ActivityIndicator IsRunning="{Binding Path=IsBusy}" Color="{StaticResource ActivitySpinnerColor}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />
+        </AbsoluteLayout>
+    </AbsoluteLayout>
+</ContentPage>

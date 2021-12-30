@@ -9,5 +9,6 @@ public interface IHaloInfiniteService
     Task<PlayerAppearance> GetPlayerAppearance(string gamertag);
     Task<MultiplayerServiceRecord> GetMultiplayerServiceRecord(string gamertag, string multiplayerFilterConstants);
     Task<HaloMedals> GetHaloMedals();
+    Task<PlayerMatches> GetPlayerMatches(string gamertag);
     void InvalidateCache();
 }

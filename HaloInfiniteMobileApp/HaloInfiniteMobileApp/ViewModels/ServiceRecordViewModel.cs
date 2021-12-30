@@ -2,6 +2,7 @@
 using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HaloInfiniteMobileApp.ViewModels;
@@ -29,8 +30,10 @@ public class ServiceRecordViewModel : ViewModelBase
 
     private async void LoadAsyncData()
     {
-        SocialSR = await _haloInfiniteService.GetMultiplayerServiceRecord(Gamertag, MultiplayerFilterConstants.Matchmade_Social);
-        RankedSR = await _haloInfiniteService.GetMultiplayerServiceRecord(Gamertag, MultiplayerFilterConstants.Matchmade_Ranked);
+        IsBusy = true;
+        SocialSR = await _haloInfiniteService.GetMultiplayerServiceRecord(Gamertag, MultiplayerFilterConstants.Matchmade_Social).ConfigureAwait(false);
+        RankedSR = await _haloInfiniteService.GetMultiplayerServiceRecord(Gamertag, MultiplayerFilterConstants.Matchmade_Ranked).ConfigureAwait(false);
+        IsBusy = false;
     }
 
     public MultiplayerServiceRecord RankedSR

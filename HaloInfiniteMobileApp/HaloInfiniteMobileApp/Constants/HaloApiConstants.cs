@@ -7,4 +7,5 @@ public static class HaloApiConstants
     public const string Articles = "articles/list/";
     public const string ServiceRecordMultiplayer = "stats/service-record/multiplayer/";
     public const string MedalsList = "metadata/medals/list/";
+    public const string MatchList = "stats/matches/list/";
 }

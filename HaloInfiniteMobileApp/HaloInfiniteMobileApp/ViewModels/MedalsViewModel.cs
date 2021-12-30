@@ -19,7 +19,7 @@ public class MedalsViewModel : ViewModelBase
 
     public async override Task Initialize(object data)
     {
-        base.Initialize(data);
+        _ = base.Initialize(data);
 
         LoadDataAsync();
     }

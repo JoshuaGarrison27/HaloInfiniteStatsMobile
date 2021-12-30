@@ -59,6 +59,7 @@ public class MenuViewModel : ViewModelBase
         if (menuItem?.MenuText == "Change Account")
         {
             _settingsService.RemoveItem(SettingsConstants.Gamertag);
+            _haloInfiniteService.InvalidateCache();
             _navigationService.ClearBackStack();
         }
 
@@ -90,6 +91,14 @@ public class MenuViewModel : ViewModelBase
             ViewModelToLoad = typeof(ServiceRecordViewModel),
             MenuItemType = MenuItemType.ServiceRecord,
             MenuItemFontAwesomeCode = "\uf091"
+        });
+
+        MenuItems.Add(new MainMenuItem
+        {
+            MenuText = "Recent Matches",
+            ViewModelToLoad = typeof(PlayerMatchesViewModel),
+            MenuItemType = MenuItemType.MatchList,
+            MenuItemFontAwesomeCode = "\ue03d"
         });
 
         MenuItems.Add(new MainMenuItem

@@ -180,6 +180,7 @@ public class NavigationService : INavigationService
         _mappings.Add(typeof(HaloNewsViewModel), typeof(HaloNewsView));
         _mappings.Add(typeof(ServiceRecordViewModel), typeof(ServiceRecordView));
         _mappings.Add(typeof(MedalsViewModel), typeof(MedalsView));
+        _mappings.Add(typeof(PlayerMatchesViewModel), typeof(PlayerMatchesView));
     }
 
     public IEnumerable<Page> GetNavigationStack()

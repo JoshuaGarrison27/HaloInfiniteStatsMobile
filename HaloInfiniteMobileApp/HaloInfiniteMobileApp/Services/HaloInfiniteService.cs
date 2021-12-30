@@ -111,4 +111,35 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
             return response;
         }
     }
+
+    public async Task<PlayerMatches> GetPlayerMatches(string gamertag)
+    {
+        var cacheKey = CacheNameConstrants.PlayerMatchesPartial + gamertag;
+        var playerMatchesFromCache = await GetFromCache<PlayerMatches>(cacheKey);
+
+        if (playerMatchesFromCache != null)
+        {
+            return playerMatchesFromCache;
+        }
+        else
+        {
+            const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.MatchList;
+            var requestObject = new PlayerMatchListRequest
+            {
+                Gamertag = gamertag,
+                Limit = new Paging
+                {
+                    count = 10,
+                    offset = 0
+                },
+                Mode = "matchmade"
+            };
+
+            var response = await _genericRepository.PostAsync<PlayerMatchListRequest, PlayerMatches>(apiUrl, requestObject, _haloApiAuthToken);
+
+            Cache.InsertObject(cacheKey, response, DateTimeOffset.Now.AddMinutes(5));
+
+            return response;
+        }
+    }
 }

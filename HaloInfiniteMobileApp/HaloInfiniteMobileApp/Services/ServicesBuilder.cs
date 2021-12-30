@@ -20,6 +20,7 @@ public static class ServicesBuilder
         services.AddTransient<HaloNewsViewModel>();
         services.AddTransient<ServiceRecordViewModel>();
         services.AddTransient<MedalsViewModel>();
+        services.AddTransient<PlayerMatchesViewModel>();
 
         //Services
         services.AddTransient<IConnectionService, ConnectionService>();
