@@ -51,9 +51,9 @@ public class MultiplayerServiceRecordCore
     [JsonProperty("breakdowns")]
     public MultiplayerServiceRecordBreakdowns Breakdowns { get; set; }
     [JsonProperty("kda")]
-    public decimal Kda { get; set; }
+    public decimal KillDeathAssistRatio { get; set; }
     [JsonProperty("kdr")]
-    public decimal Kdr { get; set; }
+    public decimal KillDeathRatio { get; set; }
     [JsonProperty("total_score")]
     public long TotalScore { get; set; }
 }

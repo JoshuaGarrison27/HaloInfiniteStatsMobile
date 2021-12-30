@@ -56,10 +56,9 @@ public class MenuViewModel : ViewModelBase
     {
         var menuItem = ((menuItemTappedEventArgs as ItemTappedEventArgs)?.Item as MainMenuItem);
 
-        if (menuItem?.MenuText == "Log out")
+        if (menuItem?.MenuText == "Change Account")
         {
-            _settingsService.UserIdSetting = null;
-            _settingsService.UserNameSetting = null;
+            _settingsService.RemoveItem(SettingsConstants.Gamertag);
             _navigationService.ClearBackStack();
         }
 
@@ -99,6 +98,14 @@ public class MenuViewModel : ViewModelBase
             ViewModelToLoad = typeof(MedalsViewModel),
             MenuItemType = MenuItemType.Medals,
             MenuItemFontAwesomeCode = "\uf5a2"
+        });
+
+        MenuItems.Add(new MainMenuItem
+        {
+            MenuText = "Change Account",
+            ViewModelToLoad = typeof(OnboardingViewModel),
+            MenuItemType = MenuItemType.LogOut,
+            MenuItemFontAwesomeCode = "\uf2f5"
         });
     }
 

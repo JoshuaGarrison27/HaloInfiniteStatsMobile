@@ -29,8 +29,8 @@ public class ServiceRecordViewModel : ViewModelBase
 
     private async void LoadAsyncData()
     {
-        RankedSR = await _haloInfiniteService.GetMultiplayerServiceRecord(Gamertag, MultiplayerFilterConstants.Matchmade_Ranked);
         SocialSR = await _haloInfiniteService.GetMultiplayerServiceRecord(Gamertag, MultiplayerFilterConstants.Matchmade_Social);
+        RankedSR = await _haloInfiniteService.GetMultiplayerServiceRecord(Gamertag, MultiplayerFilterConstants.Matchmade_Ranked);
     }
 
     public MultiplayerServiceRecord RankedSR

@@ -7,8 +7,6 @@ namespace HaloInfiniteMobileApp.Services;
 public class SettingsService : ISettingsService
 {
     private readonly ISettings _settings;
-    private const string UserName = "UserName";
-    private const string UserId = "UserId";
 
     public SettingsService()
     {
@@ -25,15 +23,8 @@ public class SettingsService : ISettingsService
         return _settings.GetValueOrDefault(key, string.Empty);
     }
 
-    public string UserNameSetting
+    public void RemoveItem(string key)
     {
-        get => GetItem(UserName);
-        set => AddItem(UserName, value);
-    }
-
-    public string UserIdSetting
-    {
-        get => GetItem(UserId);
-        set => AddItem(UserId, value);
+       _settings.Remove(key);
     }
 }
