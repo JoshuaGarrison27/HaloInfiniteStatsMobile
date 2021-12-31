@@ -113,6 +113,23 @@ public class Player
     public string outcome { get; set; }
     public Participation participation { get; set; }
     public object progression { get; set; }
+    public string MatchOutcome
+    {
+        get
+        {
+            switch (outcome)
+            {
+                case "draw":
+                    return "Tied";
+                case "win":
+                    return "Victory";
+                case "loss":
+                    return "Defeat";
+                    default: 
+                    return outcome;
+            }
+        }
+    }
 }
 
 public class Team

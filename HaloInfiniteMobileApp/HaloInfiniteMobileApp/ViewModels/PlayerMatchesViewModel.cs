@@ -25,13 +25,18 @@ public class PlayerMatchesViewModel : ViewModelBase
     {
         IsBusy = true;
         _ = base.Initialize(data);
+        await RefreshMatches().ConfigureAwait(false);
+        IsBusy = false;
+    }
+
+    public async Task RefreshMatches()
+    {
         var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
 
-        if(gamertag != null)
+        if (gamertag != null)
         {
             PlayerMatches = await _haloInfiniteService.GetPlayerMatches(gamertag);
         }
-        IsBusy = false;
     }
 
     private async void OnMatchTapped(Match match)

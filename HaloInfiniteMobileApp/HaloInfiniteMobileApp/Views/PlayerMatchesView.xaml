@@ -22,15 +22,19 @@
                                 <Grid BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="100"></RowDefinition>
+                                        <RowDefinition Height="50"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Opacity="0.4"
-                                           Source="{Binding details.map.asset.thumbnail_url}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+                                    <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Opacity="0.4" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding details.map.asset.thumbnail_url}" CacheValidity="14" CachingEnabled="true"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Label Text="{Binding player.MatchOutcome}" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
                                     <StackLayout Grid.Row="2" Grid.Column="0" Margin="0" Padding="10,1,1,10">
                                         <Label Text="{Binding details.category.name}" FontSize="16" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
                                         <Label Text="{Binding details.map.name}" FontSize="12" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>

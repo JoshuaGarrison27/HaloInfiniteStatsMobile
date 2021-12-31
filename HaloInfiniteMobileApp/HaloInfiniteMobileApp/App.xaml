@@ -99,7 +99,7 @@
             </Style>
 
             <Style x:Key="MenuIconStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
                 <Setter Property="TextColor" Value="{StaticResource LightGrey}"></Setter>
                 <Setter Property="Margin" Value="5"></Setter>
                 <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}"></Setter>
@@ -108,7 +108,7 @@
             </Style>
 
             <Style x:Key="MenuTextStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
                 <Setter Property="TextColor" Value="{StaticResource LightGrey}"></Setter>
                 <Setter Property="Margin" Value="5"></Setter>
                 <Setter Property="VerticalOptions" Value="Center"></Setter>
