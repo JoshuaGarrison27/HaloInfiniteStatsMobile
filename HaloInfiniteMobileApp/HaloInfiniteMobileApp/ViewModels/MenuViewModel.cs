@@ -13,16 +13,14 @@ namespace HaloInfiniteMobileApp.ViewModels;
 public class MenuViewModel : ViewModelBase
 {
     private ObservableCollection<MainMenuItem> _menuItems;
-    private readonly ISettingsService _settingsService;
     private PlayerAppearance _playerAppearance;
     private string _heroText;
 
     public MenuViewModel(IConnectionService connectionService,
         INavigationService navigationService, IDialogService dialogService,
         ISettingsService settingsService, IHaloInfiniteService haloInfiniteService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService)
+        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
     {
-        _settingsService = settingsService;
         MenuItems = new ObservableCollection<MainMenuItem>();
         LoadMenuItems();
     }

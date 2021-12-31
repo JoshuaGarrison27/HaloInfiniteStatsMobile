@@ -13,10 +13,10 @@ public class HaloNewsViewModel : ViewModelBase
 {
     private ObservableCollection<Article> _articles;
     public HaloNewsViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService,
-        IHaloInfiniteService haloInfiniteService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService)
-    {
-    }
+        IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
+        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
+    {}
+
     public ICommand ArticleTappedCommand => new Command<Article>(OnArticleTapped);
 
     public ObservableCollection<Article> NewsArticles

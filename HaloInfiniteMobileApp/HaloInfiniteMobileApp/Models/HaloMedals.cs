@@ -8,7 +8,7 @@ public class HaloMedals
     public IEnumerable<Medal> Medals { get; set; }
 }
 
-public class Medal
+public partial class Medal
 {
     [JsonProperty("id")]
     public long Id { get; set; }

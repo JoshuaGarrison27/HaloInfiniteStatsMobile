@@ -11,14 +11,16 @@ public class ViewModelBase : INotifyPropertyChanged
     protected readonly INavigationService _navigationService;
     protected readonly IDialogService _dialogService;
     protected readonly IHaloInfiniteService _haloInfiniteService;
+    protected readonly ISettingsService _settingsService;
 
     public ViewModelBase(IConnectionService connectionService, INavigationService navigationService,
-        IDialogService dialogService, IHaloInfiniteService haloInfiniteService)
+        IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
     {
         _connectionService = connectionService;
         _navigationService = navigationService;
         _dialogService = dialogService;
         _haloInfiniteService = haloInfiniteService;
+        _settingsService = settingsService;
     }
 
     private bool _isBusy;

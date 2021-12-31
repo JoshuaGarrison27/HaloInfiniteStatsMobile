@@ -9,14 +9,11 @@ namespace HaloInfiniteMobileApp.ViewModels;
 
 public class OnboardingViewModel : ViewModelBase
 {
-    private readonly ISettingsService _settingsService;
     private string _gamertag;
 
     public OnboardingViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService)
-    {
-        _settingsService = settingsService;
-    }
+        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
+    { }
 
     public ICommand ContinueCommand => new Command(ContinueOnboarding);
 

@@ -9,9 +9,4 @@ public partial class PlayerMatchesView : ContentPage
     {
         InitializeComponent();
     }
-
-    private void Match_ItemTapped(object sender, ItemTappedEventArgs e)
-    {
-
-    }
 }

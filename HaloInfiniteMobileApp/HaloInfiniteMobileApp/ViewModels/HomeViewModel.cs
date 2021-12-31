@@ -9,15 +9,13 @@ namespace HaloInfiniteMobileApp.ViewModels;
 
 public class HomeViewModel : ViewModelBase
 {
-    private readonly ISettingsService _settingsService;
     private string _gamertag;
     private string _emblemUrl;
 
     public HomeViewModel(IConnectionService connectionService,
         INavigationService navigationService,
-        IDialogService dialogService, ISettingsService settingsService, IHaloInfiniteService haloInfiniteService) : base(connectionService, navigationService, dialogService, haloInfiniteService)
+        IDialogService dialogService, ISettingsService settingsService, IHaloInfiniteService haloInfiniteService) : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
     {
-        _settingsService = settingsService;
         Gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
     }
 
@@ -48,7 +46,7 @@ public class HomeViewModel : ViewModelBase
     private async void ClearCache()
     {
         _haloInfiniteService.InvalidateCache();
-        await _dialogService.ShowDialog("Halo Cache Cleared", "Cache Cleared", "OK");
+        _dialogService.ShowToast("Halo Cache Cleared");
     }
 
     public string Gamertag

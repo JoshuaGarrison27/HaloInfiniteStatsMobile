@@ -12,8 +12,8 @@ public class MainViewModel : ViewModelBase
 
     public MainViewModel(IConnectionService connectionService,
         INavigationService navigationService, IDialogService dialogService,
-        MenuViewModel menuViewModel, IHaloInfiniteService haloInfiniteService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService)
+        MenuViewModel menuViewModel, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
+        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
     {
         _menuViewModel = menuViewModel;
     }

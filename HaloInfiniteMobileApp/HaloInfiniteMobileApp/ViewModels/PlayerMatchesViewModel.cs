@@ -10,14 +10,11 @@ namespace HaloInfiniteMobileApp.ViewModels;
 
 public class PlayerMatchesViewModel : ViewModelBase
 {
-    private readonly ISettingsService _settingsService;
     public PlayerMatches _playerMatches;
     public PlayerMatchesViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService,
         IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService)
-    {
-        _settingsService = settingsService;
-    }
+        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
+    {}
 
     public ICommand MatchSelectedCommand => new Command<Match>(OnMatchTapped);
 
@@ -39,9 +36,9 @@ public class PlayerMatchesViewModel : ViewModelBase
         }
     }
 
-    private async void OnMatchTapped(Match match)
+    private void OnMatchTapped(Match match)
     {
-        await _dialogService.ShowDialog(match.id, "Match Selected", "OK");
+        _navigationService.NavigateToAsync<MatchDetailsViewModel>(match);
     }
 
     public PlayerMatches PlayerMatches

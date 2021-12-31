@@ -181,6 +181,7 @@ public class NavigationService : INavigationService
         _mappings.Add(typeof(ServiceRecordViewModel), typeof(ServiceRecordView));
         _mappings.Add(typeof(MedalsViewModel), typeof(MedalsView));
         _mappings.Add(typeof(PlayerMatchesViewModel), typeof(PlayerMatchesView));
+        _mappings.Add(typeof(MatchDetailsViewModel), typeof(MatchDetailsView));
     }
 
     public IEnumerable<Page> GetNavigationStack()

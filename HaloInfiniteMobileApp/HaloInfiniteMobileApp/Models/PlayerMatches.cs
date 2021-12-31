@@ -45,67 +45,67 @@ public class Match
     public Duration1 duration { get; set; }
 }
 
-public class Details
+public partial class Details
 {
     public Category category { get; set; }
     public Map map { get; set; }
     public Playlist playlist { get; set; }
 }
 
-public class Category
+public partial class Category
 {
     public string name { get; set; }
     public Asset asset { get; set; }
 }
 
-public class Asset
+public partial class Asset
 {
     public string id { get; set; }
     public string version { get; set; }
     public string thumbnail_url { get; set; }
 }
 
-public class Map
+public partial class Map
 {
     public string name { get; set; }
     public Asset1 asset { get; set; }
 }
 
-public class Asset1
+public partial class Asset1
 {
     public string id { get; set; }
     public string version { get; set; }
     public string thumbnail_url { get; set; }
 }
 
-public class Playlist
+public partial class Playlist
 {
     public string name { get; set; }
     public Asset2 asset { get; set; }
     public Properties properties { get; set; }
 }
 
-public class Asset2
+public partial class Asset2
 {
     public string id { get; set; }
     public string version { get; set; }
     public string thumbnail_url { get; set; }
 }
 
-public class Properties
+public partial class Properties
 {
     public object queue { get; set; }
     public object input { get; set; }
     public bool ranked { get; set; }
 }
 
-public class Teams
+public partial class Teams
 {
     public bool enabled { get; set; }
     public bool scoring { get; set; }
 }
 
-public class Player
+public partial class Player
 {
     public Team team { get; set; }
     public Stats stats { get; set; }
@@ -132,20 +132,20 @@ public class Player
     }
 }
 
-public class Team
+public partial class Team
 {
     public int id { get; set; }
     public string name { get; set; }
     public string emblem_url { get; set; }
 }
 
-public class Stats
+public partial class Stats
 {
     public Core core { get; set; }
     public Mode mode { get; set; }
 }
 
-public class Core
+public partial class Core
 {
     public Summary summary { get; set; }
     public Damage damage { get; set; }
@@ -157,7 +157,7 @@ public class Core
     public int score { get; set; }
 }
 
-public class Summary
+public partial class Summary
 {
     public int kills { get; set; }
     public int deaths { get; set; }
@@ -168,19 +168,19 @@ public class Summary
     public int medals { get; set; }
 }
 
-public class Vehicles
+public partial class Vehicles
 {
     public int destroys { get; set; }
     public int hijacks { get; set; }
 }
 
-public class Damage
+public partial class Damage
 {
     public int taken { get; set; }
     public int dealt { get; set; }
 }
 
-public class Shots
+public partial class Shots
 {
     public int fired { get; set; }
     public int landed { get; set; }
@@ -188,21 +188,21 @@ public class Shots
     public float accuracy { get; set; }
 }
 
-public class Rounds
+public partial class Rounds
 {
     public int won { get; set; }
     public int lost { get; set; }
     public int tied { get; set; }
 }
 
-public class Breakdowns
+public partial class Breakdowns
 {
     public Kills kills { get; set; }
     public Assists assists { get; set; }
     public MatchMedal[] medals { get; set; }
 }
 
-public class Kills
+public partial class Kills
 {
     public int melee { get; set; }
     public int grenades { get; set; }
@@ -210,7 +210,7 @@ public class Kills
     public int power_weapons { get; set; }
 }
 
-public class Assists
+public partial class Assists
 {
     public int emp { get; set; }
     public int driver { get; set; }
@@ -225,19 +225,19 @@ public class MatchMedal
     public Image_Urls image_urls { get; set; }
 }
 
-public class Image_Urls
+public partial class Image_Urls
 {
     public string small { get; set; }
     public string medium { get; set; }
     public string large { get; set; }
 }
 
-public class Mode
+public partial class Mode
 {
     public Zones zones { get; set; }
 }
 
-public class Zones
+public partial class Zones
 {
     public int secured { get; set; }
     public int captured { get; set; }
@@ -245,37 +245,37 @@ public class Zones
     public Kills1 kills { get; set; }
 }
 
-public class Occupation
+public partial class Occupation
 {
     public int ticks { get; set; }
     public Duration duration { get; set; }
 }
 
-public class Duration
+public partial class Duration
 {
     public int seconds { get; set; }
     public string human { get; set; }
 }
 
-public class Kills1
+public partial class Kills1
 {
     public int defensive { get; set; }
     public int offensive { get; set; }
 }
 
-public class Participation
+public partial class Participation
 {
     public bool joined_in_progress { get; set; }
     public Presence presence { get; set; }
 }
 
-public class Presence
+public partial class Presence
 {
     public bool beginning { get; set; }
     public bool completion { get; set; }
 }
 
-public class Duration1
+public partial class Duration1
 {
     public int seconds { get; set; }
     public string human { get; set; }

@@ -6,6 +6,7 @@ using HaloInfiniteMobileApp.Utilities;
 using System;
 using System.Threading.Tasks;
 using System.Linq;
+using HaloInfiniteMobileApp.Models.MatchData;
 
 namespace HaloInfiniteMobileApp.Services;
 
@@ -138,6 +139,31 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
             var response = await _genericRepository.PostAsync<PlayerMatchListRequest, PlayerMatches>(apiUrl, requestObject, _haloApiAuthToken);
 
             Cache.InsertObject(cacheKey, response, DateTimeOffset.Now.AddMinutes(5));
+
+            return response;
+        }
+    }
+
+    public async Task<MatchDetails> GetMatchDetails(string matchId)
+    {
+        string cacheKey = matchId;
+        var matchDetailsFromCache = await GetFromCache<MatchDetails>(cacheKey);
+
+        if (matchDetailsFromCache != null)
+        {
+            return matchDetailsFromCache;
+        }
+        else
+        {
+            const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.MatchRetrieve;
+            var requestObject = new MatchDetailsRequest
+            {
+                id = matchId,
+            };
+
+            var response = await _genericRepository.PostAsync<MatchDetailsRequest, MatchDetails>(apiUrl, requestObject, _haloApiAuthToken);
+
+            Cache.InsertObject(cacheKey, response, DateTimeOffset.Now.AddDays(1));
 
             return response;
         }

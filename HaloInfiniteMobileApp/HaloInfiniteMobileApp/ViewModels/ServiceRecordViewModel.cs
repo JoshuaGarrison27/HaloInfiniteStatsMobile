@@ -9,15 +9,13 @@ namespace HaloInfiniteMobileApp.ViewModels;
 
 public class ServiceRecordViewModel : ViewModelBase
 {
-    private readonly ISettingsService _settingsService;
     private string _gamertag;
     private MultiplayerServiceRecord _rankedSR;
     private MultiplayerServiceRecord _socialSR;
 
     public ServiceRecordViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService)
+        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
     {
-        _settingsService = settingsService;
         Gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
     }
 
