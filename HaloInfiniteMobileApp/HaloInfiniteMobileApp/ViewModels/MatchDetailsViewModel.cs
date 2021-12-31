@@ -6,12 +6,14 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using HaloInfiniteMobileApp.Extensions;
 using HaloInfiniteMobileApp.Models.MatchData;
+using System.Linq;
 
 namespace HaloInfiniteMobileApp.ViewModels;
 public class MatchDetailsViewModel : ViewModelBase
 {
     private MatchDetails _matchDetails;
     private ObservableCollection<Medal1> _playerMedals;
+    private ObservableCollection<Detail> _teamsDetails;
 
     public MatchDetailsViewModel(IConnectionService connectionService,
         INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
@@ -32,6 +34,7 @@ public class MatchDetailsViewModel : ViewModelBase
         var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
         MatchDetails = await _haloInfiniteService.GetMatchDetails(matchId).ConfigureAwait(false);
         var players = MatchDetails.data.players;
+        Teams = MatchDetails.data.teams.details.OrderBy(o => o.rank).ToObservableCollection();
         foreach (var player in players)
         {
             if (player.gamertag.Equals(gamertag, System.StringComparison.OrdinalIgnoreCase))
@@ -59,6 +62,16 @@ public class MatchDetailsViewModel : ViewModelBase
         set
         {
             _playerMedals = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public ObservableCollection<Detail> Teams
+    {
+        get => _teamsDetails;
+        set
+        {
+            _teamsDetails = value;
             OnPropertyChanged();
         }
     }

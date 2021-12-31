@@ -24,7 +24,6 @@
                             <UriImageSource Uri="{Binding details.map.asset.thumbnail_url}" CacheValidity="14" CachingEnabled="true"/>
                         </Image.Source>
                     </Image>
-                    <Label Text="EXAMPLE" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
                     <StackLayout Grid.Row="2" Grid.Column="0" Margin="0" Padding="10,1,1,10">
                         <Label Text="{Binding details.category.name}" FontSize="16" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
                         <Label Text="{Binding details.map.name}" FontSize="12" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
@@ -43,7 +42,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Grid.Row="0" Text="Your Medals" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
-                    <CollectionView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding PlayerMedals}" ItemsLayout="HorizontalList">
+                    <CollectionView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding PlayerMedals}" ItemsLayout="HorizontalList" HorizontalScrollBarVisibility="Always">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <ContentView Padding="0" BackgroundColor="{StaticResource LightBlue}">
@@ -57,6 +56,60 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                 </Grid>
+            </Frame>
+            <Frame CornerRadius="5" Margin="2,5,2,5" Padding="0">
+                <StackLayout BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
+                    <Label Text="Team Scores" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                    <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding Teams}" CachingStrategy="RecycleElement"
+                            SeparatorVisibility="Default" SeparatorColor="{StaticResource LightBlue}" HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Margin="5" BackgroundColor="Transparent" RowSpacing="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Text="{Binding team.name}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start"/>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="Rank" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        <Label Grid.Row="0" Grid.Column="2" Text="Score" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                        <Label Grid.Row="0" Grid.Column="3" Text="Kills" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                        <Label Grid.Row="0" Grid.Column="4" Text="Deaths" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                                        <Image Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center" Margin="2,2,1,2">
+                                            <Image.Source>
+                                                <UriImageSource Uri="{Binding team.emblem_url}" CacheValidity="14" CachingEnabled="true"/>
+                                            </Image.Source>
+                                        </Image>
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding rank}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding stats.core.score}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                        <Label Grid.Row="1" Grid.Column="3" Text="{Binding stats.core.summary.kills}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                        <Label Grid.Row="1" Grid.Column="4" Text="{Binding stats.core.summary.deaths}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                                        <Label Grid.Row="2" Grid.Column="1" Text="Assists" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        <Label Grid.Row="2" Grid.Column="2" Text="Betrayals" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                        <Label Grid.Row="2" Grid.Column="3" Text="Suicides" TextColor="White" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                        <Label Grid.Row="2" Grid.Column="4" Text="Medals" TextColor="White" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding stats.core.summary.assists}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        <Label Grid.Row="3" Grid.Column="2" Text="{Binding stats.core.summary.betrayals}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                        <Label Grid.Row="3" Grid.Column="3" Text="{Binding stats.core.summary.suicides}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                        <Label Grid.Row="3" Grid.Column="4" Text="{Binding stats.core.summary.medals}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
             </Frame>
         </StackLayout>
         <ActivityIndicator IsRunning="{Binding Path=IsBusy}" Color="{StaticResource ActivitySpinnerColor}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />
