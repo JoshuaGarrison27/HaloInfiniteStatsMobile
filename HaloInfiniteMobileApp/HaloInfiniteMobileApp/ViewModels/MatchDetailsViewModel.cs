@@ -18,7 +18,7 @@ public class MatchDetailsViewModel : ViewModelBase
     public MatchDetailsViewModel(IConnectionService connectionService,
         INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
         : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
-    { }
+    {}
 
     public override Task Initialize(object data)
     {
@@ -34,6 +34,7 @@ public class MatchDetailsViewModel : ViewModelBase
         var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
         MatchDetails = await _haloInfiniteService.GetMatchDetails(matchId).ConfigureAwait(false);
         var players = MatchDetails.data.players;
+        var playlistName = MatchDetails.data.details.playlist.name;
         Teams = MatchDetails.data.teams.details.OrderBy(o => o.rank).ToObservableCollection();
         foreach (var player in players)
         {
@@ -42,7 +43,6 @@ public class MatchDetailsViewModel : ViewModelBase
                 PlayerMedals = player.stats?.core?.breakdowns?.medals?.ToObservableCollection();
             }
         }
-        //PlayerMedals = MatchDetails.data.players.FirstOrDefault(o => string.Equals(gamertag, o.gamertag, System.StringComparison.InvariantCultureIgnoreCase))?.stats?.core?.breakdowns?.medals?.ToObservableCollection();
         IsBusy = false;
     }
 

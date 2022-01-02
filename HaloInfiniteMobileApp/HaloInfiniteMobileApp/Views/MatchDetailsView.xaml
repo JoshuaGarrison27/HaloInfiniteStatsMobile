@@ -2,69 +2,78 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HaloInfiniteMobileApp.Views.MatchDetailsView"
-                xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
-                utility:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
+             xmlns:behaviors="clr-namespace:HaloInfiniteMobileApp.Behaviors;assembly=HaloInfiniteMobileApp"
+             utility:ViewModelLocator.AutoWireViewModel="True"
              Title="Match Details"
              BackgroundColor="{StaticResource DarkBackgroundColor}">
-    <AbsoluteLayout VerticalOptions="Fill">
-        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Frame CornerRadius="5" Margin="2,5,2,5" Padding="0">
-                <Grid BackgroundColor="{StaticResource DarkBackgroundContrastColor}" BindingContext="{Binding MatchDetails.data}">
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid BackgroundColor="Transparent">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Opacity="0.4" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                        <Image.Source>
-                            <UriImageSource Uri="{Binding details.map.asset.thumbnail_url}" CacheValidity="14" CachingEnabled="true"/>
-                        </Image.Source>
-                    </Image>
-                    <StackLayout Grid.Row="2" Grid.Column="0" Margin="0" Padding="10,1,1,10">
-                        <Label Text="{Binding details.category.name}" FontSize="16" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
-                        <Label Text="{Binding details.map.name}" FontSize="12" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
-                        <Label Text="{Binding details.playlist.name}" FontSize="12" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
-                    </StackLayout>
-                    <Label Text="{Binding played_at, Converter={StaticResource LocalRelativeTimeConverter}}" Grid.Row="0" Grid.Column="1" FontSize="16" Margin="3,5,10,1" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="End"/>
-                </Grid>
-            </Frame>
-            <Frame CornerRadius="5" Margin="2,5,2,5" Padding="0">
-                <Grid BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="150"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0" Text="Your Medals" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
-                    <CollectionView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding PlayerMedals}" ItemsLayout="HorizontalList" HorizontalScrollBarVisibility="Always">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <ContentView Padding="0" BackgroundColor="{StaticResource LightBlue}">
-                                    <StackLayout>
-                                        <Image Source="{Binding image_urls.large}" Aspect="AspectFit"/>
-                                        <Label Text="{Binding name}" TextColor="Black" HorizontalTextAlignment="Center" />
-                                        <Label Text="{Binding count}" TextColor="Black" HorizontalTextAlignment="Center" />
-                                    </StackLayout>
-                                </ContentView>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </Grid>
-            </Frame>
-            <Frame CornerRadius="5" Margin="2,5,2,5" Padding="0">
-                <StackLayout BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
-                    <Label Text="Team Scores" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
-                    <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding Teams}" CachingStrategy="RecycleElement"
-                            SeparatorVisibility="Default" SeparatorColor="{StaticResource LightBlue}" HasUnevenRows="True">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
+                    <Frame Grid.Row="0" Grid.Column="0" CornerRadius="5" Margin="2" Padding="0">
+                        <Grid BackgroundColor="{StaticResource DarkBackgroundContrastColor}" BindingContext="{Binding MatchDetails.data}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Opacity="0.4" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding details.map.asset.thumbnail_url}" CacheValidity="14" CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
+                            <StackLayout Grid.Row="2" Grid.Column="0" Margin="0" Padding="10,1,1,10">
+                                <Label Text="{Binding details.category.name}" FontSize="16" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                                <Label Text="{Binding details.map.name}" FontSize="12" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                                <Label Text="{Binding details.playlist.name}" FontSize="12" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                            </StackLayout>
+                            <Label Text="{Binding played_at, Converter={StaticResource LocalRelativeTimeConverter}}" Grid.Row="0" Grid.Column="1" FontSize="16" Margin="3,5,10,1" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="End"/>
+                        </Grid>
+                    </Frame>
+                    <Frame Grid.Row="1" Grid.Column="0" CornerRadius="5" Margin="2" Padding="0">
+                        <Grid BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"></RowDefinition>
+                                <RowDefinition Height="150"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Text="Your Medals" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                            <CollectionView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding PlayerMedals}" ItemsLayout="HorizontalList" HorizontalScrollBarVisibility="Always">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentView Padding="0" BackgroundColor="{StaticResource LightBlue}">
+                                            <StackLayout>
+                                                <Image Source="{Binding image_urls.large}" Aspect="AspectFit"/>
+                                                <Label Text="{Binding name}" TextColor="Black" HorizontalTextAlignment="Center" />
+                                                <Label Text="{Binding count}" TextColor="Black" HorizontalTextAlignment="Center" />
+                                            </StackLayout>
+                                        </ContentView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </Frame>
+                    <StackLayout Grid.Row="2" Grid.Column="0"  BackgroundColor="{StaticResource DarkBackgroundContrastColor}" VerticalOptions="FillAndExpand">
+                        <Label Text="Team Scores" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
+                        <FlexLayout Direction="Column" BindableLayout.ItemsSource="{Binding Teams}" >
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
                                     <Grid Margin="5" BackgroundColor="Transparent" RowSpacing="2">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"></RowDefinition>
@@ -105,13 +114,13 @@
                                         <Label Grid.Row="3" Grid.Column="3" Text="{Binding stats.core.summary.suicides}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                         <Label Grid.Row="3" Grid.Column="4" Text="{Binding stats.core.summary.medals}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                     </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
-            </Frame>
-        </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
         <ActivityIndicator IsRunning="{Binding Path=IsBusy}" Color="{StaticResource ActivitySpinnerColor}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />
     </AbsoluteLayout>
 </ContentPage>

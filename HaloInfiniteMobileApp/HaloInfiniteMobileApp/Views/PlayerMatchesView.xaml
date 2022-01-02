@@ -11,7 +11,7 @@
         <AbsoluteLayout VerticalOptions="Fill">
             <ListView x:Name="MyListView"
             ItemsSource="{Binding PlayerMatches.Matches}"
-            CachingStrategy="RecycleElement" HasUnevenRows="True">
+            CachingStrategy="RecycleElement" HasUnevenRows="True" SelectionMode="None">
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding MatchSelectedCommand}" EventArgsConverter="{StaticResource LocalItemTappedConverter}"></behaviors:EventToCommandBehavior>
                 </ListView.Behaviors>
