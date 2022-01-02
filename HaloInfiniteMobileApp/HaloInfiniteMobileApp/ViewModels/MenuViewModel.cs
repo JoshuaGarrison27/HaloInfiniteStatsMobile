@@ -72,7 +72,7 @@ public class MenuViewModel : ViewModelBase
             MenuText = "Home",
             ViewModelToLoad = typeof(MainViewModel),
             MenuItemType = MenuItemType.Home,
-            MenuItemFontAwesomeCode = "\uf015"
+            MenuItemIcon = "\U000F02DC"
         });
 
         MenuItems.Add(new MainMenuItem
@@ -80,7 +80,7 @@ public class MenuViewModel : ViewModelBase
             MenuText = "Halo News",
             ViewModelToLoad = typeof(HaloNewsViewModel),
             MenuItemType = MenuItemType.HaloNews,
-            MenuItemFontAwesomeCode = "\uf1ea"
+            MenuItemIcon = "\U000F1004"
         });
 
         MenuItems.Add(new MainMenuItem
@@ -88,7 +88,7 @@ public class MenuViewModel : ViewModelBase
             MenuText = "Service Record",
             ViewModelToLoad = typeof(ServiceRecordViewModel),
             MenuItemType = MenuItemType.ServiceRecord,
-            MenuItemFontAwesomeCode = "\uf091"
+            MenuItemIcon = "\U000F042D"
         });
 
         MenuItems.Add(new MainMenuItem
@@ -96,7 +96,7 @@ public class MenuViewModel : ViewModelBase
             MenuText = "Recent Matches",
             ViewModelToLoad = typeof(PlayerMatchesViewModel),
             MenuItemType = MenuItemType.MatchList,
-            MenuItemFontAwesomeCode = "\ue03d"
+            MenuItemIcon = "\U000F0520"
         });
 
         MenuItems.Add(new MainMenuItem
@@ -104,7 +104,7 @@ public class MenuViewModel : ViewModelBase
             MenuText = "Medals",
             ViewModelToLoad = typeof(MedalsViewModel),
             MenuItemType = MenuItemType.Medals,
-            MenuItemFontAwesomeCode = "\uf5a2"
+            MenuItemIcon = "\U000F0987"
         });
 
         MenuItems.Add(new MainMenuItem
@@ -112,7 +112,7 @@ public class MenuViewModel : ViewModelBase
             MenuText = "Change Account",
             ViewModelToLoad = typeof(OnboardingViewModel),
             MenuItemType = MenuItemType.LogOut,
-            MenuItemFontAwesomeCode = "\uf2f5"
+            MenuItemIcon = "\U000F0343"
         });
     }
 

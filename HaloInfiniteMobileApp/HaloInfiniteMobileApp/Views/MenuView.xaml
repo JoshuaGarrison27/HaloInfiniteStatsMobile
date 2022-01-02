@@ -19,7 +19,7 @@
         </Grid>
         <Grid Grid.Row="1" BackgroundColor="{StaticResource DarkBackgroundColor}">
             <ListView ItemsSource="{Binding MenuItems}"  CachingStrategy="RecycleElement"
-                SeparatorVisibility="None" HasUnevenRows="True" >
+                SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="None">
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding MenuItemTappedCommand}"></behaviors:EventToCommandBehavior>
                 </ListView.Behaviors>

@@ -37,20 +37,8 @@
                 <On Platform="Android, UWP, WinRT, WinPhone" Value="9" />
             </OnPlatform>
 
-            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
-                <On Platform="Android" Value="FontAwesome5Brands.otf#Brands" />
-            </OnPlatform>
-            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeDuotone">
-                <On Platform="Android" Value="FontAwesome5Duotone.otf#Duotone" />
-            </OnPlatform>
-            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeLight">
-                <On Platform="Android" Value="FontAwesome5Light.otf#Light" />
-            </OnPlatform>
-            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
-                <On Platform="Android" Value="FontAwesome5Regular.otf#Regular" />
-            </OnPlatform>
-            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
-                <On Platform="Android" Value="FontAwesome5Solid.otf#Solid" />
+            <OnPlatform x:TypeArguments="x:String" x:Key="MaterialDesignIcons">
+                <On Platform="Android" Value="materialdesignicons-webfont.ttf#MaterialDesignIcons" />
             </OnPlatform>
 
             <Color x:Key="DarkBackgroundColor">#1F1F1F</Color>
@@ -99,12 +87,13 @@
             </Style>
 
             <Style x:Key="MenuIconStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"></Setter>
                 <Setter Property="TextColor" Value="{StaticResource LightGrey}"></Setter>
-                <Setter Property="Margin" Value="5"></Setter>
-                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}"></Setter>
+                <Setter Property="Margin" Value="1"></Setter>
+                <Setter Property="Padding" Value="1"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource MaterialDesignIcons}"></Setter>
                 <Setter Property="VerticalOptions" Value="Center"></Setter>
-                <Setter Property="HorizontalOptions" Value="Start"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
             </Style>
 
             <Style x:Key="MenuTextStyle" TargetType="{x:Type Label}">

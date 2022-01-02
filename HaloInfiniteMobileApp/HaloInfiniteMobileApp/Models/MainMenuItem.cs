@@ -9,7 +9,7 @@ public class MainMenuItem : BindableObject
     private string _menuText;
     private MenuItemType _menuItemType;
     private Type _viewModelToLoad;
-    private string _menuItemFontAwesomeCode;
+    private string _menuItemIcon;
 
     public MenuItemType MenuItemType
     {
@@ -36,15 +36,15 @@ public class MainMenuItem : BindableObject
             OnPropertyChanged();
         }
     }
-    public string MenuItemFontAwesomeCode
+    public string MenuItemIcon
     {
         get
         {
-            return _menuItemFontAwesomeCode;
+            return _menuItemIcon;
         }
         set
         {
-            _menuItemFontAwesomeCode = value;
+            _menuItemIcon = value;
             OnPropertyChanged();
         }
     }

@@ -8,7 +8,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="{Binding MenuItemFontAwesomeCode}" Style="{StaticResource MenuIconStyle}"/>
+            <Label Grid.Column="0" Text="{Binding MenuItemIcon}" Style="{StaticResource MenuIconStyle}"/>
             <Label Grid.Column="1" Text="{Binding MenuText}" Style="{StaticResource MenuTextStyle}"/>
         </Grid>
     </ContentView.Content>
