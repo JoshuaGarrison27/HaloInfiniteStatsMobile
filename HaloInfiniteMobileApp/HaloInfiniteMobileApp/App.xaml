@@ -2,37 +2,31 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:HaloInfiniteMobileApp.Converters;assembly=HaloInfiniteMobileApp"
-             xmlns:controls="clr-namespace:HaloInfiniteMobileApp.Controls;assembly=HaloInfiniteMobileApp"
              x:Class="HaloInfiniteMobileApp.App">
     <Application.Resources>
         <ResourceDictionary>
 
-            <OnPlatform x:Key="XLargeFontSize"
-                        x:TypeArguments="x:Double">
+            <OnPlatform x:Key="XLargeFontSize" x:TypeArguments="x:Double">
                 <On Platform="iOS" Value="26" />
                 <On Platform="Android, UWP, WinRT, WinPhone" Value="24" />
             </OnPlatform>
 
-            <OnPlatform x:Key="LargeFontSize"
-                        x:TypeArguments="x:Double">
+            <OnPlatform x:Key="LargeFontSize" x:TypeArguments="x:Double">
                 <On Platform="iOS" Value="20" />
                 <On Platform="Android, UWP, WinRT, WinPhone" Value="18" />
             </OnPlatform>
 
-            <OnPlatform x:Key="MediumFontSize"
-                        x:TypeArguments="x:Double">
+            <OnPlatform x:Key="MediumFontSize" x:TypeArguments="x:Double">
                 <On Platform="iOS" Value="18" />
                 <On Platform="Android, UWP, WinRT, WinPhone" Value="16" />
             </OnPlatform>
 
-            <OnPlatform x:Key="SmallFontSize"
-                        x:TypeArguments="x:Double">
+            <OnPlatform x:Key="SmallFontSize" x:TypeArguments="x:Double">
                 <On Platform="iOS" Value="14" />
                 <On Platform="Android, UWP, WinRT, WinPhone" Value="11" />
             </OnPlatform>
 
-            <OnPlatform x:Key="XSmallFontSize"
-                        x:TypeArguments="x:Double">
+            <OnPlatform x:Key="XSmallFontSize" x:TypeArguments="x:Double">
                 <On Platform="iOS" Value="11" />
                 <On Platform="Android, UWP, WinRT, WinPhone" Value="9" />
             </OnPlatform>
@@ -127,9 +121,7 @@
             <converters:CurrencyConverter x:Key="LocalCurrencyConverter"></converters:CurrencyConverter>
             <converters:CountToVisibilityConverter x:Key="LocalCountToVisibilityConverter"></converters:CountToVisibilityConverter>
             <converters:RelativeTimeConverter x:Key="LocalRelativeTimeConverter"></converters:RelativeTimeConverter>
+            
         </ResourceDictionary>
-
-        <!-- Application resource dictionary -->
-
     </Application.Resources>
 </Application>
