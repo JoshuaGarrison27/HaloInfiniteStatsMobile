@@ -94,20 +94,20 @@
                                         <Label Grid.Row="0" Grid.Column="3" Text="Kills" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                         <Label Grid.Row="0" Grid.Column="4" Text="Deaths" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
-                                        <Image Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center" Margin="2,2,1,2">
-                                            <Image.Source>
-                                                <UriImageSource Uri="{Binding team.emblem_url}" CacheValidity="14" CachingEnabled="true"/>
-                                            </Image.Source>
-                                        </Image>
-                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding rank}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding stats.core.score}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                        <Label Grid.Row="1" Grid.Column="3" Text="{Binding stats.core.summary.kills}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                        <Label Grid.Row="1" Grid.Column="4" Text="{Binding stats.core.summary.deaths}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Image Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center" Margin="2,2,1,2">
+                                                <Image.Source>
+                                                    <UriImageSource Uri="{Binding team.emblem_url}" CacheValidity="14" CachingEnabled="true"/>
+                                                </Image.Source>
+                                            </Image>
+                                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding rank}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                            <Label Grid.Row="1" Grid.Column="2" Text="{Binding stats.core.score}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="1" Grid.Column="3" Text="{Binding stats.core.summary.kills}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="1" Grid.Column="4" Text="{Binding stats.core.summary.deaths}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
-                                        <Label Grid.Row="2" Grid.Column="1" Text="Assists" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                        <Label Grid.Row="2" Grid.Column="2" Text="Betrayals" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                        <Label Grid.Row="2" Grid.Column="3" Text="Suicides" TextColor="White" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                        <Label Grid.Row="2" Grid.Column="4" Text="Medals" TextColor="White" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="2" Grid.Column="1" Text="Assists" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                            <Label Grid.Row="2" Grid.Column="2" Text="Betrayals" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="2" Grid.Column="3" Text="Suicides" TextColor="White" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="2" Grid.Column="4" Text="Medals" TextColor="White" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
                                         <Label Grid.Row="3" Grid.Column="1" Text="{Binding stats.core.summary.assists}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                         <Label Grid.Row="3" Grid.Column="2" Text="{Binding stats.core.summary.betrayals}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />

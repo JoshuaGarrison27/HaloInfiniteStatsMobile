@@ -14,6 +14,7 @@ public class MatchDetailsViewModel : ViewModelBase
     private MatchDetails _matchDetails;
     private ObservableCollection<Medal1> _playerMedals;
     private ObservableCollection<Detail> _teamsDetails;
+    
 
     public MatchDetailsViewModel(IConnectionService connectionService,
         INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
@@ -36,6 +37,7 @@ public class MatchDetailsViewModel : ViewModelBase
         var players = MatchDetails.data.players;
         var playlistName = MatchDetails.data.details.playlist.name;
         Teams = MatchDetails.data.teams.details.OrderBy(o => o.rank).ToObservableCollection();
+                
         foreach (var player in players)
         {
             if (player.gamertag.Equals(gamertag, System.StringComparison.OrdinalIgnoreCase))
@@ -44,6 +46,11 @@ public class MatchDetailsViewModel : ViewModelBase
             }
         }
         IsBusy = false;
+
+        if (playlistName == "FFA Slayer")
+        {
+            await _dialogService.ShowDialog("This is an FFA Slayer Match Not a Team Event", "Playlist Warning!", "OK");
+        }
     }
 
     public MatchDetails MatchDetails
@@ -74,5 +81,5 @@ public class MatchDetailsViewModel : ViewModelBase
             _teamsDetails = value;
             OnPropertyChanged();
         }
-    }
+    }    
 }
