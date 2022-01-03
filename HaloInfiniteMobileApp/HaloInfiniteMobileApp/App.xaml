@@ -121,6 +121,7 @@
             <converters:CurrencyConverter x:Key="LocalCurrencyConverter"></converters:CurrencyConverter>
             <converters:CountToVisibilityConverter x:Key="LocalCountToVisibilityConverter"></converters:CountToVisibilityConverter>
             <converters:RelativeTimeConverter x:Key="LocalRelativeTimeConverter"></converters:RelativeTimeConverter>
+            <converters:OrdinalizeConverter x:Key="LocalOrdinalizeConverter"></converters:OrdinalizeConverter>
             
         </ResourceDictionary>
     </Application.Resources>

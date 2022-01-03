@@ -34,13 +34,17 @@
                                             <UriImageSource Uri="{Binding details.map.asset.thumbnail_url}" CacheValidity="14" CachingEnabled="true"/>
                                         </Image.Source>
                                     </Image>
-                                    <Label Text="{Binding player.MatchOutcome}" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
-                                    <StackLayout Grid.Row="2" Grid.Column="0" Margin="0" Padding="10,1,1,10">
-                                        <Label Text="{Binding details.category.name}" FontSize="16" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
-                                        <Label Text="{Binding details.map.name}" FontSize="12" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
-                                        <Label Text="{Binding duration.human}" FontSize="12" Margin="0" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
-                                    </StackLayout>
-                                    <Label Text="{Binding played_at, Converter={StaticResource LocalRelativeTimeConverter}}" Grid.Row="0" Grid.Column="1" FontSize="16" Margin="3,5,10,1" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="End"/>
+                                    <Label Text="{Binding details.map.name}" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Row="2" Grid.Column="0" Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding details.playlist.name}"/>
+                                                <Span Text=" &#x2022; "/>
+                                                <Span Text="{Binding player.MatchOutcome}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Text="{Binding played_at, Converter={StaticResource LocalRelativeTimeConverter}}" Grid.Row="0" Grid.Column="1" FontSize="12" Margin="3,5,10,1" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="End"/>
                                 </Grid>
                             </Frame>
                         </ViewCell>

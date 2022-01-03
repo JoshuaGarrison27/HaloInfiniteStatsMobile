@@ -14,7 +14,8 @@ public class MatchDetailsViewModel : ViewModelBase
     private MatchDetails _matchDetails;
     private ObservableCollection<Medal1> _playerMedals;
     private ObservableCollection<Detail> _teamsDetails;
-    
+    private ObservableCollection<Models.MatchData.Player> _players;
+
 
     public MatchDetailsViewModel(IConnectionService connectionService,
         INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
@@ -34,22 +35,40 @@ public class MatchDetailsViewModel : ViewModelBase
         IsBusy = true;
         var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
         MatchDetails = await _haloInfiniteService.GetMatchDetails(matchId).ConfigureAwait(false);
-        var players = MatchDetails.data.players;
+        var isTeamGame = MatchDetails.data.teams.enabled;
         var playlistName = MatchDetails.data.details.playlist.name;
-        Teams = MatchDetails.data.teams.details.OrderBy(o => o.rank).ToObservableCollection();
-                
-        foreach (var player in players)
+
+        if (isTeamGame)
         {
-            if (player.gamertag.Equals(gamertag, System.StringComparison.OrdinalIgnoreCase))
+            Players = MatchDetails.data.players.OrderBy(o => o.team.name).ThenBy(o => o.rank).ToObservableCollection();
+            Teams = MatchDetails.data.teams.details.OrderBy(o => o.rank).ToObservableCollection();
+        } else
+        {
+            Players = MatchDetails.data.players.OrderBy(o => o.rank).ToObservableCollection();
+        }
+
+        GetPlayersMedals(gamertag);
+
+        IsBusy = false;
+        CheckPlaylist(playlistName);
+    }
+
+    public async void CheckPlaylist(string playlist)
+    {
+        if (playlist == "FFA Slayer")
+        {
+            _dialogService.ShowToast("FFA Slayer Match - No Teams");
+        }
+    }
+
+    public void GetPlayersMedals(string playerGamertag)
+    {
+        foreach (var player in Players)
+        {
+            if (player.gamertag.Equals(playerGamertag, System.StringComparison.OrdinalIgnoreCase))
             {
                 PlayerMedals = player.stats?.core?.breakdowns?.medals?.ToObservableCollection();
             }
-        }
-        IsBusy = false;
-
-        if (playlistName == "FFA Slayer")
-        {
-            await _dialogService.ShowDialog("This is an FFA Slayer Match Not a Team Event", "Playlist Warning!", "OK");
         }
     }
 
@@ -81,5 +100,15 @@ public class MatchDetailsViewModel : ViewModelBase
             _teamsDetails = value;
             OnPropertyChanged();
         }
-    }    
+    }
+
+    public ObservableCollection<Models.MatchData.Player> Players
+    {
+        get => _players;
+        set
+        {
+            _players = value;
+            OnPropertyChanged();
+        }
+    }
 }
