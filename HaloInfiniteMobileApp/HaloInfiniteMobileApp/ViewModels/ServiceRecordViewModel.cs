@@ -2,7 +2,6 @@
 using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace HaloInfiniteMobileApp.ViewModels;
@@ -16,13 +15,12 @@ public class ServiceRecordViewModel : ViewModelBase
     public ServiceRecordViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
         : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
     {
-        Gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
     }
 
     public async override Task Initialize(object data)
     {
         await base.Initialize(data);
-
+        Gamertag = data is not string gamertag ? _settingsService.GetItem(SettingsConstants.Gamertag) : gamertag;
         LoadAsyncData();
     }
 

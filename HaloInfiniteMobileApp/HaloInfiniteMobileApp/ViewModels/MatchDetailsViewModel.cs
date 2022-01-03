@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using HaloInfiniteMobileApp.Extensions;
 using HaloInfiniteMobileApp.Models.MatchData;
 using System.Linq;
+using Xamarin.Forms;
+using System.Windows.Input;
 
 namespace HaloInfiniteMobileApp.ViewModels;
 public class MatchDetailsViewModel : ViewModelBase
@@ -15,7 +17,6 @@ public class MatchDetailsViewModel : ViewModelBase
     private ObservableCollection<Medal1> _playerMedals;
     private ObservableCollection<Detail> _teamsDetails;
     private ObservableCollection<Models.MatchData.Player> _players;
-
 
     public MatchDetailsViewModel(IConnectionService connectionService,
         INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
@@ -40,7 +41,7 @@ public class MatchDetailsViewModel : ViewModelBase
 
         if (isTeamGame)
         {
-            Players = MatchDetails.data.players.OrderBy(o => o.team.name).ThenBy(o => o.rank).ToObservableCollection();
+            Players = MatchDetails.data.players.OrderBy(o => o.rank).ToObservableCollection();
             Teams = MatchDetails.data.teams.details.OrderBy(o => o.rank).ToObservableCollection();
         } else
         {
@@ -50,15 +51,13 @@ public class MatchDetailsViewModel : ViewModelBase
         GetPlayersMedals(gamertag);
 
         IsBusy = false;
-        CheckPlaylist(playlistName);
     }
 
-    public async void CheckPlaylist(string playlist)
+    private void OnGamertagTapped(object s)
     {
-        if (playlist == "FFA Slayer")
-        {
-            _dialogService.ShowToast("FFA Slayer Match - No Teams");
-        }
+        _dialogService.ShowToast("Tapped!");
+        System.Diagnostics.Debug.WriteLine("00000000000000000000000000000000000000000000000");
+        //_navigationService.NavigateToAsync<ServiceRecordViewModel>(s);
     }
 
     public void GetPlayersMedals(string playerGamertag)

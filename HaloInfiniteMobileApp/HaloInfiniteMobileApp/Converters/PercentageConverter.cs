@@ -8,12 +8,20 @@ public class PercentageConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        var paramParse = int.TryParse(parameter.ToString(), out int roundNumber);
+        var roundNumber = 2;
 
-        if (value.GetType() == typeof(decimal) || value.GetType() == typeof(double))
+        if(parameter != null)
         {
-            var decimalValue = (decimal)value;
-            var roundingNumber = paramParse ? roundNumber : 2;
+            if(int.TryParse(parameter.ToString(), out int parsedRoundNumber))
+            {
+                roundNumber = parsedRoundNumber;
+            }
+        }
+
+        if (value.GetType() == typeof(decimal) || value.GetType() == typeof(double) || value.GetType() == typeof(Single))
+        {
+            var decimalValue = System.Convert.ToDouble(value);
+            var roundingNumber = roundNumber;
             return string.Concat(Math.Round(decimalValue, roundingNumber), "%");
         }
 
