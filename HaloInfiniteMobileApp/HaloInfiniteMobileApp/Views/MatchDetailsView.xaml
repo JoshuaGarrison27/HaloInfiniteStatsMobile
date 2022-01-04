@@ -6,7 +6,6 @@
              xmlns:behaviors="clr-namespace:HaloInfiniteMobileApp.Behaviors;assembly=HaloInfiniteMobileApp"
              utility:ViewModelLocator.AutoWireViewModel="True"
              Title="Match Details"
-             x:Name="Page"
              BackgroundColor="{StaticResource DarkBackgroundColor}">
     <AbsoluteLayout>
         <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
@@ -108,7 +107,7 @@
                             <FlexLayout Direction="Column" BindableLayout.ItemsSource="{Binding Players}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
-                                        <Frame BorderColor="Gray" IsClippedToBounds="True" BackgroundColor="Transparent" Margin="3" Padding="0">
+                                        <Frame BorderColor="Gray" IsClippedToBounds="True" BackgroundColor="Transparent" Margin="3" Padding="0" >
                                             <Grid Margin="5" BackgroundColor="Transparent" RowSpacing="2">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto"></RowDefinition>

@@ -53,13 +53,6 @@ public class MatchDetailsViewModel : ViewModelBase
         IsBusy = false;
     }
 
-    private void OnGamertagTapped(object s)
-    {
-        _dialogService.ShowToast("Tapped!");
-        System.Diagnostics.Debug.WriteLine("00000000000000000000000000000000000000000000000");
-        //_navigationService.NavigateToAsync<ServiceRecordViewModel>(s);
-    }
-
     public void GetPlayersMedals(string playerGamertag)
     {
         foreach (var player in Players)
