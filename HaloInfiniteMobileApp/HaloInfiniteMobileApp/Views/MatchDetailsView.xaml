@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HaloInfiniteMobileApp.Views.MatchDetailsView"
              xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
-             xmlns:behaviors="clr-namespace:HaloInfiniteMobileApp.Behaviors;assembly=HaloInfiniteMobileApp"
              utility:ViewModelLocator.AutoWireViewModel="True"
              Title="Match Details"
              BackgroundColor="{StaticResource DarkBackgroundColor}">

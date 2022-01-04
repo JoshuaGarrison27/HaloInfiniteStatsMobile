@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 using HaloInfiniteMobileApp.Extensions;
 using HaloInfiniteMobileApp.Models.MatchData;
 using System.Linq;
-using Xamarin.Forms;
-using System.Windows.Input;
 
 namespace HaloInfiniteMobileApp.ViewModels;
 public class MatchDetailsViewModel : ViewModelBase
