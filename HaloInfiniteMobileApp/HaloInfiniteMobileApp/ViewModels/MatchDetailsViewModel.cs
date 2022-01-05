@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using HaloInfiniteMobileApp.Extensions;
 using HaloInfiniteMobileApp.Models.MatchData;
 using System.Linq;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace HaloInfiniteMobileApp.ViewModels;
 public class MatchDetailsViewModel : ViewModelBase
@@ -20,6 +22,13 @@ public class MatchDetailsViewModel : ViewModelBase
         INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
         : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
     {}
+
+    public ICommand PlayerTapCommand => new Command((gamertag) => NavigateToSR(gamertag));
+
+    private void NavigateToSR(object gamertag)
+    {
+        _navigationService.NavigateToAsync<ServiceRecordViewModel>(gamertag);
+    }
 
     public override Task Initialize(object data)
     {
