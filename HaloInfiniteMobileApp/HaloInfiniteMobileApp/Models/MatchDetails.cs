@@ -238,7 +238,7 @@ public class Player
     public int rank { get; set; }
     public string outcome { get; set; }
     public Participation participation { get; set; }
-    public object progression { get; set; }
+    public Progression progression { get; set; }
 }
 
 public class Team1
@@ -387,4 +387,33 @@ public class Presence
 public class MatchType 
 {
     public bool matchType { get; set; }
+}
+
+public class Progression
+{
+    public Csr csr { get; set; }
+}
+
+public class Csr
+{
+    public Pre_Match pre_match { get; set; }
+    public Post_Match post_match { get; set; }
+}
+
+public class Pre_Match
+{
+    public string tier { get; set; }
+    public int value { get; set; }
+    public int tier_start { get; set; }
+    public int sub_tier { get; set; }
+    public string tier_image_url { get; set; }
+}
+
+public class Post_Match
+{
+    public string tier { get; set; }
+    public int value { get; set; }
+    public int tier_start { get; set; }
+    public int sub_tier { get; set; }
+    public string tier_image_url { get; set; }
 }

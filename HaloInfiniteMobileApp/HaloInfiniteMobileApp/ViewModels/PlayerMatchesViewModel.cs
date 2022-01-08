@@ -32,7 +32,8 @@ public class PlayerMatchesViewModel : ViewModelBase
 
         if (gamertag != null)
         {
-            PlayerMatches = await _haloInfiniteService.GetPlayerMatches(gamertag);
+            var requestObject = new PlayerMatchListRequest(gamertag, 25, 0, "matchmade");
+            PlayerMatches = await _haloInfiniteService.GetPlayerMatches(requestObject).ConfigureAwait(false);
         }
     }
 

@@ -42,7 +42,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         }
     }
 
-    public async Task<PlayerAppearance> GetPlayerAppearance(string gamertag)
+    public async Task<PlayerAppearance> GetPlayerAppearance(PlayerAppearanceRequest playerAppearanceRequest)
     {
         var playerAppearanceFromCache = await GetFromCache<PlayerAppearance>(CacheNameConstrants.PlayerAppearance);
 
@@ -53,10 +53,6 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         else
         {
             const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.Appearance;
-            var playerAppearanceRequest = new PlayerAppearanceRequest
-            {
-                Gamertag = gamertag
-            };
 
             var playerAppearance = await _genericRepository.PostAsync<PlayerAppearanceRequest, PlayerAppearance>(apiUrl, playerAppearanceRequest, _haloApiAuthToken);
 
@@ -66,9 +62,9 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         }
     }
 
-    public async Task<MultiplayerServiceRecord> GetMultiplayerServiceRecord(string gamertag, string multiplayerFilterConstants = MultiplayerFilterConstants.Matchmade_Ranked)
+    public async Task<MultiplayerServiceRecord> GetMultiplayerServiceRecord(MultiplayerServiceRecordRequest srRequest)
     {
-        var cacheKey = CacheNameConstrants.MultiplayerServiceRecordPartial + multiplayerFilterConstants;
+        var cacheKey = CacheNameConstrants.MultiplayerServiceRecordPartial + srRequest.Filter;
         var multiplayerSRFromCache = await GetFromCache<MultiplayerServiceRecord>(cacheKey);
 
         if (multiplayerSRFromCache != null)
@@ -78,13 +74,8 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         else
         {
             const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.ServiceRecordMultiplayer;
-            var requestObject = new MultiplayerServiceRecordRequest
-            {
-                Gamertag = gamertag,
-                Filter = multiplayerFilterConstants
-            };
-
-            var response = await _genericRepository.PostAsync<MultiplayerServiceRecordRequest, MultiplayerServiceRecord>(apiUrl, requestObject, _haloApiAuthToken);
+            
+            var response = await _genericRepository.PostAsync<MultiplayerServiceRecordRequest, MultiplayerServiceRecord>(apiUrl, srRequest, _haloApiAuthToken);
 
             Cache.InsertObject(cacheKey, response, DateTimeOffset.Now.AddMinutes(5));
 
@@ -113,9 +104,9 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         }
     }
 
-    public async Task<PlayerMatches> GetPlayerMatches(string gamertag)
+    public async Task<PlayerMatches> GetPlayerMatches(PlayerMatchListRequest request)
     {
-        var cacheKey = CacheNameConstrants.PlayerMatchesPartial + gamertag;
+        var cacheKey = CacheNameConstrants.PlayerMatchesPartial + request.Gamertag;
         var playerMatchesFromCache = await GetFromCache<PlayerMatches>(cacheKey);
 
         if (playerMatchesFromCache != null)
@@ -125,18 +116,8 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         else
         {
             const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.MatchList;
-            var requestObject = new PlayerMatchListRequest
-            {
-                Gamertag = gamertag,
-                Limit = new Paging
-                {
-                    count = 10,
-                    offset = 0
-                },
-                Mode = "matchmade"
-            };
 
-            var response = await _genericRepository.PostAsync<PlayerMatchListRequest, PlayerMatches>(apiUrl, requestObject, _haloApiAuthToken);
+            var response = await _genericRepository.PostAsync<PlayerMatchListRequest, PlayerMatches>(apiUrl, request, _haloApiAuthToken);
 
             Cache.InsertObject(cacheKey, response, DateTimeOffset.Now.AddMinutes(5));
 
@@ -144,9 +125,9 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         }
     }
 
-    public async Task<MatchDetails> GetMatchDetails(string matchId)
+    public async Task<MatchDetails> GetMatchDetails(MatchDetailsRequest matchRequest)
     {
-        string cacheKey = matchId;
+        string cacheKey = matchRequest.id;
         var matchDetailsFromCache = await GetFromCache<MatchDetails>(cacheKey);
 
         if (matchDetailsFromCache != null)
@@ -156,12 +137,8 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         else
         {
             const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.MatchRetrieve;
-            var requestObject = new MatchDetailsRequest
-            {
-                id = matchId,
-            };
 
-            var response = await _genericRepository.PostAsync<MatchDetailsRequest, MatchDetails>(apiUrl, requestObject, _haloApiAuthToken);
+            var response = await _genericRepository.PostAsync<MatchDetailsRequest, MatchDetails>(apiUrl, matchRequest, _haloApiAuthToken);
 
             Cache.InsertObject(cacheKey, response, DateTimeOffset.Now.AddDays(1));
 

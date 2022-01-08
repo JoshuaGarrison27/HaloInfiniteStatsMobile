@@ -14,6 +14,17 @@ public class PlayerMatches
 
 public class PlayerMatchListRequest
 {
+    public PlayerMatchListRequest(string gamertag, int count = 10, int offset = 0, string mode = "matchmade")
+    {
+        Gamertag = gamertag;
+        Limit = new Paging
+        {
+            count = count,
+            offset = offset,
+        };
+        Mode = mode;
+    }
+
     [JsonProperty("gamertag")]
     public string Gamertag { get; set; }
     [JsonProperty("limit")]
@@ -112,7 +123,7 @@ public partial class Player
     public int rank { get; set; }
     public string outcome { get; set; }
     public Participation participation { get; set; }
-    public object progression { get; set; }
+    public Progression progression { get; set; }
     public string MatchOutcome
     {
         get
@@ -125,7 +136,7 @@ public partial class Player
                     return "Victory";
                 case "loss":
                     return "Defeat";
-                    default: 
+                default:
                     return outcome;
             }
         }
@@ -279,4 +290,32 @@ public partial class Duration1
 {
     public int seconds { get; set; }
     public string human { get; set; }
+}
+public class Progression
+{
+    public Csr csr { get; set; }
+}
+
+public class Csr
+{
+    public Pre_Match pre_match { get; set; }
+    public Post_Match post_match { get; set; }
+}
+
+public class Pre_Match
+{
+    public string tier { get; set; }
+    public int value { get; set; }
+    public int tier_start { get; set; }
+    public int sub_tier { get; set; }
+    public string tier_image_url { get; set; }
+}
+
+public class Post_Match
+{
+    public string tier { get; set; }
+    public int value { get; set; }
+    public int tier_start { get; set; }
+    public int sub_tier { get; set; }
+    public string tier_image_url { get; set; }
 }

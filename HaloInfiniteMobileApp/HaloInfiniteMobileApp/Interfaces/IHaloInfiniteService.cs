@@ -7,10 +7,10 @@ namespace HaloInfiniteMobileApp.Interfaces;
 public interface IHaloInfiniteService
 {
     Task<NewsArticles> GetNewsArticles();
-    Task<PlayerAppearance> GetPlayerAppearance(string gamertag);
-    Task<MultiplayerServiceRecord> GetMultiplayerServiceRecord(string gamertag, string multiplayerFilterConstants);
+    Task<PlayerAppearance> GetPlayerAppearance(PlayerAppearanceRequest playerAppearanceRequest);
+    Task<MultiplayerServiceRecord> GetMultiplayerServiceRecord(MultiplayerServiceRecordRequest srRequest);
     Task<HaloMedals> GetHaloMedals();
-    Task<PlayerMatches> GetPlayerMatches(string gamertag);
-    Task<MatchDetails> GetMatchDetails(string matchId);
+    Task<PlayerMatches> GetPlayerMatches(PlayerMatchListRequest request);
+    Task<MatchDetails> GetMatchDetails(MatchDetailsRequest matchRequest);
     void InvalidateCache();
 }

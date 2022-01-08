@@ -9,6 +9,7 @@ using HaloInfiniteMobileApp.Models.MatchData;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System;
 
 namespace HaloInfiniteMobileApp.ViewModels;
 public class MatchDetailsViewModel : ViewModelBase
@@ -17,6 +18,8 @@ public class MatchDetailsViewModel : ViewModelBase
     private ObservableCollection<Medal1> _playerMedals;
     private ObservableCollection<Detail> _teamsDetails;
     private ObservableCollection<Models.MatchData.Player> _players;
+    private Models.MatchData.Player _myPlayer;
+    private bool _showCsr = true;
 
     public MatchDetailsViewModel(IConnectionService connectionService,
         INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
@@ -40,24 +43,35 @@ public class MatchDetailsViewModel : ViewModelBase
 
     public async void GetMatchDetails(string matchId)
     {
-        IsBusy = true;
-        var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
-        MatchDetails = await _haloInfiniteService.GetMatchDetails(matchId).ConfigureAwait(false);
-        var isTeamGame = MatchDetails.data.teams.enabled;
-        var playlistName = MatchDetails.data.details.playlist.name;
+        try
+        {
+            IsBusy = true;
+            var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
+            var matchDetailsRequest = new MatchDetailsRequest() { id = matchId };
+            MatchDetails = await _haloInfiniteService.GetMatchDetails(matchDetailsRequest).ConfigureAwait(false);
+            var isTeamGame = MatchDetails.data.teams.enabled;
+            var playlistName = MatchDetails.data.details.playlist.name;
 
-        if (isTeamGame)
+            if (isTeamGame)
+            {
+                Players = MatchDetails.data.players.OrderBy(o => o.rank).ToObservableCollection();
+                Teams = MatchDetails.data.teams.details.OrderBy(o => o.rank).ToObservableCollection();
+            }
+            else
+            {
+                Players = MatchDetails.data.players.OrderBy(o => o.rank).ToObservableCollection();
+            }
+
+            MyPlayer = Players.FirstOrDefault(o => string.Equals(gamertag, o.gamertag, StringComparison.OrdinalIgnoreCase));
+            ShowCsr = MyPlayer?.progression != null;
+
+            GetPlayersMedals(gamertag);
+
+            IsBusy = false;
+        } catch (Exception ex)
         {
-            Players = MatchDetails.data.players.OrderBy(o => o.rank).ToObservableCollection();
-            Teams = MatchDetails.data.teams.details.OrderBy(o => o.rank).ToObservableCollection();
-        } else
-        {
-            Players = MatchDetails.data.players.OrderBy(o => o.rank).ToObservableCollection();
+            var d = ex;
         }
-
-        GetPlayersMedals(gamertag);
-
-        IsBusy = false;
     }
 
     public void GetPlayersMedals(string playerGamertag)
@@ -91,6 +105,15 @@ public class MatchDetailsViewModel : ViewModelBase
         }
     }
 
+    public Models.MatchData.Player MyPlayer
+    {
+        get => _myPlayer;
+        set
+        {
+            _myPlayer = value;
+            OnPropertyChanged();
+        }
+    }
     public ObservableCollection<Detail> Teams
     {
         get => _teamsDetails;
@@ -107,6 +130,16 @@ public class MatchDetailsViewModel : ViewModelBase
         set
         {
             _players = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public bool ShowCsr
+    {
+        get => _showCsr;
+        set
+        {
+            _showCsr = value;
             OnPropertyChanged();
         }
     }

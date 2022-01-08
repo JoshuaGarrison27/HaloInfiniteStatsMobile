@@ -1,5 +1,6 @@
 ﻿using HaloInfiniteMobileApp.Constants;
 using HaloInfiniteMobileApp.Interfaces;
+using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using System;
 using System.Windows.Input;
@@ -24,7 +25,8 @@ public class OnboardingViewModel : ViewModelBase
         {
             try
             {
-                var player = await _haloInfiniteService.GetPlayerAppearance(Gamertag);
+                var playerAppearanceRequest = new PlayerAppearanceRequest() { Gamertag = Gamertag };
+                var player = await _haloInfiniteService.GetPlayerAppearance(playerAppearanceRequest);
 
                 if (player != null)
                 {

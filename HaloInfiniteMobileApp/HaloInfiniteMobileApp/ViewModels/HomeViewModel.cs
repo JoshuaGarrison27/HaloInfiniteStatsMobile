@@ -1,5 +1,6 @@
 ﻿using HaloInfiniteMobileApp.Constants;
 using HaloInfiniteMobileApp.Interfaces;
+using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -33,7 +34,8 @@ public class HomeViewModel : ViewModelBase
             return;
         }
 
-        var playerAppearance = await _haloInfiniteService.GetPlayerAppearance(Gamertag).ConfigureAwait(false);
+        var playerAppearanceRequest = new PlayerAppearanceRequest() { Gamertag = Gamertag };
+        var playerAppearance = await _haloInfiniteService.GetPlayerAppearance(playerAppearanceRequest).ConfigureAwait(false);
 
         if (playerAppearance != null)
         {
