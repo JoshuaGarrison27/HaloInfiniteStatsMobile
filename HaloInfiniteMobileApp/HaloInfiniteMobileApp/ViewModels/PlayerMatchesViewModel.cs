@@ -2,6 +2,8 @@
 using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -10,13 +12,16 @@ namespace HaloInfiniteMobileApp.ViewModels;
 
 public class PlayerMatchesViewModel : ViewModelBase
 {
-    public PlayerMatches _playerMatches;
+    private PlayerMatches _playerMatches;
+    private bool _showLoadMoreMatchesButton = true;
+
     public PlayerMatchesViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService,
         IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
         : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
-    {}
+    { }
 
     public ICommand MatchSelectedCommand => new Command<Match>(OnMatchTapped);
+    public ICommand LoadMoreCommand => new Command(LoadMoreMatches);
 
     public async override Task Initialize(object data)
     {
@@ -41,6 +46,39 @@ public class PlayerMatchesViewModel : ViewModelBase
     {
         _navigationService.NavigateToAsync<MatchDetailsViewModel>(match);
     }
+    private async void LoadMoreMatches()
+    {
+        var matchListCount = _playerMatches.count;
+        var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
+
+        CheckInternetConnection();
+
+        try
+        {
+            if (_connectionService.IsConnected)
+            {
+                IsBusy = true;
+                var requestObject = new PlayerMatchListRequest(gamertag, 25, matchListCount, "matchmade");
+                var nextResultSet = await _haloInfiniteService.GetPlayerMatches(requestObject).ConfigureAwait(false);
+
+                if(nextResultSet != null && nextResultSet?.Matches?.Length > 0)
+                {
+                    var mergedList = PlayerMatches.Matches.Concat(nextResultSet.Matches);
+                    PlayerMatches.Matches = mergedList.ToArray();
+                    OnPropertyChanged(nameof(PlayerMatches));
+                }
+                else
+                {
+                    _dialogService.ShowToast("No new matches found");
+                }
+                IsBusy = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            _dialogService.ShowToast("An error occured. Please Try Again");
+        }
+    }
 
     public PlayerMatches PlayerMatches
     {
@@ -48,6 +86,16 @@ public class PlayerMatchesViewModel : ViewModelBase
         set
         {
             _playerMatches = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public bool ShowLoadMoreMatches
+    {
+        get => _showLoadMoreMatchesButton;
+        set
+        {
+            _showLoadMoreMatchesButton = value;
             OnPropertyChanged();
         }
     }

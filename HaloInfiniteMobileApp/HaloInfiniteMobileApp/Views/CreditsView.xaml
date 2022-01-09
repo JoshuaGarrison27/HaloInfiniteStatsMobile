@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HaloInfiniteMobileApp.Views.CreditsView"
+             xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             Title="Credits"
+             BackgroundColor="{StaticResource DarkBackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame CornerRadius="20" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" HorizontalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Label Text="Creator" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Style="{StaticResource CreditHeaderStyle}" />
+                    <Label Text="Joshua Garrison" Style="{StaticResource CreditDetailsStyle}" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+            <Frame CornerRadius="20" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" HorizontalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Label Text="Special Thanks" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Style="{StaticResource CreditHeaderStyle}" />
+                    <Label Text="Darin Campbell" Style="{StaticResource CreditDetailsStyle}" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+            <Frame CornerRadius="20" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" HorizontalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Label Text="API Data" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Style="{StaticResource CreditHeaderStyle}" />
+                    <Label Text="Autocode.com" Style="{StaticResource CreditDetailsStyle}" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+            <Frame CornerRadius="20" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" HorizontalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Label Text="Halo Images / Etc" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Style="{StaticResource CreditHeaderStyle}" />
+                    <Label Text="343 Industries" Style="{StaticResource CreditDetailsStyle}" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

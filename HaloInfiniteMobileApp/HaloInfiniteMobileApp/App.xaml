@@ -80,6 +80,24 @@
                 <Setter Property="HorizontalOptions" Value="Start"></Setter>
             </Style>
 
+            <Style x:Key="CreditHeaderStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"></Setter>
+                <Setter Property="Margin" Value="3,3,3,10"></Setter>
+                <Setter Property="TextTransform" Value="Uppercase" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="HorizontalOptions" Value="Start"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource LightGrey}" />
+            </Style>
+
+            <Style x:Key="CreditDetailsStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="Margin" Value="3"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            </Style>
+
             <Style x:Key="MenuIconStyle" TargetType="{x:Type Label}">
                 <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"></Setter>
                 <Setter Property="TextColor" Value="{StaticResource LightGrey}"></Setter>
@@ -122,7 +140,7 @@
             <converters:CountToVisibilityConverter x:Key="LocalCountToVisibilityConverter"></converters:CountToVisibilityConverter>
             <converters:RelativeTimeConverter x:Key="LocalRelativeTimeConverter"></converters:RelativeTimeConverter>
             <converters:OrdinalizeConverter x:Key="LocalOrdinalizeConverter"></converters:OrdinalizeConverter>
-            
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

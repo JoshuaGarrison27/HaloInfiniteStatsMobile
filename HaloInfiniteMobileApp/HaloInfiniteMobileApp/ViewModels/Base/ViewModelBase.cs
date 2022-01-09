@@ -37,10 +37,19 @@ public class ViewModelBase : INotifyPropertyChanged
         }
     }
 
-    //[NotifyPropertyChangedInvocator]
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    protected bool CheckInternetConnection(bool showToast = true)
+    {
+        if (!_connectionService.IsConnected && showToast)
+        {
+            _dialogService.ShowToast("Unable to access the internet");
+        }
+
+        return _connectionService.IsConnected;
     }
 
     public virtual Task Initialize(object data)

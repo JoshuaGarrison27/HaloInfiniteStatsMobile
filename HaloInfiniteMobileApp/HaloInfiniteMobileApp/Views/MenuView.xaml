@@ -7,7 +7,7 @@
              xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
              utility:ViewModelLocator.AutoWireViewModel="True"
              Title=" ">
-    <Grid RowSpacing="0">
+    <Grid RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource DarkBackgroundColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="9*" />
@@ -17,20 +17,28 @@
             <Grid BackgroundColor="{StaticResource DarkBackgroundColor}" Opacity="0.8"/>
             <Label Text="{Binding HeroText}" Style="{StaticResource MenuHeroLabelStyle}"/>
         </Grid>
-        <Grid Grid.Row="1" BackgroundColor="{StaticResource DarkBackgroundColor}">
-            <ListView ItemsSource="{Binding MenuItems}"  CachingStrategy="RecycleElement"
-                SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="None">
-                <ListView.Behaviors>
-                    <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding MenuItemTappedCommand}"></behaviors:EventToCommandBehavior>
-                </ListView.Behaviors>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <templates:MenuItemTemplate />
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <Grid Grid.Row="1">
+            <StackLayout>
+                <ListView ItemsSource="{Binding MenuItems}" BackgroundColor="Transparent" CachingStrategy="RecycleElement"
+                SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="None" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding MenuItemTappedCommand}"></behaviors:EventToCommandBehavior>
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <templates:MenuItemTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Frame CornerRadius="5" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CreditsTappedCommand}" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="Credits" TextColor="White" Margin="2,10,2,10" HorizontalOptions="Center"/>
+                </Frame>
+            </StackLayout>
         </Grid>
     </Grid>
 </ContentPage>

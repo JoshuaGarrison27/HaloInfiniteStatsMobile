@@ -22,6 +22,7 @@ public static class ServicesBuilder
         services.AddTransient<MedalsViewModel>();
         services.AddTransient<PlayerMatchesViewModel>();
         services.AddTransient<MatchDetailsViewModel>();
+        services.AddTransient<CreditsViewModel>();
 
         //Services
         services.AddTransient<IConnectionService, ConnectionService>();

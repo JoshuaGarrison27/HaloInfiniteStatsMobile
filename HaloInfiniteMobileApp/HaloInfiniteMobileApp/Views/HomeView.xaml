@@ -21,7 +21,7 @@
                    Margin="10"
                     VerticalOptions="Center" 
                     HorizontalOptions="Center" />
-            <Button Text="Clear Cache" Command="{Binding ClearCacheCommand}"></Button>
+            <Button Text="Clear Cache" Command="{Binding ClearCacheCommand}" Style="{StaticResource HaloInfiniteWhiteButtonStyle}" Margin="20,0,20,0"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

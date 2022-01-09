@@ -40,6 +40,7 @@ public class MenuViewModel : ViewModelBase
     }
 
     public ICommand MenuItemTappedCommand => new Command(OnMenuItemTapped);
+    public ICommand CreditsTappedCommand => new Command(OnCreditsTapped);
 
     public ObservableCollection<MainMenuItem> MenuItems
     {
@@ -49,6 +50,11 @@ public class MenuViewModel : ViewModelBase
             _menuItems = value;
             OnPropertyChanged();
         }
+    }
+
+    private void OnCreditsTapped()
+    {
+        _navigationService.NavigateToAsync(typeof(CreditsViewModel));
     }
 
     private void OnMenuItemTapped(object menuItemTappedEventArgs)
