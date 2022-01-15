@@ -18,7 +18,9 @@ public class CampaignViewModel : ViewModelBase
     public CampaignViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService,
         IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
         : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
-    { }
+    {
+        Title = "Campaign Service Record";
+    }
 
     public async override Task Initialize(object data)
     {
@@ -51,7 +53,7 @@ public class CampaignViewModel : ViewModelBase
             }
         }
 
-        EnsureCampaignDataShared();
+        CheckCampaignDataShared();
     }
 
     private async Task CampaignRefreshCommand()
@@ -61,17 +63,23 @@ public class CampaignViewModel : ViewModelBase
         IsBusy = false;
     }
 
-    private void EnsureCampaignDataShared()
+    private void CheckCampaignDataShared(bool showWorking = false)
     {
         if(Campaign.MissionsCompleted == 0 )
         {
-            _dialogService.ShowToast("No Data? Click the help menu option in the corner!");
+            _dialogService.ShowDialog("If you have no data showing here, you need to go into Halo Infinite's Settings (In-game) and turn on campaign data sharing.", "No Data Discovered", "Okay");
+        } else
+        {
+            if (showWorking)
+            {
+            _dialogService.ShowDialog("You're campaign service record was found. Nothing to see here.", "Data Discovered", "Okay");
+            }
         }
     }
 
     private void CampaignHelpCommand()
     {
-        _dialogService.ShowDialog("If you have no data showing here, you need to go into Halo Infinite's Settings (In-game) and turn on campaign data sharing.", "No Data?", "Okay");
+        CheckCampaignDataShared(true);
     }
 
     public Campaign Campaign

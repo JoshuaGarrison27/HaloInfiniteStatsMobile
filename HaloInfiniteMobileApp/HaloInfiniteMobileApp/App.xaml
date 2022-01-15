@@ -41,6 +41,7 @@
             <Color x:Key="HaloInfoGroupBodyBackgroundColor">#191f21</Color>
             <Color x:Key="HaloInfoGroupBodyHeaderTextColor">#b4b4b1</Color>
             <Color x:Key="ActivitySpinnerColor">#2296f3</Color>
+            <Color x:Key="ProgressBarColor">#2296f3</Color>
             <Color x:Key="LightGrey">#cccccc</Color>
             <Color x:Key="EntryGrey">Gray</Color>
             <Color x:Key="HeaderGrey">#aaaaaa</Color>
@@ -132,14 +133,14 @@
                 <Setter Property="VerticalOptions" Value="Center"></Setter>
             </Style>
 
-            <converters:NumericRounding x:Key="LocalNumericRoundingConverter"></converters:NumericRounding>
-            <converters:PercentageConverter x:Key="LocalPercentageConverter"></converters:PercentageConverter>
-            <converters:ItemTappedConverter x:Key="LocalItemTappedConverter"></converters:ItemTappedConverter>
-            <converters:MenuIconConverter x:Key="LocalMenuIconConverter"></converters:MenuIconConverter>
-            <converters:CurrencyConverter x:Key="LocalCurrencyConverter"></converters:CurrencyConverter>
-            <converters:CountToVisibilityConverter x:Key="LocalCountToVisibilityConverter"></converters:CountToVisibilityConverter>
-            <converters:RelativeTimeConverter x:Key="LocalRelativeTimeConverter"></converters:RelativeTimeConverter>
-            <converters:OrdinalizeConverter x:Key="LocalOrdinalizeConverter"></converters:OrdinalizeConverter>
+            <converters:NumericRounding x:Key="LocalNumericRoundingConverter"/>
+            <converters:PercentageConverter x:Key="LocalPercentageConverter"/>
+            <converters:ItemTappedConverter x:Key="LocalItemTappedConverter"/>
+            <converters:MenuIconConverter x:Key="LocalMenuIconConverter"/>
+            <converters:CurrencyConverter x:Key="LocalCurrencyConverter"/>
+            <converters:CountToVisibilityConverter x:Key="LocalCountToVisibilityConverter"/>
+            <converters:RelativeTimeConverter x:Key="LocalRelativeTimeConverter"/>
+            <converters:OrdinalizeConverter x:Key="LocalOrdinalizeConverter"/>
 
         </ResourceDictionary>
     </Application.Resources>

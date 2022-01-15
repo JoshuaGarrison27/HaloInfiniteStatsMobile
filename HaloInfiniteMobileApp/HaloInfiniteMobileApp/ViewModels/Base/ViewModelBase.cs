@@ -14,7 +14,7 @@ public class ViewModelBase : INotifyPropertyChanged
     protected readonly ISettingsService _settingsService;
     private bool _isBusy;
     private bool _isRefreshing;
-    private bool _title;
+    private string _title;
     public event PropertyChangedEventHandler PropertyChanged;
 
     public ViewModelBase(IConnectionService connectionService, INavigationService navigationService,
@@ -47,7 +47,7 @@ public class ViewModelBase : INotifyPropertyChanged
         }
     }
 
-    public bool Title
+    public string Title
     {
         get => _title;
         set
