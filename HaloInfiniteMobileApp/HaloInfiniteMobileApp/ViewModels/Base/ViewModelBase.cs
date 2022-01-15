@@ -12,6 +12,10 @@ public class ViewModelBase : INotifyPropertyChanged
     protected readonly IDialogService _dialogService;
     protected readonly IHaloInfiniteService _haloInfiniteService;
     protected readonly ISettingsService _settingsService;
+    private bool _isBusy;
+    private bool _isRefreshing;
+    private bool _title;
+    public event PropertyChangedEventHandler PropertyChanged;
 
     public ViewModelBase(IConnectionService connectionService, INavigationService navigationService,
         IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
@@ -23,10 +27,6 @@ public class ViewModelBase : INotifyPropertyChanged
         _settingsService = settingsService;
     }
 
-    private bool _isBusy;
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
     public bool IsBusy
     {
         get => _isBusy;
@@ -37,6 +37,25 @@ public class ViewModelBase : INotifyPropertyChanged
         }
     }
 
+    public bool IsRefreshing
+    {
+        get => _isRefreshing;
+        set
+        {
+            _isRefreshing = value;
+            OnPropertyChanged(nameof(IsRefreshing));
+        }
+    }
+
+    public bool Title
+    {
+        get => _title;
+        set
+        {
+            _title = value;
+            OnPropertyChanged(nameof(Title));
+        }
+    }
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

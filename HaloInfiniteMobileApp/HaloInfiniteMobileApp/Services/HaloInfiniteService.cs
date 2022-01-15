@@ -109,7 +109,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         var cacheKey = CacheNameConstrants.PlayerMatchesPartial + request.Gamertag;
         var playerMatchesFromCache = await GetFromCache<PlayerMatches>(cacheKey);
 
-        if (playerMatchesFromCache != null)
+        if (playerMatchesFromCache != null && !request.IgnoreCache)
         {
             return playerMatchesFromCache;
         }
@@ -143,6 +143,26 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
             Cache.InsertObject(cacheKey, response, DateTimeOffset.Now.AddDays(1));
 
             return response;
+        }
+    }
+
+    public async Task<CampaignRecord> GetCampaignRecord(CampaignRequest campaignRequest)
+    {
+        var playerCampaignFromCache = await GetFromCache<CampaignRecord>(CacheNameConstrants.PlayerCampaign);
+
+        if (playerCampaignFromCache != null)
+        {
+            return playerCampaignFromCache;
+        }
+        else
+        {
+            const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.CampaignRecord;
+
+            var playerCampaign = await _genericRepository.PostAsync<CampaignRequest, CampaignRecord>(apiUrl, campaignRequest, _haloApiAuthToken);
+
+            Cache.InsertObject(CacheNameConstrants.PlayerCampaign, playerCampaign, DateTimeOffset.Now.AddMinutes(5));
+
+            return playerCampaign;
         }
     }
 }

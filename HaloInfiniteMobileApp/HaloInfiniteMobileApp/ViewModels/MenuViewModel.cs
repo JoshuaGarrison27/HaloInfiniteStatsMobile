@@ -92,6 +92,14 @@ public class MenuViewModel : ViewModelBase
 
         MenuItems.Add(new MainMenuItem
         {
+            MenuText = "Campaign",
+            ViewModelToLoad = typeof(CampaignViewModel),
+            MenuItemType = MenuItemType.Campaign,
+            MenuItemIcon = "\U000F034D"
+        });
+
+        MenuItems.Add(new MainMenuItem
+        {
             MenuText = "Service Record",
             ViewModelToLoad = typeof(ServiceRecordViewModel),
             MenuItemType = MenuItemType.ServiceRecord,

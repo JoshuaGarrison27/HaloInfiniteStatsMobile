@@ -23,6 +23,7 @@ public static class ServicesBuilder
         services.AddTransient<PlayerMatchesViewModel>();
         services.AddTransient<MatchDetailsViewModel>();
         services.AddTransient<CreditsViewModel>();
+        services.AddTransient<CampaignViewModel>();
 
         //Services
         services.AddTransient<IConnectionService, ConnectionService>();

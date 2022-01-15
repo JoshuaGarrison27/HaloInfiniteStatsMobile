@@ -7,4 +7,5 @@ public static class CacheNameConstrants
     public const string MultiplayerServiceRecordPartial = "MultiplayerServiceRecord-";
     public const string Medals = "Medals";
     public const string PlayerMatchesPartial = "PlayerMatches-";
+    public const string PlayerCampaign = "PlayerCampaign";
 }

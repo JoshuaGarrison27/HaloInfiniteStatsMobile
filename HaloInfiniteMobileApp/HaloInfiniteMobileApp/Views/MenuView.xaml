@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="HaloInfiniteMobileApp.Views.MenuView"
-             xmlns:behaviors="clr-namespace:HaloInfiniteMobileApp.Behaviors"
              xmlns:templates="clr-namespace:HaloInfiniteMobileApp.Templates"
              xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
              utility:ViewModelLocator.AutoWireViewModel="True"
@@ -22,7 +22,7 @@
                 <ListView ItemsSource="{Binding MenuItems}" BackgroundColor="Transparent" CachingStrategy="RecycleElement"
                 SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="None" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <ListView.Behaviors>
-                        <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding MenuItemTappedCommand}"></behaviors:EventToCommandBehavior>
+                        <xct:EventToCommandBehavior EventName="ItemTapped" Command="{Binding MenuItemTappedCommand}"/>
                     </ListView.Behaviors>
                     <ListView.ItemTemplate>
                         <DataTemplate>

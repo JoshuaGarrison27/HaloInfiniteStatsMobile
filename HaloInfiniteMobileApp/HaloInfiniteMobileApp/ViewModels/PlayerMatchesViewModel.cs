@@ -6,6 +6,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HaloInfiniteMobileApp.ViewModels;
@@ -15,13 +17,14 @@ public class PlayerMatchesViewModel : ViewModelBase
     private PlayerMatches _playerMatches;
     private bool _showLoadMoreMatchesButton = true;
 
+    public ICommand MatchSelectedCommand => new Command<Match>(OnMatchTapped);
+    public ICommand LoadMoreCommand => new Command(LoadMoreMatches);
+    public ICommand MatchesRefreshCommand => new AsyncCommand(() => OnPullToRefreshMatchList());
+
     public PlayerMatchesViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService,
         IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
         : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
     { }
-
-    public ICommand MatchSelectedCommand => new Command<Match>(OnMatchTapped);
-    public ICommand LoadMoreCommand => new Command(LoadMoreMatches);
 
     public async override Task Initialize(object data)
     {
@@ -31,13 +34,16 @@ public class PlayerMatchesViewModel : ViewModelBase
         IsBusy = false;
     }
 
-    public async Task RefreshMatches()
+    public async Task RefreshMatches(bool ignoreCache = false)
     {
         var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
 
         if (gamertag != null)
         {
-            var requestObject = new PlayerMatchListRequest(gamertag, 25, 0, "matchmade");
+            var requestObject = new PlayerMatchListRequest(gamertag, 25, 0, "matchmade")
+            {
+                IgnoreCache = ignoreCache
+            };
             PlayerMatches = await _haloInfiniteService.GetPlayerMatches(requestObject).ConfigureAwait(false);
         }
     }
@@ -46,6 +52,15 @@ public class PlayerMatchesViewModel : ViewModelBase
     {
         _navigationService.NavigateToAsync<MatchDetailsViewModel>(match);
     }
+
+    private async Task OnPullToRefreshMatchList()
+    {
+        IsRefreshing = true;
+        Vibration.Vibrate(TimeSpan.FromMilliseconds(100));
+        await RefreshMatches(true).ConfigureAwait(false);
+        IsRefreshing = false;
+    }
+
     private async void LoadMoreMatches()
     {
         var matchListCount = _playerMatches.count;
@@ -61,7 +76,7 @@ public class PlayerMatchesViewModel : ViewModelBase
                 var requestObject = new PlayerMatchListRequest(gamertag, 25, matchListCount, "matchmade");
                 var nextResultSet = await _haloInfiniteService.GetPlayerMatches(requestObject).ConfigureAwait(false);
 
-                if(nextResultSet != null && nextResultSet?.Matches?.Length > 0)
+                if (nextResultSet != null && nextResultSet?.Matches?.Length > 0)
                 {
                     var mergedList = PlayerMatches.Matches.Concat(nextResultSet.Matches);
                     PlayerMatches.Matches = mergedList.ToArray();

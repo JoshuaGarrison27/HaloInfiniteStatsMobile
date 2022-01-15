@@ -36,7 +36,7 @@
             </OnPlatform>
 
             <Color x:Key="DarkBackgroundColor">#1F1F1F</Color>
-            <Color x:Key="DarkBackgroundContrastColor">#121617</Color>
+            <Color x:Key="DarkBackgroundContrastColor">#2e2e2e</Color>
             <Color x:Key="HaloInfoGroupHeaderBackground">#121617</Color>
             <Color x:Key="HaloInfoGroupBodyBackgroundColor">#191f21</Color>
             <Color x:Key="HaloInfoGroupBodyHeaderTextColor">#b4b4b1</Color>

@@ -12,5 +12,6 @@ public interface IHaloInfiniteService
     Task<HaloMedals> GetHaloMedals();
     Task<PlayerMatches> GetPlayerMatches(PlayerMatchListRequest request);
     Task<MatchDetails> GetMatchDetails(MatchDetailsRequest matchRequest);
+    Task<CampaignRecord> GetCampaignRecord(CampaignRequest campaignRequest);
     void InvalidateCache();
 }

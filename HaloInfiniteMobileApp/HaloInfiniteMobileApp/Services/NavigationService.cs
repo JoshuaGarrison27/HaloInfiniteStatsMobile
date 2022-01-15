@@ -183,6 +183,7 @@ public class NavigationService : INavigationService
         _mappings.Add(typeof(PlayerMatchesViewModel), typeof(PlayerMatchesView));
         _mappings.Add(typeof(MatchDetailsViewModel), typeof(MatchDetailsView));
         _mappings.Add(typeof(CreditsViewModel), typeof(CreditsView));
+        _mappings.Add(typeof(CampaignViewModel), typeof(CampaignView));
     }
 
     public IEnumerable<Page> GetNavigationStack()

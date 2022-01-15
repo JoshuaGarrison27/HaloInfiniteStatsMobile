@@ -12,7 +12,7 @@ public class PlayerMatches
     public Additional additional { get; set; }
 }
 
-public class PlayerMatchListRequest
+public class PlayerMatchListRequest : ServiceRequestBase
 {
     public PlayerMatchListRequest(string gamertag, int count = 10, int offset = 0, string mode = "matchmade")
     {
