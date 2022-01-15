@@ -17,8 +17,6 @@ public class HaloNewsViewModel : ViewModelBase
         : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
     {}
 
-    public ICommand ArticleTappedCommand => new Command<Article>(OnArticleTapped);
-
     public ObservableCollection<Article> NewsArticles
     {
         get => _articles;
@@ -29,16 +27,11 @@ public class HaloNewsViewModel : ViewModelBase
         }
     }
 
-    private async void OnArticleTapped(Article seletedItem)
-    {
-        await _dialogService.ShowDialog(seletedItem.Title, "Ok", "Ok");
-    }
-
     public override async Task Initialize(object data)
     {
         IsBusy = true;
 
-        var newsArticles = await _haloInfiniteService.GetNewsArticles();
+        var newsArticles = await _haloInfiniteService.GetNewsArticles().ConfigureAwait(false);
         NewsArticles = newsArticles?.Data?.ToObservableCollection();
 
         IsBusy = false;

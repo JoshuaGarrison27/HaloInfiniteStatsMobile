@@ -8,7 +8,7 @@ public class CurrencyConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return $"{value:C}"; ;
+        return $"{value:C}";
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

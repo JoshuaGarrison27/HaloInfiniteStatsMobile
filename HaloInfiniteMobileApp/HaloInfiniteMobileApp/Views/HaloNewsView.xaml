@@ -8,7 +8,7 @@
                 Title="Halo Infinite News"
              BackgroundColor="{StaticResource DarkBackgroundColor}">
     <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding NewsArticles}" CachingStrategy="RecycleElement"
-            SeparatorVisibility="Default" HasUnevenRows="True">
+            SeparatorVisibility="Default" HasUnevenRows="True" SelectionMode="None">
         <ListView.Behaviors>
             <xct:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ArticleTappedCommand}" EventArgsConverter="{StaticResource LocalItemTappedConverter}" />
         </ListView.Behaviors>

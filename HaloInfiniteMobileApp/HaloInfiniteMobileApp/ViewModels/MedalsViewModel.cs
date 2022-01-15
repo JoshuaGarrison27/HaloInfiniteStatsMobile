@@ -17,16 +17,16 @@ public class MedalsViewModel : ViewModelBase
         : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
     {}
 
-    public async override Task Initialize(object data)
+    public override Task Initialize(object data)
     {
         _ = base.Initialize(data);
-
         LoadDataAsync();
+        return Task.CompletedTask;
     }
 
     private async void LoadDataAsync()
     {
-        var apiMedals = await _haloInfiniteService.GetHaloMedals();
+        var apiMedals = await _haloInfiniteService.GetHaloMedals().ConfigureAwait(false);
         Medals = apiMedals.Medals.OrderBy(o => o.Name).ToObservableCollection();
     }
 

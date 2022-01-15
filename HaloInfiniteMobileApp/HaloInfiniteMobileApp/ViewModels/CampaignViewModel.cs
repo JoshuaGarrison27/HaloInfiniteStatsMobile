@@ -1,7 +1,9 @@
 ﻿using HaloInfiniteMobileApp.Constants;
+using HaloInfiniteMobileApp.Extensions;
 using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -65,14 +67,14 @@ public class CampaignViewModel : ViewModelBase
 
     private void CheckCampaignDataShared(bool showWorking = false)
     {
-        if(Campaign.MissionsCompleted == 0 )
+        if (Campaign.MissionsCompleted == 0)
         {
             _dialogService.ShowDialog("If you have no data showing here, you need to go into Halo Infinite's Settings (In-game) and turn on campaign data sharing.", "No Data Discovered", "Okay");
         } else
         {
             if (showWorking)
             {
-            _dialogService.ShowDialog("You're campaign service record was found. Nothing to see here.", "Data Discovered", "Okay");
+                _dialogService.ShowDialog("You're campaign service record was found. Nothing to see here.", "Data Discovered", "Okay");
             }
         }
     }
@@ -81,6 +83,24 @@ public class CampaignViewModel : ViewModelBase
     {
         CheckCampaignDataShared(true);
     }
+
+    private float GetProgressFloat(int? currentValue, int? maxValue)
+    {
+        if(currentValue.IsNullOrValue(0) || maxValue.IsNullOrValue(0))
+            return 0;
+
+        if (currentValue >= maxValue)
+            return 1;
+
+        var rawValue = ((double)currentValue / (double)maxValue);
+        return Convert.ToSingle(Math.Round(rawValue, 2));
+    }
+
+    public float SkullsProgress => GetProgressFloat(Campaign?.Skulls, Campaign?.Defaults?.TotalSkulls);
+    public float FobSecuredProgress => GetProgressFloat(Campaign?.FobSecured, Campaign?.Defaults?.TotalFobSecured);
+    public float SpartanCoresFoundProgress => GetProgressFloat(Campaign?.SpartanCores, Campaign?.Defaults?.TotalSpartanCores);
+    public float PropagandaTowersDestroyedProgress => GetProgressFloat(Campaign?.PropagandaTowersDestroyed, Campaign?.Defaults?.TotalPropagandaTowers);
+    public float AudioLogsTotalProgress => GetProgressFloat(Campaign?.AudioLogs?.Total, Campaign?.Defaults?.TotalAudioLogs);
 
     public Campaign Campaign
     {

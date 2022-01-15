@@ -89,7 +89,7 @@ public class PlayerMatchesViewModel : ViewModelBase
                 IsBusy = false;
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             _dialogService.ShowToast("An error occured. Please Try Again");
         }

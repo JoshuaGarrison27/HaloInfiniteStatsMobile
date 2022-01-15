@@ -14,192 +14,198 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <AbsoluteLayout VerticalOptions="FillAndExpand">
-            <StackLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <Frame CornerRadius="5" Margin="2" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
-                    <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="100"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit" Grid.Row="0" Grid.Column="0">
-                            <Image.Source>
-                                <UriImageSource Uri="{Binding Difficulty.HighestCompletedImageUrl}" CacheValidity="14" CachingEnabled="true"/>
-                            </Image.Source>
-                        </Image>
-                        <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                            <Label TextColor="{StaticResource LightBlue}" FontSize ="18" Text="Highest Difficulty Completed" HorizontalOptions="CenterAndExpand"/>
-                            <Label TextColor="White"  FontSize="16" Text="{Binding HighestDifficulty,Source={RelativeSource AncestorType={x:Type viewModel:CampaignViewModel}}}" TextTransform="Uppercase" HorizontalOptions="CenterAndExpand" />
-                        </StackLayout>
-                    </Grid>
-                </Frame>
-                <Frame CornerRadius="5" Margin="2" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
-                    <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="&#xF068C;" TextColor="{StaticResource LightGrey}" FontSize="40" FontFamily="{StaticResource Key=MaterialDesignIcons}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                        <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                            <Label Text="Skulls Found" FontSize="16" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
-                            <Label Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding Skulls}"/>
-                                        <Span Text="/"/>
-                                        <Span Text="{Binding Defaults.TotalSkulls}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <ProgressBar Progress="{Binding Skulls, Converter={StaticResource LocalIntToFloatConverter}, ConverterParameter={Binding Campaign.Defaults.TotalSkulls,Source={RelativeSource AncestorType={x:Type viewModel:CampaignViewModel}}}}" ProgressColor="{StaticResource ProgressBarColor}"></ProgressBar>
-                        </StackLayout>
-                    </Grid>
-                </Frame>
-                <Frame CornerRadius="5" Margin="2" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
-                    <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="&#xF011A;" TextColor="{StaticResource LightGrey}" FontSize="40" FontFamily="{StaticResource Key=MaterialDesignIcons}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                        <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                            <Label Text="FOBs Secured" FontSize="16" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
-                            <Label Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding FobSecured}"/>
-                                        <Span Text="/"/>
-                                        <Span Text="{Binding Defaults.TotalFobSecured}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-                    </Grid>
-                </Frame>
-                <Frame CornerRadius="5" Margin="2" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
-                    <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="&#xF125B;" TextColor="{StaticResource LightGrey}" FontSize="40" FontFamily="{StaticResource Key=MaterialDesignIcons}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                        <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                            <Label Text="Spartan Cores Found" FontSize="16" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
-                            <Label Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding SpartanCores}"/>
-                                        <Span Text="/"/>
-                                        <Span Text="{Binding Defaults.TotalSpartanCores}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-                    </Grid>
-                </Frame>
-                <Frame CornerRadius="5" Margin="2" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
-                    <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="&#xF043B;" TextColor="{StaticResource LightGrey}" FontSize="40" FontFamily="{StaticResource Key=MaterialDesignIcons}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                        <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                            <Label Text="Propaganda Towers Destroyed" FontSize="16" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
-                            <Label Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding PropagandaTowersDestroyed}"/>
-                                        <Span Text="/"/>
-                                        <Span Text="{Binding Defaults.TotalPropagandaTowers}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-                    </Grid>
-                </Frame>
-                <Frame CornerRadius="5" Margin="2" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
-                    <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="&#xF093D;" TextColor="{StaticResource LightGrey}" FontSize="40" FontFamily="{StaticResource Key=MaterialDesignIcons}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                        <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                            <Label Text="Audio Logs Found" FontSize="16" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
-                            <Grid Margin="0" Padding="10" HorizontalOptions="CenterAndExpand">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Text="UNSC:" TextColor="White"/>
-                                <Label Grid.Row="0" Grid.Column="1" TextColor="White">
+            <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Padding="0,0,0,30">
+                    <Frame CornerRadius="5" Margin="5" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
+                        <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit" Grid.Row="0" Grid.Column="0">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding Difficulty.HighestCompletedImageUrl}" CacheValidity="14" CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
+                            <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="0,20,0,20">
+                                <Label TextColor="{StaticResource LightBlue}" FontSize ="18" Text="Highest Difficulty Completed" HorizontalOptions="CenterAndExpand"/>
+                                <Label TextColor="White"  FontSize="16" Text="{Binding HighestDifficulty,Source={RelativeSource AncestorType={x:Type viewModel:CampaignViewModel}}}" TextTransform="Uppercase" HorizontalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    <Frame CornerRadius="5" Margin="5" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
+                        <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="&#xF068C;" TextColor="{StaticResource LightGrey}" FontSize="40" FontFamily="{StaticResource Key=MaterialDesignIcons}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                            <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label Text="Skulls Found" FontSize="16" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                                <Label Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding AudioLogs.UNSC}"/>
+                                            <Span Text="{Binding Skulls}"/>
                                             <Span Text="/"/>
-                                            <Span Text="{Binding Defaults.TotalUnscAudioLogs}" />
+                                            <Span Text="{Binding Defaults.TotalSkulls}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="1" Grid.Column="0" Text="Banished:" TextColor="White"/>
-                                <Label Grid.Row="1" Grid.Column="1" TextColor="White">
+                                <ProgressBar Progress="{Binding SkullsProgress,Source={RelativeSource AncestorType={x:Type viewModel:CampaignViewModel}}}" Margin="10,0,10,0" ProgressColor="{StaticResource ProgressBarColor}"></ProgressBar>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    <Frame CornerRadius="5" Margin="5" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
+                        <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="&#xF011A;" TextColor="{StaticResource LightGrey}" FontSize="40" FontFamily="{StaticResource Key=MaterialDesignIcons}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                            <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label Text="FOBs Secured" FontSize="16" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                                <Label Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding AudioLogs.Banished}"/>
+                                            <Span Text="{Binding FobSecured}"/>
                                             <Span Text="/"/>
-                                            <Span Text="{Binding Defaults.TotalBanishedAudioLogs}" />
+                                            <Span Text="{Binding Defaults.TotalFobSecured}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="2" Grid.Column="0" Text="Spartans:" TextColor="White"/>
-                                <Label Grid.Row="2" Grid.Column="1" TextColor="White">
+                                <ProgressBar Progress="{Binding FobSecuredProgress,Source={RelativeSource AncestorType={x:Type viewModel:CampaignViewModel}}}" Margin="10,0,10,0" ProgressColor="{StaticResource ProgressBarColor}"></ProgressBar>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    <Frame CornerRadius="5" Margin="5" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
+                        <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="&#xF125B;" TextColor="{StaticResource LightGrey}" FontSize="40" FontFamily="{StaticResource Key=MaterialDesignIcons}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                            <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label Text="Spartan Cores Found" FontSize="16" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                                <Label Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding AudioLogs.Spartans}"/>
+                                            <Span Text="{Binding SpartanCores}"/>
                                             <Span Text="/"/>
-                                            <Span Text="{Binding Defaults.TotalSpartanAudioLogs}" />
+                                            <Span Text="{Binding Defaults.TotalSpartanCores}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Grid.Row="3" Grid.Column="0" Text="Total:" TextColor="White"/>
-                                <Label Grid.Row="3" Grid.Column="1" TextColor="White">
+                                <ProgressBar Progress="{Binding SpartanCoresFoundProgress,Source={RelativeSource AncestorType={x:Type viewModel:CampaignViewModel}}}" Margin="10,0,10,0" ProgressColor="{StaticResource ProgressBarColor}"></ProgressBar>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    <Frame CornerRadius="5" Margin="5" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
+                        <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="&#xF043B;" TextColor="{StaticResource LightGrey}" FontSize="40" FontFamily="{StaticResource Key=MaterialDesignIcons}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                            <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label Text="Propaganda Towers Destroyed" FontSize="16" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                                <Label Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding AudioLogs.Total}"/>
+                                            <Span Text="{Binding PropagandaTowersDestroyed}"/>
                                             <Span Text="/"/>
-                                            <Span Text="{Binding Defaults.TotalAudioLogs}" />
+                                            <Span Text="{Binding Defaults.TotalPropagandaTowers}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                            </Grid>
-                        </StackLayout>
-                    </Grid>
-                </Frame>
-            </StackLayout>
+                                <ProgressBar Progress="{Binding PropagandaTowersDestroyedProgress,Source={RelativeSource AncestorType={x:Type viewModel:CampaignViewModel}}}" Margin="10,0,10,0" ProgressColor="{StaticResource ProgressBarColor}"></ProgressBar>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    <Frame CornerRadius="5" Margin="5" Padding="0" BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
+                        <Grid BackgroundColor="Transparent" BindingContext="{Binding Campaign}" VerticalOptions="FillAndExpand" Margin="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="&#xF093D;" TextColor="{StaticResource LightGrey}" FontSize="40" FontFamily="{StaticResource Key=MaterialDesignIcons}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                            <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label Text="Audio Logs Found" FontSize="16" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                                <Grid Margin="0" Padding="10" HorizontalOptions="CenterAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Text="UNSC:" TextColor="White"/>
+                                    <Label Grid.Row="0" Grid.Column="1" TextColor="White">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding AudioLogs.UNSC}"/>
+                                                <Span Text="/"/>
+                                                <Span Text="{Binding Defaults.TotalUnscAudioLogs}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.Column="0" Text="Banished:" TextColor="White"/>
+                                    <Label Grid.Row="1" Grid.Column="1" TextColor="White">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding AudioLogs.Banished}"/>
+                                                <Span Text="/"/>
+                                                <Span Text="{Binding Defaults.TotalBanishedAudioLogs}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="2" Grid.Column="0" Text="Spartans:" TextColor="White"/>
+                                    <Label Grid.Row="2" Grid.Column="1" TextColor="White">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding AudioLogs.Spartans}"/>
+                                                <Span Text="/"/>
+                                                <Span Text="{Binding Defaults.TotalSpartanAudioLogs}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="3" Grid.Column="0" Text="Total:" TextColor="White"/>
+                                    <Label Grid.Row="3" Grid.Column="1" TextColor="White">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding AudioLogs.Total}"/>
+                                                <Span Text="/"/>
+                                                <Span Text="{Binding Defaults.TotalAudioLogs}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                                <ProgressBar Progress="{Binding AudioLogsTotalProgress,Source={RelativeSource AncestorType={x:Type viewModel:CampaignViewModel}}}" Margin="10,0,10,0" ProgressColor="{StaticResource ProgressBarColor}"></ProgressBar>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
             <ActivityIndicator IsRunning="{Binding Path=IsBusy}" Color="{StaticResource ActivitySpinnerColor}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />
         </AbsoluteLayout>
     </ContentPage.Content>

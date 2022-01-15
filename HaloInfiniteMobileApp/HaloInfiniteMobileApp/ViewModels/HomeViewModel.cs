@@ -45,7 +45,7 @@ public class HomeViewModel : ViewModelBase
 
     public ICommand ClearCacheCommand => new Command(ClearCache);
 
-    private async void ClearCache()
+    private void ClearCache()
     {
         _haloInfiniteService.InvalidateCache();
         _dialogService.ShowToast("Halo Cache Cleared");

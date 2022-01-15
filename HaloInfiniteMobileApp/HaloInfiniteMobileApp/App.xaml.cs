@@ -16,7 +16,7 @@ public partial class App : Application
 
         ServiceProvider = ServicesBuilder.BuildServices();
 
-        InitializeNavigation();
+        _ = InitializeNavigation();
     }
 
     private async Task InitializeNavigation()

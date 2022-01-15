@@ -23,7 +23,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
 
     public async Task<NewsArticles> GetNewsArticles()
     {
-        var newsArticlesFromCache = await GetFromCache<NewsArticles>(CacheNameConstrants.NewsArticles);
+        var newsArticlesFromCache = await GetFromCache<NewsArticles>(CacheNameConstrants.NewsArticles).ConfigureAwait(false);
 
         if (newsArticlesFromCache != null)
         {
@@ -34,7 +34,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
             const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.Articles;
             var newsArticlesRequest = new NewsArticlesRequest();
 
-            var newsArticles = await _genericRepository.PostAsync<NewsArticlesRequest, NewsArticles>(apiUrl, newsArticlesRequest, _haloApiAuthToken);
+            var newsArticles = await _genericRepository.PostAsync<NewsArticlesRequest, NewsArticles>(apiUrl, newsArticlesRequest, _haloApiAuthToken).ConfigureAwait(false);
 
             Cache.InsertObject(CacheNameConstrants.NewsArticles, newsArticles, DateTimeOffset.Now.AddMinutes(2));
 
@@ -44,7 +44,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
 
     public async Task<PlayerAppearance> GetPlayerAppearance(PlayerAppearanceRequest playerAppearanceRequest)
     {
-        var playerAppearanceFromCache = await GetFromCache<PlayerAppearance>(CacheNameConstrants.PlayerAppearance);
+        var playerAppearanceFromCache = await GetFromCache<PlayerAppearance>(CacheNameConstrants.PlayerAppearance).ConfigureAwait(false);
 
         if (playerAppearanceFromCache != null)
         {
@@ -54,7 +54,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         {
             const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.Appearance;
 
-            var playerAppearance = await _genericRepository.PostAsync<PlayerAppearanceRequest, PlayerAppearance>(apiUrl, playerAppearanceRequest, _haloApiAuthToken);
+            var playerAppearance = await _genericRepository.PostAsync<PlayerAppearanceRequest, PlayerAppearance>(apiUrl, playerAppearanceRequest, _haloApiAuthToken).ConfigureAwait(false);
 
             Cache.InsertObject(CacheNameConstrants.PlayerAppearance, playerAppearance, DateTimeOffset.Now.AddMinutes(2));
 
@@ -65,7 +65,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
     public async Task<MultiplayerServiceRecord> GetMultiplayerServiceRecord(MultiplayerServiceRecordRequest srRequest)
     {
         var cacheKey = CacheNameConstrants.MultiplayerServiceRecordPartial + srRequest.Filter;
-        var multiplayerSRFromCache = await GetFromCache<MultiplayerServiceRecord>(cacheKey);
+        var multiplayerSRFromCache = await GetFromCache<MultiplayerServiceRecord>(cacheKey).ConfigureAwait(false);
 
         if (multiplayerSRFromCache != null)
         {
@@ -74,8 +74,8 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         else
         {
             const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.ServiceRecordMultiplayer;
-            
-            var response = await _genericRepository.PostAsync<MultiplayerServiceRecordRequest, MultiplayerServiceRecord>(apiUrl, srRequest, _haloApiAuthToken);
+
+            var response = await _genericRepository.PostAsync<MultiplayerServiceRecordRequest, MultiplayerServiceRecord>(apiUrl, srRequest, _haloApiAuthToken).ConfigureAwait(false);
 
             Cache.InsertObject(cacheKey, response, DateTimeOffset.Now.AddMinutes(5));
 
@@ -86,7 +86,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
     public async Task<HaloMedals> GetHaloMedals()
     {
         const string cacheKey = CacheNameConstrants.Medals;
-        var medalsFromCache = await GetFromCache<HaloMedals>(cacheKey);
+        var medalsFromCache = await GetFromCache<HaloMedals>(cacheKey).ConfigureAwait(false);
 
         if (medalsFromCache != null)
         {
@@ -96,7 +96,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         {
             const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.MedalsList;
 
-            var response = await _genericRepository.GetAsync<HaloMedals>(apiUrl, _haloApiAuthToken);
+            var response = await _genericRepository.GetAsync<HaloMedals>(apiUrl, _haloApiAuthToken).ConfigureAwait(false);
 
             Cache.InsertObject(cacheKey, response, DateTimeOffset.Now.AddDays(1));
 
@@ -107,7 +107,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
     public async Task<PlayerMatches> GetPlayerMatches(PlayerMatchListRequest request)
     {
         var cacheKey = CacheNameConstrants.PlayerMatchesPartial + request.Gamertag;
-        var playerMatchesFromCache = await GetFromCache<PlayerMatches>(cacheKey);
+        var playerMatchesFromCache = await GetFromCache<PlayerMatches>(cacheKey).ConfigureAwait(false);
 
         if (playerMatchesFromCache != null && !request.IgnoreCache)
         {
@@ -117,7 +117,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         {
             const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.MatchList;
 
-            var response = await _genericRepository.PostAsync<PlayerMatchListRequest, PlayerMatches>(apiUrl, request, _haloApiAuthToken);
+            var response = await _genericRepository.PostAsync<PlayerMatchListRequest, PlayerMatches>(apiUrl, request, _haloApiAuthToken).ConfigureAwait(false);
 
             Cache.InsertObject(cacheKey, response, DateTimeOffset.Now.AddMinutes(5));
 
@@ -128,7 +128,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
     public async Task<MatchDetails> GetMatchDetails(MatchDetailsRequest matchRequest)
     {
         string cacheKey = matchRequest.id;
-        var matchDetailsFromCache = await GetFromCache<MatchDetails>(cacheKey);
+        var matchDetailsFromCache = await GetFromCache<MatchDetails>(cacheKey).ConfigureAwait(false);
 
         if (matchDetailsFromCache != null)
         {
@@ -138,7 +138,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         {
             const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.MatchRetrieve;
 
-            var response = await _genericRepository.PostAsync<MatchDetailsRequest, MatchDetails>(apiUrl, matchRequest, _haloApiAuthToken);
+            var response = await _genericRepository.PostAsync<MatchDetailsRequest, MatchDetails>(apiUrl, matchRequest, _haloApiAuthToken).ConfigureAwait(false);
 
             Cache.InsertObject(cacheKey, response, DateTimeOffset.Now.AddDays(1));
 
@@ -148,7 +148,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
 
     public async Task<CampaignRecord> GetCampaignRecord(CampaignRequest campaignRequest)
     {
-        var playerCampaignFromCache = await GetFromCache<CampaignRecord>(CacheNameConstrants.PlayerCampaign);
+        var playerCampaignFromCache = await GetFromCache<CampaignRecord>(CacheNameConstrants.PlayerCampaign).ConfigureAwait(false);
 
         if (playerCampaignFromCache != null)
         {
@@ -158,7 +158,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
         {
             const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.CampaignRecord;
 
-            var playerCampaign = await _genericRepository.PostAsync<CampaignRequest, CampaignRecord>(apiUrl, campaignRequest, _haloApiAuthToken);
+            var playerCampaign = await _genericRepository.PostAsync<CampaignRequest, CampaignRecord>(apiUrl, campaignRequest, _haloApiAuthToken).ConfigureAwait(false);
 
             Cache.InsertObject(CacheNameConstrants.PlayerCampaign, playerCampaign, DateTimeOffset.Now.AddMinutes(5));
 

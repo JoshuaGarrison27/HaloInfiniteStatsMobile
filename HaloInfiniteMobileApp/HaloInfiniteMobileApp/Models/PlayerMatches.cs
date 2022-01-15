@@ -128,17 +128,13 @@ public partial class Player
     {
         get
         {
-            switch (outcome)
+            return outcome switch
             {
-                case "draw":
-                    return "Tied";
-                case "win":
-                    return "Victory";
-                case "loss":
-                    return "Defeat";
-                default:
-                    return outcome;
-            }
+                "draw" => "Tied",
+                "win" => "Victory",
+                "loss" => "Defeat",
+                _ => outcome,
+            };
         }
     }
 }

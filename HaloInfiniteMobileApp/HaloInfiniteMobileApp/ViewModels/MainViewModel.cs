@@ -37,7 +37,7 @@ public class MainViewModel : ViewModelBase
             await Task.WhenAll
             (
                 _menuViewModel.Initialize(data)
-            );
+            ).ConfigureAwait(false);
         }
         else
         {
@@ -45,7 +45,7 @@ public class MainViewModel : ViewModelBase
             (
                 _menuViewModel.Initialize(data),
                 _navigationService.NavigateToAsync<HomeViewModel>()
-            );
+            ).ConfigureAwait(false);
         }
     }
 }

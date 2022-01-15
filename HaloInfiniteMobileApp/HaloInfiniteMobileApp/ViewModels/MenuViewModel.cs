@@ -35,7 +35,7 @@ public class MenuViewModel : ViewModelBase
         {
             HeroText = gamertag;
             var playerAppearanceRequest = new PlayerAppearanceRequest() { Gamertag = gamertag };
-            PlayerAppearance = await _haloInfiniteService.GetPlayerAppearance(playerAppearanceRequest);
+            PlayerAppearance = await _haloInfiniteService.GetPlayerAppearance(playerAppearanceRequest).ConfigureAwait(false);
         }
     }
 

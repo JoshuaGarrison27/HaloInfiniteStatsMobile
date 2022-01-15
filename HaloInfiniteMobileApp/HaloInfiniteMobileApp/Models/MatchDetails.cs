@@ -384,7 +384,7 @@ public class Presence
     public bool completion { get; set; }
 }
 
-public class MatchType 
+public class MatchType
 {
     public bool matchType { get; set; }
 }
