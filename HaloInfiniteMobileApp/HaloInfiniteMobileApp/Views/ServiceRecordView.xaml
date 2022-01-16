@@ -5,13 +5,12 @@
              xmlns:viewModel="clr-namespace:HaloInfiniteMobileApp.ViewModels"
              xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
              utility:ViewModelLocator.AutoWireViewModel="True"
-             Title="Service Record"
+             Title="{Binding Title}"
              BackgroundColor="#242c2f">
     <!--Pages can be added as references or inline-->
     <ContentPage Title="Social">
         <AbsoluteLayout VerticalOptions="Fill">
             <StackLayout BindingContext="{Binding SocialSR.Data}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <Label TextColor="{StaticResource LightBlue}" FontSize="24" Margin="5" Text="{Binding Gamertag, Source={RelativeSource AncestorType={x:Type viewModel:ServiceRecordViewModel}}}" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" />
                 <Grid Margin="5" Padding="0" BackgroundColor="Transparent" RowSpacing="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>

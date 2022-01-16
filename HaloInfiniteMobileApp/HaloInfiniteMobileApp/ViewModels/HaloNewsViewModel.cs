@@ -12,10 +12,11 @@ namespace HaloInfiniteMobileApp.ViewModels;
 public class HaloNewsViewModel : ViewModelBase
 {
     private ObservableCollection<Article> _articles;
-    public HaloNewsViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService,
-        IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
+    public HaloNewsViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
         : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
-    {}
+    {
+        Title = "Halo Infinite News";
+    }
 
     public ObservableCollection<Article> NewsArticles
     {

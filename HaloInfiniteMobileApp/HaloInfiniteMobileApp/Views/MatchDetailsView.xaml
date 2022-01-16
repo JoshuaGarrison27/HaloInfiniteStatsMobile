@@ -5,7 +5,7 @@
              xmlns:viewModel="clr-namespace:HaloInfiniteMobileApp.ViewModels"
              xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
              utility:ViewModelLocator.AutoWireViewModel="True"
-             Title="Match Details"
+             Title="{Binding Title}"
              x:Name="MatchDetailsPage"
              BackgroundColor="{StaticResource DarkBackgroundColor}">
     <AbsoluteLayout>
@@ -23,7 +23,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Frame Grid.Row="0" Grid.Column="0" CornerRadius="5" Margin="2,5,2,5" Padding="0">
-                        <Grid BackgroundColor="{StaticResource DarkBackgroundContrastColor}" BindingContext="{Binding MatchDetails.data}">
+                        <Grid BackgroundColor="{StaticResource DarkBackgroundContrastColor}" BindingContext="{Binding MatchDetails.Match}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="25"></RowDefinition>
@@ -35,20 +35,20 @@
                             </Grid.ColumnDefinitions>
                             <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Opacity="0.4" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2">
                                 <Image.Source>
-                                    <UriImageSource Uri="{Binding details.map.asset.thumbnail_url}" CacheValidity="14" CachingEnabled="true"/>
+                                    <UriImageSource Uri="{Binding Details.Map.Asset.ThumbnailUrl}" CacheValidity="14" CachingEnabled="true"/>
                                 </Image.Source>
                             </Image>
-                            <Label Text="{Binding details.map.name}" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                            <Label Text="{Binding Details.Map.Name}" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
                             <Label Grid.Row="2" Grid.Column="0" Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start">
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="{Binding details.playlist.name}"/>
+                                        <Span Text="{Binding Details.Playlist.Name}"/>
                                         <Span Text=" &#x2022; "/>
-                                        <Span Text="{Binding details.category.name}" />
+                                        <Span Text="{Binding Details.Category.Name}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label Text="{Binding played_at, Converter={StaticResource LocalRelativeTimeConverter}}" Grid.Row="0" Grid.Column="1" FontSize="12" Margin="3,5,10,1" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="End"/>
+                            <Label Text="{Binding PlayedAt, Converter={StaticResource LocalRelativeTimeConverter}}" Grid.Row="0" Grid.Column="1" FontSize="12" Margin="3,5,10,1" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="End"/>
                         </Grid>
                     </Frame>
                     <Frame Grid.Row="1" Grid.Column="0" CornerRadius="5" Margin="2" Padding="0" IsVisible="{Binding ShowCsr}">
@@ -67,23 +67,23 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.Row="0" Grid.Column="0" VerticalOptions="Fill" HorizontalOptions="Center">
                                     <Image.Source>
-                                        <UriImageSource Uri="{Binding progression.csr.pre_match.tier_image_url}" CacheValidity="7" CachingEnabled="true"/>
+                                        <UriImageSource Uri="{Binding Progression.Csr.PreMatch.TierImageUrl}" CacheValidity="7" CachingEnabled="true"/>
                                     </Image.Source>
                                 </Image>
                                 <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Text="&#xF0054;" FontSize="40" FontFamily="{StaticResource Key=MaterialDesignIcons}" VerticalOptions="Center" HorizontalOptions="Center" />
                                 <Image Grid.Row="0" Grid.Column="2" VerticalOptions="Start">
                                     <Image.Source>
-                                        <UriImageSource Uri="{Binding progression.csr.post_match.tier_image_url}" CacheValidity="7" CachingEnabled="true"/>
+                                        <UriImageSource Uri="{Binding Progression.Csr.PostMatch.TierImageUrl}" CacheValidity="7" CachingEnabled="true"/>
                                     </Image.Source>
                                 </Image>
-                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding progression.csr.pre_match.tier}" FontSize="18" TextColor="{StaticResource LightBlue}" VerticalOptions="Fill" HorizontalOptions="Center"/>
-                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding progression.csr.post_match.tier}" FontSize="18" TextColor="{StaticResource LightBlue}" VerticalOptions="Fill" HorizontalOptions="Center"/>
-                                <Label Grid.Row="2" Grid.Column="0" Text="{Binding progression.csr.pre_match.value}" FontSize="16" TextColor="Gold" VerticalOptions="Fill" HorizontalOptions="Center" />
-                                <Label Grid.Row="2" Grid.Column="2" Text="{Binding progression.csr.post_match.value}" FontSize="16" TextColor="Gold" VerticalOptions="Fill" HorizontalOptions="Center" />
+                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding Progression.Csr.PreMatch.tier}" FontSize="18" TextColor="{StaticResource LightBlue}" VerticalOptions="Fill" HorizontalOptions="Center"/>
+                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Progression.Csr.PostMatch.tier}" FontSize="18" TextColor="{StaticResource LightBlue}" VerticalOptions="Fill" HorizontalOptions="Center"/>
+                                <Label Grid.Row="2" Grid.Column="0" Text="{Binding Progression.Csr.PreMatch.value}" FontSize="16" TextColor="Gold" VerticalOptions="Fill" HorizontalOptions="Center" />
+                                <Label Grid.Row="2" Grid.Column="2" Text="{Binding Progression.Csr.PostMatch.value}" FontSize="16" TextColor="Gold" VerticalOptions="Fill" HorizontalOptions="Center" />
                             </Grid>
                         </StackLayout>
                     </Frame>
-                    <Frame Grid.Row="2" Grid.Column="0" CornerRadius="5" Margin="2" Padding="0" IsVisible="{Binding MatchDetails.data.teams.enabled}">
+                    <Frame Grid.Row="2" Grid.Column="0" CornerRadius="5" Margin="2" Padding="0" IsVisible="{Binding MatchDetails.Match.Teams.Enabled}">
                         <StackLayout BackgroundColor="{StaticResource DarkBackgroundContrastColor}" VerticalOptions="FillAndExpand">
                             <Label Text="Team Scores" FontSize="14" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
                             <FlexLayout Direction="Column" BindableLayout.ItemsSource="{Binding Teams}">
@@ -103,7 +103,7 @@
                                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
-                                            <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Text="{Binding team.name}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start"/>
+                                            <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Text="{Binding Team.Name}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start"/>
                                             <Label Grid.Row="0" Grid.Column="1" Text="Rank" Margin="3"  TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                             <Label Grid.Row="0" Grid.Column="2" Text="Score" TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                             <Label Grid.Row="0" Grid.Column="3" Text="Kills" TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
@@ -111,23 +111,23 @@
 
                                             <Image Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center" Margin="2,2,1,2">
                                                 <Image.Source>
-                                                    <UriImageSource Uri="{Binding team.emblem_url}" CacheValidity="14" CachingEnabled="true"/>
+                                                    <UriImageSource Uri="{Binding Team.EmblemUrl}" CacheValidity="14" CachingEnabled="true"/>
                                                 </Image.Source>
                                             </Image>
-                                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding rank}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                            <Label Grid.Row="1" Grid.Column="2" Text="{Binding stats.core.score}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                            <Label Grid.Row="1" Grid.Column="3" Text="{Binding stats.core.summary.kills}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                            <Label Grid.Row="1" Grid.Column="4" Text="{Binding stats.core.summary.deaths}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Rank}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                            <Label Grid.Row="1" Grid.Column="2" Text="{Binding Stats.Core.Score}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="1" Grid.Column="3" Text="{Binding Stats.Core.Summary.Kills}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="1" Grid.Column="4" Text="{Binding Stats.Core.Summary.Deaths}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
                                             <Label Grid.Row="2" Grid.Column="1" Text="Assists" Margin="3" TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                             <Label Grid.Row="2" Grid.Column="2" Text="Betrayals" TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                             <Label Grid.Row="2" Grid.Column="3" Text="Suicides" TextColor="Gray" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                             <Label Grid.Row="2" Grid.Column="4" Text="Medals" TextColor="Gray" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
-                                            <Label Grid.Row="3" Grid.Column="1" Text="{Binding stats.core.summary.assists}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                            <Label Grid.Row="3" Grid.Column="2" Text="{Binding stats.core.summary.betrayals}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                            <Label Grid.Row="3" Grid.Column="3" Text="{Binding stats.core.summary.suicides}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                            <Label Grid.Row="3" Grid.Column="4" Text="{Binding stats.core.summary.medals}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="3" Grid.Column="1" Text="{Binding Stats.Core.Summary.Assists}" Margin="3" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                            <Label Grid.Row="3" Grid.Column="2" Text="{Binding Stats.Core.Summary.Betrayals}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="3" Grid.Column="3" Text="{Binding Stats.Core.Summary.Suicides}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="3" Grid.Column="4" Text="{Binding Stats.Core.Summary.Medals}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                         </Grid>
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
@@ -157,11 +157,11 @@
                                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                                 </Grid.ColumnDefinitions>
 
-                                                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding gamertag}" Margin="4" FontSize="16" TextColor="Gold" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
-                                                <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Text="{Binding rank}" Margin="0" Padding="4" FontSize="16" TextColor="Gold" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                                                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Gamertag}" Margin="4" FontSize="16" TextColor="Gold" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
+                                                <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Text="{Binding Rank}" Margin="0" Padding="4" FontSize="16" TextColor="Gold" TextTransform="Uppercase" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
                                                 <Image Opacity="0.1" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" VerticalOptions="Start" HorizontalOptions="End" WidthRequest="50" HeightRequest="50">
                                                     <Image.Source>
-                                                        <UriImageSource Uri="{Binding team.emblem_url}" CacheValidity="14" CachingEnabled="true"/>
+                                                        <UriImageSource Uri="{Binding Team.EmblemUrl}" CacheValidity="14" CachingEnabled="true"/>
                                                     </Image.Source>
                                                 </Image>
                                                 <StackLayout Grid.Row="1" Grid.Column="1">
@@ -170,7 +170,7 @@
                                                             <FormattedString>
                                                                 <Span Text="Score" TextColor="Gray" />
                                                                 <Span Text=" "/>
-                                                                <Span Text="{Binding stats.core.score}" TextColor="White"/>
+                                                                <Span Text="{Binding Stats.Core.Score}" TextColor="White"/>
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
@@ -179,7 +179,7 @@
                                                             <FormattedString>
                                                                 <Span Text="Kills"  TextColor="Gray"/>
                                                                 <Span Text=" "/>
-                                                                <Span Text="{Binding stats.core.summary.kills}" TextColor="White"/>
+                                                                <Span Text="{Binding Stats.Core.Summary.Kills}" TextColor="White"/>
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
@@ -188,7 +188,7 @@
                                                             <FormattedString>
                                                                 <Span Text="Deaths" TextColor="Gray" />
                                                                 <Span Text=" "/>
-                                                                <Span Text="{Binding stats.core.summary.deaths}" TextColor="White"/>
+                                                                <Span Text="{Binding Stats.Core.Summary.Deaths}" TextColor="White"/>
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
@@ -197,7 +197,7 @@
                                                             <FormattedString>
                                                                 <Span Text="Assists" TextColor="Gray" />
                                                                 <Span Text=" "/>
-                                                                <Span Text="{Binding stats.core.summary.assists}" TextColor="White"/>
+                                                                <Span Text="{Binding Stats.Core.Summary.Assists}" TextColor="White"/>
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
@@ -208,7 +208,7 @@
                                                             <FormattedString>
                                                                 <Span Text="Medals" TextColor="Gray" />
                                                                 <Span Text=" "/>
-                                                                <Span Text="{Binding stats.core.summary.medals}" TextColor="White"/>
+                                                                <Span Text="{Binding Stats.Core.Summary.Medals}" TextColor="White"/>
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
@@ -217,7 +217,7 @@
                                                             <FormattedString>
                                                                 <Span Text="KDA"  TextColor="Gray"/>
                                                                 <Span Text=" "/>
-                                                                <Span Text="{Binding stats.core.kda, Converter={StaticResource LocalPercentageConverter}, ConverterParameter=2}" TextColor="White"/>
+                                                                <Span Text="{Binding Stats.Core.Kda, Converter={StaticResource LocalPercentageConverter}, ConverterParameter=2}" TextColor="White"/>
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
@@ -226,7 +226,7 @@
                                                             <FormattedString>
                                                                 <Span Text="KDR" TextColor="Gray" />
                                                                 <Span Text=" "/>
-                                                                <Span Text="{Binding stats.core.kdr, Converter={StaticResource LocalPercentageConverter}, ConverterParameter=2}" TextColor="White"/>
+                                                                <Span Text="{Binding Stats.Core.Kdr, Converter={StaticResource LocalPercentageConverter}, ConverterParameter=2}" TextColor="White"/>
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
@@ -235,7 +235,7 @@
                                                             <FormattedString>
                                                                 <Span Text="Accuracy" TextColor="Gray" />
                                                                 <Span Text=" "/>
-                                                                <Span Text="{Binding stats.core.shots.accuracy, Converter={StaticResource LocalPercentageConverter}, ConverterParameter=3}" TextColor="White"/>
+                                                                <Span Text="{Binding Stats.Core.Shots.Accuracy, Converter={StaticResource LocalPercentageConverter}, ConverterParameter=3}" TextColor="White"/>
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
@@ -263,9 +263,13 @@
                                         <ContentView>
                                             <Frame CornerRadius="10" BackgroundColor="#3d3d3d" Margin="5,0,5,0" Padding="5,0,5,0" WidthRequest="80">
                                                 <StackLayout BackgroundColor="Transparent" Padding="0">
-                                                    <Image Source="{Binding image_urls.medium}" Margin="0" HeightRequest="50" WidthRequest="50" Aspect="AspectFit"/>
-                                                    <Label Text="{Binding name}" Padding="0" Margin="0" TextColor="WhiteSmoke" HorizontalTextAlignment="Center" />
-                                                    <Label Text="{Binding count}" Padding="0" Margin="0" TextColor="WhiteSmoke" HorizontalTextAlignment="Center" />
+                                                    <Image Margin="0" HeightRequest="50" WidthRequest="50" Aspect="AspectFit">
+                                                        <Image.Source>
+                                                            <UriImageSource Uri="{Binding ImageUrls.Medium}" CacheValidity="14" CachingEnabled="true"/>
+                                                        </Image.Source>
+                                                    </Image>
+                                                    <Label Text="{Binding Name}" Padding="0" Margin="0" TextColor="WhiteSmoke" HorizontalTextAlignment="Center" />
+                                                    <Label Text="{Binding Count}" Padding="0" Margin="0" TextColor="WhiteSmoke" HorizontalTextAlignment="Center" />
                                                 </StackLayout>
                                             </Frame>
                                         </ContentView>

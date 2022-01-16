@@ -5,7 +5,6 @@ using HaloInfiniteMobileApp.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using HaloInfiniteMobileApp.Extensions;
-using HaloInfiniteMobileApp.Models.MatchData;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -14,17 +13,18 @@ using System;
 namespace HaloInfiniteMobileApp.ViewModels;
 public class MatchDetailsViewModel : ViewModelBase
 {
-    private MatchDetails _matchDetails;
-    private ObservableCollection<Medal1> _playerMedals;
+    private MatchData _matchDetails;
+    private ObservableCollection<Medal> _playerMedals;
     private ObservableCollection<Detail> _teamsDetails;
-    private ObservableCollection<Models.MatchData.Player> _players;
-    private Models.MatchData.Player _myPlayer;
+    private ObservableCollection<Player> _players;
+    private Player _myPlayer;
     private bool _showCsr = true;
 
-    public MatchDetailsViewModel(IConnectionService connectionService,
-        INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
+    public MatchDetailsViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
         : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
-    {}
+    {
+        Title = "Match Details";
+    }
 
     public ICommand PlayerTapCommand => new Command((gamertag) => NavigateToSR(gamertag));
 
@@ -37,7 +37,7 @@ public class MatchDetailsViewModel : ViewModelBase
     {
         base.Initialize(data);
         Match matchObject = (Match)data;
-        GetMatchDetails(matchObject.id);
+        GetMatchDetails(matchObject.Id);
         return Task.CompletedTask;
     }
 
@@ -47,23 +47,23 @@ public class MatchDetailsViewModel : ViewModelBase
         {
             IsBusy = true;
             var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
-            var matchDetailsRequest = new MatchDetailsRequest() { id = matchId };
+            var matchDetailsRequest = new MatchDataRequest() { Id = matchId };
             MatchDetails = await _haloInfiniteService.GetMatchDetails(matchDetailsRequest).ConfigureAwait(false);
-            var isTeamGame = MatchDetails.data.teams.enabled;
-            var playlistName = MatchDetails.data.details.playlist.name;
+            var isTeamGame = MatchDetails.Match.Teams.Enabled;
+            var playlistName = MatchDetails.Match.Details.Playlist.Name;
 
             if (isTeamGame)
             {
-                Players = MatchDetails.data.players.OrderBy(o => o.rank).ToObservableCollection();
-                Teams = MatchDetails.data.teams.details.OrderBy(o => o.rank).ToObservableCollection();
+                Players = MatchDetails.Match.Players.OrderBy(o => o.Rank).ToObservableCollection();
+                Teams = MatchDetails.Match.Teams.details.OrderBy(o => o.Rank).ToObservableCollection();
             }
             else
             {
-                Players = MatchDetails.data.players.OrderBy(o => o.rank).ToObservableCollection();
+                Players = MatchDetails.Match.Players.OrderBy(o => o.Rank).ToObservableCollection();
             }
 
-            MyPlayer = Players.FirstOrDefault(o => string.Equals(gamertag, o.gamertag, StringComparison.OrdinalIgnoreCase));
-            ShowCsr = MyPlayer?.progression != null;
+            MyPlayer = Players.FirstOrDefault(o => string.Equals(gamertag, o.Gamertag, StringComparison.OrdinalIgnoreCase));
+            ShowCsr = MyPlayer?.Progression != null;
 
             GetPlayersMedals(gamertag);
 
@@ -78,14 +78,14 @@ public class MatchDetailsViewModel : ViewModelBase
     {
         foreach (var player in Players)
         {
-            if (player.gamertag.Equals(playerGamertag, System.StringComparison.OrdinalIgnoreCase))
+            if (player.Gamertag.Equals(playerGamertag, System.StringComparison.OrdinalIgnoreCase))
             {
-                PlayerMedals = player.stats?.core?.breakdowns?.medals?.ToObservableCollection();
+                PlayerMedals = player.Stats?.Core?.Breakdowns?.Medals?.ToObservableCollection();
             }
         }
     }
 
-    public MatchDetails MatchDetails
+    public MatchData MatchDetails
     {
         get => _matchDetails;
         set
@@ -95,7 +95,7 @@ public class MatchDetailsViewModel : ViewModelBase
         }
     }
 
-    public ObservableCollection<Medal1> PlayerMedals
+    public ObservableCollection<Medal> PlayerMedals
     {
         get => _playerMedals;
         set
@@ -105,7 +105,7 @@ public class MatchDetailsViewModel : ViewModelBase
         }
     }
 
-    public Models.MatchData.Player MyPlayer
+    public Player MyPlayer
     {
         get => _myPlayer;
         set
@@ -124,7 +124,7 @@ public class MatchDetailsViewModel : ViewModelBase
         }
     }
 
-    public ObservableCollection<Models.MatchData.Player> Players
+    public ObservableCollection<Player> Players
     {
         get => _players;
         set

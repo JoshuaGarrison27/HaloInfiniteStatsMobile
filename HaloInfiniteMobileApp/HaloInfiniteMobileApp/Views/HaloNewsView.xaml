@@ -5,7 +5,7 @@
              x:Class="HaloInfiniteMobileApp.Views.HaloNewsView"
                 xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
                 utility:ViewModelLocator.AutoWireViewModel="True"
-                Title="Halo Infinite News"
+                Title="{Binding Title}"
              BackgroundColor="{StaticResource DarkBackgroundColor}">
     <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding NewsArticles}" CachingStrategy="RecycleElement"
             SeparatorVisibility="Default" HasUnevenRows="True" SelectionMode="None">

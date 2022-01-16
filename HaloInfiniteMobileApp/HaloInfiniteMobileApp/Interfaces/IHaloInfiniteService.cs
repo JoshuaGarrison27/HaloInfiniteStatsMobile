@@ -1,5 +1,4 @@
 ﻿using HaloInfiniteMobileApp.Models;
-using HaloInfiniteMobileApp.Models.MatchData;
 using System.Threading.Tasks;
 
 namespace HaloInfiniteMobileApp.Interfaces;
@@ -11,7 +10,7 @@ public interface IHaloInfiniteService
     Task<MultiplayerServiceRecord> GetMultiplayerServiceRecord(MultiplayerServiceRecordRequest srRequest);
     Task<HaloMedals> GetHaloMedals();
     Task<PlayerMatches> GetPlayerMatches(PlayerMatchListRequest request);
-    Task<MatchDetails> GetMatchDetails(MatchDetailsRequest matchRequest);
+    Task<MatchData> GetMatchDetails(MatchDataRequest matchRequest);
     Task<CampaignRecord> GetCampaignRecord(CampaignRequest campaignRequest);
     void InvalidateCache();
 }

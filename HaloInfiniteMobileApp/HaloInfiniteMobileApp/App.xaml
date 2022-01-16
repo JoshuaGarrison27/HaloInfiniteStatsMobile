@@ -48,89 +48,97 @@
             <Color x:Key="LightBlue">#70cddf</Color>
 
             <Style x:Key="PageHeaderStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"/>
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextColor" Value="{StaticResource HeaderGrey}" />
             </Style>
 
             <Style x:Key="InfoGroupHeader" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="Padding" Value="5" />
                 <Setter Property="TextTransform" Value="Uppercase" />
             </Style>
 
             <Style x:Key="InfoGroupBody" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource HaloInfoGroupBodyBackgroundColor}" />
                 <Setter Property="TextColor" Value="White" />
             </Style>
 
             <Style x:Key="ArticleTitleStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"></Setter>
-                <Setter Property="Margin" Value="3"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
+                <Setter Property="Margin" Value="3"/>
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextColor" Value="{StaticResource LightGrey}" />
             </Style>
 
             <Style x:Key="ArticleMessageStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"></Setter>
-                <Setter Property="TextColor" Value="{StaticResource LightGrey}"></Setter>
-                <Setter Property="Margin" Value="3,0,3,5"></Setter>
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
-                <Setter Property="HorizontalOptions" Value="Start"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"/>
+                <Setter Property="TextColor" Value="{StaticResource LightGrey}"/>
+                <Setter Property="Margin" Value="3,0,3,5"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+
+            <Style x:Key="CreditsFrame" TargetType="{x:Type Frame}">
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="10,5,10,5"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkBackgroundContrastColor}"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
             </Style>
 
             <Style x:Key="CreditHeaderStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"></Setter>
-                <Setter Property="Margin" Value="3,3,3,10"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
+                <Setter Property="Margin" Value="3"/>
                 <Setter Property="TextTransform" Value="Uppercase" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
-                <Setter Property="HorizontalOptions" Value="Start"></Setter>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
                 <Setter Property="TextColor" Value="{StaticResource LightGrey}" />
             </Style>
 
             <Style x:Key="CreditDetailsStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
-                <Setter Property="TextColor" Value="White"></Setter>
-                <Setter Property="Margin" Value="3"></Setter>
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
-                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="Margin" Value="3"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
             </Style>
 
             <Style x:Key="MenuIconStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"></Setter>
-                <Setter Property="TextColor" Value="{StaticResource LightGrey}"></Setter>
-                <Setter Property="Margin" Value="1"></Setter>
-                <Setter Property="Padding" Value="1"></Setter>
-                <Setter Property="FontFamily" Value="{StaticResource MaterialDesignIcons}"></Setter>
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
-                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"/>
+                <Setter Property="TextColor" Value="{StaticResource LightGrey}"/>
+                <Setter Property="Margin" Value="1"/>
+                <Setter Property="Padding" Value="1"/>
+                <Setter Property="FontFamily" Value="{StaticResource MaterialDesignIcons}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
             </Style>
 
             <Style x:Key="MenuTextStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
-                <Setter Property="TextColor" Value="{StaticResource LightGrey}"></Setter>
-                <Setter Property="Margin" Value="5"></Setter>
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
-                <Setter Property="HorizontalOptions" Value="Start"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
+                <Setter Property="TextColor" Value="{StaticResource LightGrey}"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
             </Style>
 
             <Style x:Key="MenuHeroLabelStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"></Setter>
-                <Setter Property="TextColor" Value="White"></Setter>
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
-                <Setter Property="HorizontalOptions" Value="Center"></Setter>
-                <Setter Property="Margin" Value="5"></Setter>
+                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="5"/>
             </Style>
 
             <Style x:Key="HaloInfiniteWhiteButtonStyle" TargetType="{x:Type Button}">
-                <Setter Property="BackgroundColor" Value="#fefefe"></Setter>
-                <Setter Property="TextColor" Value="#222222"></Setter>
-                <Setter Property="BorderWidth" Value="1"></Setter>
-                <Setter Property="CornerRadius" Value="1"></Setter>
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="BackgroundColor" Value="#fefefe"/>
+                <Setter Property="TextColor" Value="#222222"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="CornerRadius" Value="1"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
 
             <converters:NumericRounding x:Key="LocalNumericRoundingConverter"/>

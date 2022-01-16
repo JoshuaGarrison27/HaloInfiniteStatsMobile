@@ -5,8 +5,8 @@
              x:Class="HaloInfiniteMobileApp.Views.MenuView"
              xmlns:templates="clr-namespace:HaloInfiniteMobileApp.Templates"
              xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
-             utility:ViewModelLocator.AutoWireViewModel="True"
-             Title=" ">
+             Title=" "
+             utility:ViewModelLocator.AutoWireViewModel="True">
     <Grid RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource DarkBackgroundColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />

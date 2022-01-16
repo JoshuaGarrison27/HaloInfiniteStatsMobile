@@ -6,7 +6,7 @@
              xmlns:viewModel="clr-namespace:HaloInfiniteMobileApp.ViewModels"
              xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
              utility:ViewModelLocator.AutoWireViewModel="True"
-             Title="Campaign"
+             Title="{Binding Title}"
              BackgroundColor="{StaticResource DarkBackgroundColor}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Refresh" Order="Secondary" Priority="0" Command="{Binding RefreshCommand}"/>

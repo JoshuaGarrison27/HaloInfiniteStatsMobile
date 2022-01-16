@@ -31,20 +31,20 @@
                                         </Grid.ColumnDefinitions>
                                         <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Opacity="0.4" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2">
                                             <Image.Source>
-                                                <UriImageSource Uri="{Binding details.map.asset.thumbnail_url}" CacheValidity="14" CachingEnabled="true"/>
+                                                <UriImageSource Uri="{Binding Details.Map.Asset.ThumbnailUrl}" CacheValidity="14" CachingEnabled="true"/>
                                             </Image.Source>
                                         </Image>
-                                        <Label Text="{Binding details.map.name}" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
+                                    <Label Text="{Binding Details.Map.Name}" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
                                         <Label Grid.Row="2" Grid.Column="0" Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{Binding details.playlist.name}"/>
+                                                    <Span Text="{Binding Details.Playlist.Name}"/>
                                                     <Span Text=" &#x2022; "/>
-                                                    <Span Text="{Binding player.MatchOutcome}" />
+                                                    <Span Text="{Binding Player.MatchOutcome}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
-                                        <Label Text="{Binding played_at, Converter={StaticResource LocalRelativeTimeConverter}}" Grid.Row="0" Grid.Column="1" FontSize="12" Margin="3,5,10,1" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="End"/>
+                                        <Label Text="{Binding PlayedAt, Converter={StaticResource LocalRelativeTimeConverter}}" Grid.Row="0" Grid.Column="1" FontSize="12" Margin="3,5,10,1" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="End"/>
                                     </Grid>
                                 </Frame>
                             </ViewCell>

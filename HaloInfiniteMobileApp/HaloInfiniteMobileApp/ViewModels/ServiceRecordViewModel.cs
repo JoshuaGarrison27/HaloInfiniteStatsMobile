@@ -15,6 +15,7 @@ public class ServiceRecordViewModel : ViewModelBase
     public ServiceRecordViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
         : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
     {
+        Title = "Service Record";
     }
 
     public async override Task Initialize(object data)

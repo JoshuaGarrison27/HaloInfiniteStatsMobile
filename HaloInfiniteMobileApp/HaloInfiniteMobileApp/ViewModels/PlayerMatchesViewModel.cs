@@ -63,7 +63,7 @@ public class PlayerMatchesViewModel : ViewModelBase
 
     private async void LoadMoreMatches()
     {
-        var matchListCount = _playerMatches.count;
+        var matchListCount = _playerMatches.Count;
         var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
 
         CheckInternetConnection();

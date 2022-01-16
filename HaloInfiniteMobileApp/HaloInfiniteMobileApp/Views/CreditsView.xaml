@@ -8,28 +8,28 @@
              BackgroundColor="{StaticResource DarkBackgroundColor}">
     <ContentPage.Content>
         <StackLayout>
-            <Frame CornerRadius="20" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" HorizontalOptions="FillAndExpand">
+            <Frame Style="{StaticResource CreditsFrame}">
                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <Label Text="Creator" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Style="{StaticResource CreditHeaderStyle}" />
-                    <Label Text="Joshua Garrison" Style="{StaticResource CreditDetailsStyle}" HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="Creator" Style="{StaticResource CreditHeaderStyle}" />
+                    <Label Text="Joshua Garrison" Style="{StaticResource CreditDetailsStyle}" />
                 </StackLayout>
             </Frame>
-            <Frame CornerRadius="20" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" HorizontalOptions="FillAndExpand">
+            <Frame Style="{StaticResource CreditsFrame}">
                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <Label Text="Special Thanks" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Style="{StaticResource CreditHeaderStyle}" />
-                    <Label Text="Darin Campbell" Style="{StaticResource CreditDetailsStyle}" HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="Special Thanks" Style="{StaticResource CreditHeaderStyle}" />
+                    <Label Text="Darin Campbell" Style="{StaticResource CreditDetailsStyle}" />
                 </StackLayout>
             </Frame>
-            <Frame CornerRadius="20" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" HorizontalOptions="FillAndExpand">
+            <Frame Style="{StaticResource CreditsFrame}">
                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <Label Text="API Data" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Style="{StaticResource CreditHeaderStyle}" />
-                    <Label Text="Autocode.com" Style="{StaticResource CreditDetailsStyle}" HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="API Data" Style="{StaticResource CreditHeaderStyle}" />
+                    <Label Text="Autocode.com" Style="{StaticResource CreditDetailsStyle}" />
                 </StackLayout>
             </Frame>
-            <Frame CornerRadius="20" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" HorizontalOptions="FillAndExpand">
+            <Frame Style="{StaticResource CreditsFrame}">
                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <Label Text="Halo Images / Etc" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Style="{StaticResource CreditHeaderStyle}" />
-                    <Label Text="343 Industries" Style="{StaticResource CreditDetailsStyle}" HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="Halo Images / Etc" Style="{StaticResource CreditHeaderStyle}" />
+                    <Label Text="343 Industries" Style="{StaticResource CreditDetailsStyle}" />
                 </StackLayout>
             </Frame>
         </StackLayout>
