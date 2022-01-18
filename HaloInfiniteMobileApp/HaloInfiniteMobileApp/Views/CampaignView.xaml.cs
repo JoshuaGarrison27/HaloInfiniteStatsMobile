@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using HaloInfiniteMobileApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,5 +9,14 @@ public partial class CampaignView : ContentPage
     public CampaignView()
     {
         InitializeComponent();
+        BindingContext = DependencyService.Get<CampaignViewModel>();
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (BindingContext is CampaignViewModel)
+            await ((BindingContext as CampaignViewModel)?.Initialize(null)).ConfigureAwait(false);
     }
 }

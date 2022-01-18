@@ -2,13 +2,14 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HaloInfiniteMobileApp.Views.ServiceRecordView"
-             xmlns:viewModel="clr-namespace:HaloInfiniteMobileApp.ViewModels"
-             xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
-             utility:ViewModelLocator.AutoWireViewModel="True"
              Title="{Binding Title}"
-             BackgroundColor="#242c2f">
-    <!--Pages can be added as references or inline-->
-    <ContentPage Title="Social">
+             BackgroundColor="{AppThemeBinding
+                                    Light={StaticResource WindowBackgroundColorLight},
+                                    Dark={StaticResource WindowBackgroundColorDark}}">
+    <ContentPage Title="Social"
+             BackgroundColor="{AppThemeBinding
+                                    Light={StaticResource WindowBackgroundColorLight},
+                                    Dark={StaticResource WindowBackgroundColorDark}}">
         <AbsoluteLayout VerticalOptions="Fill">
             <StackLayout BindingContext="{Binding SocialSR.Data}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
                 <Grid Margin="5" Padding="0" BackgroundColor="Transparent" RowSpacing="2">
@@ -117,7 +118,10 @@
             <ActivityIndicator IsRunning="{Binding Path=IsBusy}" Color="{StaticResource ActivitySpinnerColor}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />
         </AbsoluteLayout>
     </ContentPage>
-    <ContentPage Title="Ranked">
+    <ContentPage Title="Ranked"
+             BackgroundColor="{AppThemeBinding
+                                    Light={StaticResource WindowBackgroundColorLight},
+                                    Dark={StaticResource WindowBackgroundColorDark}}">
         <AbsoluteLayout VerticalOptions="Fill">
             <StackLayout BindingContext="{Binding RankedSR.Data}">
                 <Grid Margin="5" Padding="0" BackgroundColor="Transparent" RowSpacing="2">

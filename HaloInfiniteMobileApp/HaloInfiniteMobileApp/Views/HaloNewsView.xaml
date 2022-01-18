@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="HaloInfiniteMobileApp.Views.HaloNewsView"
-                xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
-                utility:ViewModelLocator.AutoWireViewModel="True"
-                Title="{Binding Title}"
-             BackgroundColor="{StaticResource DarkBackgroundColor}">
+             Title="{Binding Title}"
+             BackgroundColor="{AppThemeBinding
+                                    Light={StaticResource WindowBackgroundColorLight},
+                                    Dark={StaticResource WindowBackgroundColorDark}}" >
     <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding NewsArticles}" CachingStrategy="RecycleElement"
             SeparatorVisibility="Default" HasUnevenRows="True" SelectionMode="None">
         <ListView.Behaviors>

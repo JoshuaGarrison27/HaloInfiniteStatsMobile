@@ -1,5 +1,4 @@
-﻿using HaloInfiniteMobileApp.Interfaces;
-using HaloInfiniteMobileApp.Models;
+﻿using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using HaloInfiniteMobileApp.Extensions;
 using System.Collections.ObjectModel;
@@ -12,9 +11,7 @@ public class MedalsViewModel : ViewModelBase
 {
     private ObservableCollection<Medal> _haloMedals;
 
-    public MedalsViewModel(IConnectionService connectionService,
-        INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
+    public MedalsViewModel()
     {}
 
     public override Task Initialize(object data)

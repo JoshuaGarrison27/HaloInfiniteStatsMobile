@@ -2,9 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HaloInfiniteMobileApp.Views.OnboardingView"
-             xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
-             utility:ViewModelLocator.AutoWireViewModel="True"
-             BackgroundColor="{StaticResource DarkBackgroundColor}"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding
+                                    Light={StaticResource WindowBackgroundColorLight},
+                                    Dark={StaticResource WindowBackgroundColorDark}}"
              BackgroundImageSource="halo_ring_wallpaper.jpg">
 
     <Frame VerticalOptions="Center" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" CornerRadius="10" Opacity="0.9" Margin="10">
@@ -28,9 +30,7 @@
             <Entry Grid.Column="0" Grid.Row="1" TextColor="WhiteSmoke" Opacity="1"
                Placeholder="Enter your Gamertag" PlaceholderColor="WhiteSmoke"
                Text="{Binding Gamertag, Mode=TwoWay}" ClearButtonVisibility="WhileEditing" />
-            <Button Grid.Column="0" Grid.Row="2" Margin="50, 5, 50, 5" Opacity="1"
-                Style="{StaticResource HaloInfiniteWhiteButtonStyle}" 
-                Text="Continue"
+            <Button Grid.Column="0" Grid.Row="2" Margin="50, 5, 50, 5" Opacity="1" Text="Continue"
                 Command="{Binding ContinueCommand, Mode=TwoWay}"></Button>
             <ActivityIndicator Grid.Column="0" Grid.Row="3" Color="{StaticResource LightBlue}" IsRunning="{Binding IsBusy}" />
         </Grid>

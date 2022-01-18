@@ -1,7 +1,7 @@
 ﻿using HaloInfiniteMobileApp.Constants;
-using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
+using HaloInfiniteMobileApp.Views;
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -11,11 +11,6 @@ namespace HaloInfiniteMobileApp.ViewModels;
 public class OnboardingViewModel : ViewModelBase
 {
     private string _gamertag;
-
-    public OnboardingViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
-    { }
-
     public ICommand ContinueCommand => new Command(ContinueOnboarding);
 
     private async void ContinueOnboarding()
@@ -31,7 +26,7 @@ public class OnboardingViewModel : ViewModelBase
                 if (player != null)
                 {
                     _settingsService.AddItem(SettingsConstants.Gamertag, player.Additional.Gamertag);
-                    await _navigationService.NavigateToAsync<MainViewModel>();
+                    await Shell.Current.GoToAsync($"//{nameof(HomeView)}");
                     return;
                 }
             }

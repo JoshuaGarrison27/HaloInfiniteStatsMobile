@@ -1,30 +1,27 @@
 ﻿using HaloInfiniteMobileApp.Interfaces;
-using Plugin.Settings;
-using Plugin.Settings.Abstractions;
+using Xamarin.Essentials;
 
 namespace HaloInfiniteMobileApp.Services;
 
 public class SettingsService : ISettingsService
 {
-    private readonly ISettings _settings;
-
-    public SettingsService()
-    {
-        _settings = CrossSettings.Current;
-    }
-
     public void AddItem(string key, string value)
     {
-        _settings.AddOrUpdateValue(key, value);
+        Preferences.Set(key, value);
     }
 
     public string GetItem(string key)
     {
-        return _settings.GetValueOrDefault(key, string.Empty);
+        return Preferences.Get(key, string.Empty);
     }
 
     public void RemoveItem(string key)
     {
-       _settings.Remove(key);
+        Preferences.Remove(key);
+    }
+
+    public void ClearAll()
+    {
+        Preferences.Clear();
     }
 }

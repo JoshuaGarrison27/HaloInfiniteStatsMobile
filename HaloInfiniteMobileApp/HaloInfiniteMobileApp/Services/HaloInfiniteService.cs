@@ -5,6 +5,7 @@ using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.Utilities;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace HaloInfiniteMobileApp.Services;
 
@@ -13,9 +14,9 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
     private readonly IGenericRepository _genericRepository;
     private readonly string _haloApiAuthToken;
 
-    public HaloInfiniteService(IGenericRepository genericRepository, IBlobCache cache = null) : base(cache)
+    public HaloInfiniteService() : base(null)
     {
-        _genericRepository = genericRepository;
+        _genericRepository = DependencyService.Get<IGenericRepository>();
         _haloApiAuthToken = UserSecretsManager.Settings["HaloApiToken"] ?? string.Empty;
     }
 
