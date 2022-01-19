@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
+using HaloInfiniteMobileApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,5 +10,14 @@ public partial class CreditsView : ContentPage
     public CreditsView()
     {
         InitializeComponent();
+        BindingContext = DependencyService.Get<CreditsViewModel>();
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (BindingContext is CreditsViewModel)
+            await ((BindingContext as CreditsViewModel)?.Initialize(null)).ConfigureAwait(false);
     }
 }

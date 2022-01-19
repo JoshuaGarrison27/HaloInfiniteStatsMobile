@@ -1,7 +1,7 @@
 ﻿using HaloInfiniteMobileApp.Constants;
-using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
+using HaloInfiniteMobileApp.Views;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,11 +20,6 @@ public class PlayerMatchesViewModel : ViewModelBase
     public ICommand MatchSelectedCommand => new Command<Match>(OnMatchTapped);
     public ICommand LoadMoreCommand => new Command(LoadMoreMatches);
     public ICommand MatchesRefreshCommand => new AsyncCommand(() => OnPullToRefreshMatchList());
-
-    public PlayerMatchesViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService,
-        IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
-    { }
 
     public async override Task Initialize(object data)
     {
@@ -50,7 +45,7 @@ public class PlayerMatchesViewModel : ViewModelBase
 
     private void OnMatchTapped(Match match)
     {
-        _navigationService.NavigateToAsync<MatchDetailsViewModel>(match);
+        Shell.Current.GoToAsync($"{nameof(MatchDetailsView)}?MatchId={match.Id}");
     }
 
     private async Task OnPullToRefreshMatchList()

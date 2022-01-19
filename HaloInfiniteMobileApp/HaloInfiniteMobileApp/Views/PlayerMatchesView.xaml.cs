@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using HaloInfiniteMobileApp.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace HaloInfiniteMobileApp.Views;
@@ -8,5 +9,14 @@ public partial class PlayerMatchesView : ContentPage
     public PlayerMatchesView()
     {
         InitializeComponent();
+        BindingContext = DependencyService.Get<PlayerMatchesViewModel>();
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (BindingContext is PlayerMatchesViewModel)
+            await ((BindingContext as PlayerMatchesViewModel)?.Initialize(null)).ConfigureAwait(false);
     }
 }

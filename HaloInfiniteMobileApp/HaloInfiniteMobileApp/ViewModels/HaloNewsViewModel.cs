@@ -1,31 +1,17 @@
 ﻿using HaloInfiniteMobileApp.Extensions;
-using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace HaloInfiniteMobileApp.ViewModels;
 
 public class HaloNewsViewModel : ViewModelBase
 {
     private ObservableCollection<Article> _articles;
-    public HaloNewsViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
+    public HaloNewsViewModel()
     {
         Title = "Halo Infinite News";
-    }
-
-    public ObservableCollection<Article> NewsArticles
-    {
-        get => _articles;
-        set
-        {
-            _articles = value;
-            OnPropertyChanged();
-        }
     }
 
     public override async Task Initialize(object data)
@@ -36,5 +22,15 @@ public class HaloNewsViewModel : ViewModelBase
         NewsArticles = newsArticles?.Data?.ToObservableCollection();
 
         IsBusy = false;
+    }
+
+    public ObservableCollection<Article> NewsArticles
+    {
+        get => _articles;
+        set
+        {
+            _articles = value;
+            OnPropertyChanged();
+        }
     }
 }

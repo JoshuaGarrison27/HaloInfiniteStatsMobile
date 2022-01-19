@@ -1,7 +1,7 @@
 ﻿using HaloInfiniteMobileApp.Interfaces;
+using HaloInfiniteMobileApp.Repository;
 using HaloInfiniteMobileApp.Services;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
+using HaloInfiniteMobileApp.ViewModels;
 using Xamarin.Forms;
 
 namespace HaloInfiniteMobileApp;
@@ -13,16 +13,31 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
-
-        ServiceProvider = ServicesBuilder.BuildServices();
-
-        _ = InitializeNavigation();
+        RegisterDependencies();
+        MainPage = new AppShell();
     }
 
-    private async Task InitializeNavigation()
+    private void RegisterDependencies()
     {
-        var navigationService = ServiceProvider.GetService<INavigationService>();
-        await navigationService.InitializeAsync().ConfigureAwait(false);
+        //ViewModels
+        DependencyService.Register<HomeViewModel>();
+        DependencyService.Register<OnboardingViewModel>();
+        DependencyService.Register<HaloNewsViewModel>();
+        DependencyService.Register<ServiceRecordViewModel>();
+        DependencyService.Register<MedalsViewModel>();
+        DependencyService.Register<PlayerMatchesViewModel>();
+        DependencyService.Register<MatchDetailsViewModel>();
+        DependencyService.Register<CreditsViewModel>();
+        DependencyService.Register<CampaignViewModel>();
+
+        //Services
+        DependencyService.RegisterSingleton<ISettingsService>(new SettingsService());
+        DependencyService.Register<IConnectionService, ConnectionService>();
+        DependencyService.Register<IDialogService, DialogService>();
+        DependencyService.Register<IHaloInfiniteService, HaloInfiniteService>();
+
+        //General
+        DependencyService.Register<IGenericRepository, GenericRepository>();
     }
 
     protected override void OnStart()

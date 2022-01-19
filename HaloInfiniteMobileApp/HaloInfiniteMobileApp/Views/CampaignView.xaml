@@ -1,17 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="HaloInfiniteMobileApp.Views.CampaignView"
              xmlns:viewModel="clr-namespace:HaloInfiniteMobileApp.ViewModels"
-             xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
-             utility:ViewModelLocator.AutoWireViewModel="True"
              Title="{Binding Title}"
-             BackgroundColor="{StaticResource DarkBackgroundColor}">
+             BackgroundColor="{AppThemeBinding
+                                    Light={StaticResource WindowBackgroundColorLight},
+                                    Dark={StaticResource WindowBackgroundColorDark}}" >
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Refresh" Order="Secondary" Priority="0" Command="{Binding RefreshCommand}"/>
         <ToolbarItem Text="Help" Order="Secondary" Priority="1" Command="{Binding HelpCommand}"/>
     </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <viewModel:CampaignViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <AbsoluteLayout VerticalOptions="FillAndExpand">
             <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">

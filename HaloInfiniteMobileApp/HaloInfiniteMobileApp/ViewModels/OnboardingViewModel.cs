@@ -1,7 +1,7 @@
 ﻿using HaloInfiniteMobileApp.Constants;
-using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
+using HaloInfiniteMobileApp.Views;
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -11,10 +11,6 @@ namespace HaloInfiniteMobileApp.ViewModels;
 public class OnboardingViewModel : ViewModelBase
 {
     private string _gamertag;
-
-    public OnboardingViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
-    { }
 
     public ICommand ContinueCommand => new Command(ContinueOnboarding);
 
@@ -31,7 +27,9 @@ public class OnboardingViewModel : ViewModelBase
                 if (player != null)
                 {
                     _settingsService.AddItem(SettingsConstants.Gamertag, player.Additional.Gamertag);
-                    await _navigationService.NavigateToAsync<MainViewModel>();
+                    MessagingCenter.Send<object>(this, MessagingCenterConstants.PlayerUpdated);
+                    ResetControls();
+                    await Shell.Current.GoToAsync($"//{nameof(HomeView)}");
                     return;
                 }
             }
@@ -40,6 +38,12 @@ public class OnboardingViewModel : ViewModelBase
                 await _dialogService.ShowDialog("Invalid Gamertag Entered", "Invalid", "Try Again");
             }
         }
+        IsBusy = false;
+    }
+
+    public void ResetControls()
+    {
+        Gamertag = null;
         IsBusy = false;
     }
 

@@ -35,6 +35,19 @@
                 <On Platform="Android" Value="materialdesignicons-webfont.ttf#MaterialDesignIcons" />
             </OnPlatform>
 
+            <Color x:Key="Primary">#2196F3</Color>
+
+            <Color x:Key="WindowBackgroundColorLight">WhiteSmoke</Color>
+            <Color x:Key="WindowBackgroundColorDark">#1F1F1F</Color>
+
+            <Color x:Key="FlyoutBackgroundColorLight">#DDDDDD</Color>
+            <Color x:Key="FlyoutBackgroundColorDark">#1F1F1F</Color>
+            <Color x:Key="FlyoutTextColorLight">#1F1F1F</Color>
+            <Color x:Key="FlyoutTextColorDark">#FFFFFF</Color>
+
+            <Color x:Key="TextColorLight">#1F1F1F</Color>
+            <Color x:Key="TextColorDark">#1F1F1F</Color>
+
             <Color x:Key="DarkBackgroundColor">#1F1F1F</Color>
             <Color x:Key="DarkBackgroundContrastColor">#2e2e2e</Color>
             <Color x:Key="HaloInfoGroupHeaderBackground">#121617</Color>
@@ -47,10 +60,30 @@
             <Color x:Key="HeaderGrey">#aaaaaa</Color>
             <Color x:Key="LightBlue">#70cddf</Color>
 
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
             <Style x:Key="PageHeaderStyle" TargetType="{x:Type Label}">
                 <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"/>
                 <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="TextColor" Value="{StaticResource HeaderGrey}" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" />
             </Style>
 
             <Style x:Key="InfoGroupHeader" TargetType="{x:Type Label}">
@@ -109,9 +142,10 @@
 
             <Style x:Key="MenuIconStyle" TargetType="{x:Type Label}">
                 <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"/>
-                <Setter Property="TextColor" Value="{StaticResource LightGrey}"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark }}"/>
                 <Setter Property="Margin" Value="1"/>
                 <Setter Property="Padding" Value="1"/>
+                <Setter Property="WidthRequest" Value="40"/>
                 <Setter Property="FontFamily" Value="{StaticResource MaterialDesignIcons}"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
@@ -119,7 +153,7 @@
 
             <Style x:Key="MenuTextStyle" TargetType="{x:Type Label}">
                 <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
-                <Setter Property="TextColor" Value="{StaticResource LightGrey}"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark }}"/>
                 <Setter Property="Margin" Value="5"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Start"/>
@@ -133,20 +167,8 @@
                 <Setter Property="Margin" Value="5"/>
             </Style>
 
-            <Style x:Key="HaloInfiniteWhiteButtonStyle" TargetType="{x:Type Button}">
-                <Setter Property="BackgroundColor" Value="#fefefe"/>
-                <Setter Property="TextColor" Value="#222222"/>
-                <Setter Property="BorderWidth" Value="1"/>
-                <Setter Property="CornerRadius" Value="1"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-            </Style>
-
-            <converters:NumericRounding x:Key="LocalNumericRoundingConverter"/>
             <converters:PercentageConverter x:Key="LocalPercentageConverter"/>
             <converters:ItemTappedConverter x:Key="LocalItemTappedConverter"/>
-            <converters:MenuIconConverter x:Key="LocalMenuIconConverter"/>
-            <converters:CurrencyConverter x:Key="LocalCurrencyConverter"/>
-            <converters:CountToVisibilityConverter x:Key="LocalCountToVisibilityConverter"/>
             <converters:RelativeTimeConverter x:Key="LocalRelativeTimeConverter"/>
             <converters:OrdinalizeConverter x:Key="LocalOrdinalizeConverter"/>
 

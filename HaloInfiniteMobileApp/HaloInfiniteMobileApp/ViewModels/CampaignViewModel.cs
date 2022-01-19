@@ -1,6 +1,5 @@
 ﻿using HaloInfiniteMobileApp.Constants;
 using HaloInfiniteMobileApp.Extensions;
-using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using System;
@@ -17,9 +16,7 @@ public class CampaignViewModel : ViewModelBase
     public ICommand HelpCommand => new Command(CampaignHelpCommand);
     public ICommand RefreshCommand => new AsyncCommand(() => CampaignRefreshCommand());
 
-    public CampaignViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService,
-        IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
+    public CampaignViewModel()
     {
         Title = "Campaign Service Record";
     }

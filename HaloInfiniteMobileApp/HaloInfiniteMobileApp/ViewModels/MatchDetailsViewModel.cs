@@ -1,18 +1,19 @@
 ﻿using HaloInfiniteMobileApp.Constants;
-using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using HaloInfiniteMobileApp.Extensions;
 using System.Linq;
-using System.Windows.Input;
 using Xamarin.Forms;
 using System;
 
 namespace HaloInfiniteMobileApp.ViewModels;
+
+[QueryProperty(nameof(MatchId), nameof(MatchId))]
 public class MatchDetailsViewModel : ViewModelBase
 {
+    private string _matchId;
     private MatchData _matchDetails;
     private ObservableCollection<Medal> _playerMedals;
     private ObservableCollection<Detail> _teamsDetails;
@@ -20,24 +21,18 @@ public class MatchDetailsViewModel : ViewModelBase
     private Player _myPlayer;
     private bool _showCsr = true;
 
-    public MatchDetailsViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
+    public MatchDetailsViewModel()
     {
         Title = "Match Details";
-    }
-
-    public ICommand PlayerTapCommand => new Command((gamertag) => NavigateToSR(gamertag));
-
-    private void NavigateToSR(object gamertag)
-    {
-        _navigationService.NavigateToAsync<ServiceRecordViewModel>(gamertag);
     }
 
     public override Task Initialize(object data)
     {
         base.Initialize(data);
-        Match matchObject = (Match)data;
-        GetMatchDetails(matchObject.Id);
+        if (!string.IsNullOrWhiteSpace(MatchId))
+        {
+            GetMatchDetails(MatchId);
+        }
         return Task.CompletedTask;
     }
 
@@ -82,6 +77,16 @@ public class MatchDetailsViewModel : ViewModelBase
             {
                 PlayerMedals = player.Stats?.Core?.Breakdowns?.Medals?.ToObservableCollection();
             }
+        }
+    }
+
+    public string MatchId
+    {
+        get => _matchId;
+        set
+        {
+            _matchId = value;
+            OnPropertyChanged();
         }
     }
 

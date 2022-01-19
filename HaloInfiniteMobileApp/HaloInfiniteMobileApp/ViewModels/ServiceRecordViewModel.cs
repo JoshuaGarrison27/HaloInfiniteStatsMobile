@@ -1,19 +1,19 @@
 ﻿using HaloInfiniteMobileApp.Constants;
-using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace HaloInfiniteMobileApp.ViewModels;
 
+[QueryProperty(nameof(Gamertag), nameof(Gamertag))]
 public class ServiceRecordViewModel : ViewModelBase
 {
     private string _gamertag;
     private MultiplayerServiceRecord _rankedSR;
     private MultiplayerServiceRecord _socialSR;
 
-    public ServiceRecordViewModel(IConnectionService connectionService, INavigationService navigationService, IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
-        : base(connectionService, navigationService, dialogService, haloInfiniteService, settingsService)
+    public ServiceRecordViewModel()
     {
         Title = "Service Record";
     }
@@ -21,7 +21,11 @@ public class ServiceRecordViewModel : ViewModelBase
     public async override Task Initialize(object data)
     {
         await base.Initialize(data);
-        Gamertag = data is not string gamertag ? _settingsService.GetItem(SettingsConstants.Gamertag) : gamertag;
+        if(Gamertag == null)
+        {
+            Gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
+        }
+        Title = $"{Gamertag} - Service Record";
         LoadAsyncData();
     }
 

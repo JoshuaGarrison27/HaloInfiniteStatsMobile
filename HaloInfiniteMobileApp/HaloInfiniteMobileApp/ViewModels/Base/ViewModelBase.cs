@@ -2,13 +2,13 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace HaloInfiniteMobileApp.ViewModels.Base;
 
 public class ViewModelBase : INotifyPropertyChanged
 {
     protected readonly IConnectionService _connectionService;
-    protected readonly INavigationService _navigationService;
     protected readonly IDialogService _dialogService;
     protected readonly IHaloInfiniteService _haloInfiniteService;
     protected readonly ISettingsService _settingsService;
@@ -17,14 +17,12 @@ public class ViewModelBase : INotifyPropertyChanged
     private string _title;
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public ViewModelBase(IConnectionService connectionService, INavigationService navigationService,
-        IDialogService dialogService, IHaloInfiniteService haloInfiniteService, ISettingsService settingsService)
+    public ViewModelBase()
     {
-        _connectionService = connectionService;
-        _navigationService = navigationService;
-        _dialogService = dialogService;
-        _haloInfiniteService = haloInfiniteService;
-        _settingsService = settingsService;
+        _connectionService = DependencyService.Get<IConnectionService>();
+        _dialogService = DependencyService.Get<IDialogService>();
+        _haloInfiniteService = DependencyService.Get<IHaloInfiniteService>();
+        _settingsService = DependencyService.Get<ISettingsService>();
     }
 
     public bool IsBusy

@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HaloInfiniteMobileApp.Views.MatchDetailsView"
              xmlns:viewModel="clr-namespace:HaloInfiniteMobileApp.ViewModels"
-             xmlns:utility="clr-namespace:HaloInfiniteMobileApp.Utilities;assembly=HaloInfiniteMobileApp"
-             utility:ViewModelLocator.AutoWireViewModel="True"
              Title="{Binding Title}"
              x:Name="MatchDetailsPage"
-             BackgroundColor="{StaticResource DarkBackgroundColor}">
+             BackgroundColor="{AppThemeBinding
+                                    Light={StaticResource WindowBackgroundColorLight},
+                                    Dark={StaticResource WindowBackgroundColorDark}}" >
     <AbsoluteLayout>
         <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -141,9 +141,6 @@
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <Frame BorderColor="Gray" IsClippedToBounds="True" BackgroundColor="Transparent" Margin="3" Padding="0" >
-                                            <Frame.GestureRecognizers>
-                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding PlayerTapCommand, Source={RelativeSource AncestorType={x:Type viewModel:MatchDetailsViewModel}}}" CommandParameter="{Binding gamertag}" />
-                                            </Frame.GestureRecognizers>
                                             <Grid Margin="5" BackgroundColor="Transparent" RowSpacing="2">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto"></RowDefinition>
