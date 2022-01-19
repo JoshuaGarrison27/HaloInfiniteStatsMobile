@@ -14,17 +14,20 @@ public class HomeViewModel : ViewModelBase
 {
     private string _gamertag;
     private string _emblemUrl;
+    public ICommand ClearCacheCommand => new Command(ClearCache);
+    public ICommand SwitchAccountsCommand => new AsyncCommand(SwitchAccounts);
 
     public override async Task Initialize(object data)
     {
         await base.Initialize(data).ConfigureAwait(false);
 
-        Gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
-        if (string.IsNullOrWhiteSpace(Gamertag))
+        var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
+        if (string.IsNullOrWhiteSpace(gamertag))
         {
-            await Shell.Current.GoToAsync($"//{nameof(OnboardingView)}");
+            await Shell.Current.GoToAsync(nameof(OnboardingView));
         } else
         {
+            Gamertag = gamertag;
             await GetPlayerAppearance().ConfigureAwait(false);
         }
     }
@@ -46,9 +49,6 @@ public class HomeViewModel : ViewModelBase
         }
     }
 
-    public ICommand ClearCacheCommand => new Command(ClearCache);
-    public ICommand SwitchAccountsCommand => new AsyncCommand(SwitchAccounts);
-
     private void ClearCache()
     {
         _haloInfiniteService.InvalidateCache();
@@ -59,7 +59,7 @@ public class HomeViewModel : ViewModelBase
     {
         _settingsService.RemoveItem(SettingsConstants.Gamertag);
         _haloInfiniteService.InvalidateCache();
-        await Shell.Current.GoToAsync($"//{nameof(OnboardingView)}");
+        await Shell.Current.GoToAsync(nameof(OnboardingView));
     }
 
     public string Gamertag

@@ -31,7 +31,7 @@ public partial class App : Application
         DependencyService.Register<CampaignViewModel>();
 
         //Services
-        DependencyService.Register<ISettingsService,SettingsService>();
+        DependencyService.RegisterSingleton<ISettingsService>(new SettingsService());
         DependencyService.Register<IConnectionService, ConnectionService>();
         DependencyService.Register<IDialogService, DialogService>();
         DependencyService.Register<IHaloInfiniteService, HaloInfiniteService>();

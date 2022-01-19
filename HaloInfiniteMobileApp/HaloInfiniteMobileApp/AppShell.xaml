@@ -53,10 +53,6 @@
     <FlyoutItem Title="About" Icon="&#xF02fD;" >
         <ShellContent Route="CreditsView" ContentTemplate="{DataTemplate views:CreditsView}" />
     </FlyoutItem>
-    
-    <TabBar>
-        <ShellContent Route="OnboardingView" ContentTemplate="{DataTemplate views:OnboardingView}" />
-    </TabBar>
 
     <Shell.ItemTemplate>
         <DataTemplate>

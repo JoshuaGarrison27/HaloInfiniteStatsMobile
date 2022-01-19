@@ -29,9 +29,8 @@
                 HorizontalOptions="CenterAndExpand" />
             <Entry Grid.Column="0" Grid.Row="1" TextColor="WhiteSmoke" Opacity="1"
                Placeholder="Enter your Gamertag" PlaceholderColor="WhiteSmoke"
-               Text="{Binding Gamertag, Mode=TwoWay}" ClearButtonVisibility="WhileEditing" />
-            <Button Grid.Column="0" Grid.Row="2" Margin="50, 5, 50, 5" Opacity="1" Text="Continue"
-                Command="{Binding ContinueCommand, Mode=TwoWay}"></Button>
+               Text="{Binding Gamertag}" ClearButtonVisibility="WhileEditing" />
+            <Button Grid.Column="0" Grid.Row="2" Margin="50, 5, 50, 5" Text="Continue" Command="{Binding ContinueCommand}" />
             <ActivityIndicator Grid.Column="0" Grid.Row="3" Color="{StaticResource LightBlue}" IsRunning="{Binding IsBusy}" />
         </Grid>
     </Frame>

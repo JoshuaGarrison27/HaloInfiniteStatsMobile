@@ -18,11 +18,15 @@ public partial class OnboardingView : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        var settingsService = DependencyService.Get<ISettingsService>();
-        var gamertag = settingsService.GetItem(SettingsConstants.Gamertag);
-        if (gamertag != null)
-        {
-            await Shell.Current.GoToAsync($"//{nameof(HomeView)}");
-        }
+
+        if (BindingContext is OnboardingViewModel)
+            await ((BindingContext as OnboardingViewModel)?.Initialize(null)).ConfigureAwait(false);
+
+        //var settingsService = DependencyService.Get<ISettingsService>();
+        //var gamertag = settingsService.GetItem(SettingsConstants.Gamertag);
+        //if (gamertag != null)
+        //{
+        //    await Shell.Current.GoToAsync($"//{nameof(HomeView)}");
+        //}
     }
 }

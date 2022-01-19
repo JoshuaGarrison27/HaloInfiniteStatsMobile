@@ -10,6 +10,8 @@ namespace HaloInfiniteMobileApp.Templates;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class FlyoutHeaderTemplate : Grid
 {
+    private IHaloInfiniteService _haloInfiniteService;
+    private ISettingsService _settingsService;
     private PlayerAppearance _playerAppearance;
     private string _heroText;
 
@@ -17,16 +19,28 @@ public partial class FlyoutHeaderTemplate : Grid
     {
         InitializeComponent();
         BindingContext = this;
-        var haloInfiniteService = DependencyService.Get<IHaloInfiniteService>();
-        var settingsService = DependencyService.Get<ISettingsService>();
 
-        var gamertag = settingsService.GetItem(SettingsConstants.Gamertag);
+        _haloInfiniteService = DependencyService.Get<IHaloInfiniteService>();
+        _settingsService = DependencyService.Get<ISettingsService>();
+
+        _ = SetHeaderContent();
+
+        MessagingCenter.Subscribe<object>(this, MessagingCenterConstants.PlayerUpdated, async (_) =>
+        {
+            await SetHeaderContent();
+        });
+    }
+
+    private async Task SetHeaderContent()
+    {
+        var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
         if (!string.IsNullOrWhiteSpace(gamertag))
         {
             HeroText = gamertag;
             var playerAppearanceRequest = new PlayerAppearanceRequest() { Gamertag = gamertag };
-            PlayerAppearance = Task.Run(async () => await haloInfiniteService.GetPlayerAppearance(playerAppearanceRequest).ConfigureAwait(false)).Result;
-        } else
+            PlayerAppearance = await _haloInfiniteService.GetPlayerAppearance(playerAppearanceRequest).ConfigureAwait(false);
+        }
+        else
         {
             HeroText = "Unknown";
             PlayerAppearance = new PlayerAppearance();
