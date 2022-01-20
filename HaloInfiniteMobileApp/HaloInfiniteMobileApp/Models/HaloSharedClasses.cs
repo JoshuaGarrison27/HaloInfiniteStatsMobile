@@ -261,10 +261,60 @@ public class Mode
     public Zones Zones { get; set; }
     [JsonProperty("flags")]
     public Flags Flags { get; set; }
+    [JsonProperty("elimination")]
+    public Elimination Elimination { get; set; }
 }
 
 public class GameMode
 {
+}
+
+public class Elimination : GameMode
+{
+    [JsonProperty("executions")]
+    public int Executions { get; set; }
+    [JsonProperty("revived")]
+    public int Revived { get; set; }
+    [JsonProperty("revives")]
+    public EliminationRevives Revives { get; set; }
+    [JsonProperty("lives_remained")]
+    public int? LivesRemained { get; set; }
+    [JsonProperty("rounds_survived")]
+    public int RoundsSurvived { get; set; }
+    [JsonProperty("eliminations")]
+    public Eliminations Eliminations { get; set; }
+    [JsonProperty("kills")]
+    public EliminationKills Kills { get; set; }
+}
+
+public class EliminationRevives
+{
+    [JsonProperty("allies")]
+    public int Allies { get; set; }
+    [JsonProperty("denied")]
+    public int Denied { get; set; }
+}
+
+public class Eliminations
+{
+    [JsonProperty("total")]
+    public int Total { get; set; }
+    [JsonProperty("assists")]
+    public int Assists { get; set; }
+    [JsonProperty("order")]
+    public int Order { get; set; }
+}
+
+public class EliminationKills
+{
+    [JsonProperty("last_players_standing")]
+    public int LastPlayerStanding { get; set; }
+}
+
+public class EliminationsAs
+{
+    [JsonProperty("last_player_standing")]
+    public int LastPlayerStanding { get; set; }
 }
 
 public class Flags : GameMode
@@ -391,6 +441,10 @@ public class Participation
 {
     [JsonProperty("joined_in_progress")]
     public bool JoinedInProgress { get; set; }
+    [JsonProperty("joined_at")]
+    public DateTime? JoinedAt {get;set; }
+    [JsonProperty("left_at")]
+    public DateTime? LeftAt { get; set; }
     [JsonProperty("presence")]
     public Presence Presence { get; set; }
 }

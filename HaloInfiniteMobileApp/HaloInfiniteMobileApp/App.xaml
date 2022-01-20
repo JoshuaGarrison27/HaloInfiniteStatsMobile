@@ -172,7 +172,6 @@
             <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
             <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
             <converters:RelativeTimeConverter x:Key="LocalRelativeTimeConverter"/>
-            <converters:OrdinalizeConverter x:Key="LocalOrdinalizeConverter"/>
 
         </ResourceDictionary>
     </Application.Resources>
