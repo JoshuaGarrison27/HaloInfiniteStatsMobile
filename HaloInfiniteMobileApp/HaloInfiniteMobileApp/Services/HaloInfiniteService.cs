@@ -1,8 +1,8 @@
 ﻿using Akavache;
 using HaloInfiniteMobileApp.Constants;
+using HaloInfiniteMobileApp.Helpers;
 using HaloInfiniteMobileApp.Interfaces;
 using HaloInfiniteMobileApp.Models;
-using HaloInfiniteMobileApp.Utilities;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -17,7 +17,7 @@ public class HaloInfiniteService : BaseService, IHaloInfiniteService
     public HaloInfiniteService() : base(null)
     {
         _genericRepository = DependencyService.Get<IGenericRepository>();
-        _haloApiAuthToken = UserSecretsManager.Settings["HaloApiToken"] ?? string.Empty;
+        _haloApiAuthToken = Secrets.HaloApiToken;
     }
 
     public async Task<NewsArticles> GetNewsArticles()
