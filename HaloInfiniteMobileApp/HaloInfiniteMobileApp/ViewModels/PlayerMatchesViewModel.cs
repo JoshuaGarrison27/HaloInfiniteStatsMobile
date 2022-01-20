@@ -17,7 +17,7 @@ public class PlayerMatchesViewModel : ViewModelBase
     private PlayerMatches _playerMatches;
     private bool _showLoadMoreMatchesButton = true;
 
-    public ICommand MatchSelectedCommand => new Command<Match>(OnMatchTapped);
+    public ICommand MatchTappedCommand => new Command<Match>(OnMatchTapped);
     public ICommand LoadMoreCommand => new Command(LoadMoreMatches);
     public ICommand MatchesRefreshCommand => new AsyncCommand(() => OnPullToRefreshMatchList());
 

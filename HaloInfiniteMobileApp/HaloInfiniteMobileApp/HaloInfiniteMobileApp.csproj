@@ -14,7 +14,6 @@
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
     <PackageReference Include="akavache" Version="8.1.1" />
-    <PackageReference Include="Humanizer" Version="2.13.14" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Mobile.BuildTools" Version="2.0.245" />
     <PackageReference Include="Mobile.BuildTools.Configuration" Version="2.0.245" />

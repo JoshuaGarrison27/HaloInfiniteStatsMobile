@@ -9,9 +9,6 @@
                                     Dark={StaticResource WindowBackgroundColorDark}}" >
     <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding NewsArticles}" CachingStrategy="RecycleElement"
             SeparatorVisibility="Default" HasUnevenRows="True" SelectionMode="None">
-        <ListView.Behaviors>
-            <xct:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ArticleTappedCommand}" EventArgsConverter="{StaticResource LocalItemTappedConverter}" />
-        </ListView.Behaviors>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

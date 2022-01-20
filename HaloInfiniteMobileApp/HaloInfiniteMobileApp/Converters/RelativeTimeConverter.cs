@@ -1,4 +1,4 @@
-﻿using Humanizer;
+﻿using HaloInfiniteMobileApp.Extensions;
 using System;
 using System.Globalization;
 using Xamarin.Forms;
@@ -8,16 +8,18 @@ public class RelativeTimeConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if(DateTime.TryParse(value.ToString(), out DateTime parsedDateTime))
+        var relativeTime = "Unknown";
+        try
         {
-            var now = DateTime.UtcNow;
-            var span = now - parsedDateTime;
-            return string.Concat(span.Humanize(), " ago");
-        }
-        else
+            if (value is DateTime valueDateTime)
+            {
+                relativeTime = valueDateTime.GetRelativeTime();
+            }
+        } catch (Exception)
         {
-            return value;
+            return relativeTime;
         }
+        return relativeTime;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

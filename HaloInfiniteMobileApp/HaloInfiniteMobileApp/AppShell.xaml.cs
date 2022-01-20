@@ -10,5 +10,6 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         Routing.RegisterRoute(nameof(OnboardingView), typeof(OnboardingView));
+        Routing.RegisterRoute(nameof(MatchDetailsView), typeof(MatchDetailsView));
     }
 }
