@@ -1,36 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="HaloInfiniteMobileApp.Views.HaloNewsView"
-             Title="{Binding Title}"
-             BackgroundColor="{AppThemeBinding
-                                    Light={StaticResource WindowBackgroundColorLight},
-                                    Dark={StaticResource WindowBackgroundColorDark}}" >
-    <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding NewsArticles}" CachingStrategy="RecycleElement"
-            SeparatorVisibility="Default" HasUnevenRows="True" SelectionMode="None">
-        <ListView.ItemTemplate>
+<ContentPage
+    x:Class="HaloInfiniteMobileApp.Views.HaloNewsView" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding Title}"
+    BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
+                                      Dark={StaticResource WindowBackgroundColorDark}}">
+    <CollectionView ItemsSource="{Binding NewsArticles}" SelectionMode="None" VerticalOptions="FillAndExpand">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <Grid Margin="5" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" RowSpacing="2">
+                <Frame
+                    Margin="0" Padding="10"
+                    BackgroundColor="{StaticResource DarkBackgroundContrastColor}"
+                    CornerRadius="3">
+                    <Grid Margin="0" RowSpacing="2">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="200"></RowDefinition>
-                            <RowDefinition Height="50"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="200" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Row="0" Grid.Column="0" Aspect="AspectFill" VerticalOptions="Start" Margin="2,2,1,2" Source="{Binding ImageUrl}"></Image>
+                        <Frame
+                            Padding="0" CornerRadius="5" HorizontalOptions="CenterAndExpand"
+                            IsClippedToBounds="True">
+                            <Image HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image.Source>
+                                    <UriImageSource CacheValidity="14" CachingEnabled="true" Uri="{Binding ImageUrl}" />
+                                </Image.Source>
+                            </Image>
+                        </Frame>
                         <StackLayout Grid.Row="1" Grid.Column="0">
-                            <Label Text="{Binding Title}" Margin="3" Style="{StaticResource ArticleTitleStyle}" LineBreakMode="WordWrap"></Label>
+                            <Label
+                                Margin="3" LineBreakMode="WordWrap"
+                                Style="{StaticResource ArticleTitleStyle}"
+                                Text="{Binding Title}" />
                         </StackLayout>
                         <StackLayout Grid.Row="2" Grid.Column="0">
-                            <Label Text="{Binding Message}" Style="{StaticResource ArticleMessageStyle}"></Label>
+                            <Label Style="{StaticResource ArticleMessageStyle}" Text="{Binding Message}" />
                         </StackLayout>
                     </Grid>
-                </ViewCell>
+                </Frame>
             </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

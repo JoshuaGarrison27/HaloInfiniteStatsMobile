@@ -1,42 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HaloInfiniteMobileApp.Views.MedalsView" 
-             Title="Halo Medals"
-             BackgroundColor="{AppThemeBinding
-                                    Light={StaticResource WindowBackgroundColorLight},
-                                    Dark={StaticResource WindowBackgroundColorDark}}">
-    <ListView x:Name="MyListView"
-            ItemsSource="{Binding Medals}"
-            CachingStrategy="RecycleElement" HasUnevenRows="True">
-        <ListView.ItemTemplate>
+<ContentPage
+    x:Class="HaloInfiniteMobileApp.Views.MedalsView" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Halo Medals"
+    BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
+                                      Dark={StaticResource WindowBackgroundColorDark}}">
+    <CollectionView x:Name="MyListView" ItemsSource="{Binding Medals}">
+        <CollectionView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <Grid Margin="3" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" RowSpacing="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BackgroundColor="Transparent" Margin="0" Padding="0">
-                            <Image Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="3">
-                                <Image.Source>
-                                    <UriImageSource Uri="{Binding ImageUrls.Large}" CacheValidity="14" CachingEnabled="true"/>
-                                </Image.Source>
-                            </Image>
-                        </Frame>
-                        <StackLayout Grid.Row="0" Grid.Column="1" Margin="2,2,1,2" >
-                            <Label Text="{Binding Name}" Margin="3" Style="{StaticResource ArticleTitleStyle}" LineBreakMode="WordWrap"></Label>
-                        </StackLayout>
-                        <StackLayout Grid.Row="1" Grid.Column="1" Margin="2,2,1,2" >
-                            <Label Text="{Binding Description}" TextColor="WhiteSmoke" LineBreakMode="WordWrap"></Label>
-                        </StackLayout>
-                    </Grid>
-                </ViewCell>
+                <Grid Margin="3" BackgroundColor="{StaticResource DarkBackgroundContrastColor}" RowSpacing="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Frame
+                        Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
+                        Margin="0" Padding="0" BackgroundColor="Transparent">
+                        <Image
+                            Margin="3" Aspect="Fill" HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand">
+                            <Image.Source>
+                                <UriImageSource CacheValidity="14" CachingEnabled="true" Uri="{Binding ImageUrls.Large}" />
+                            </Image.Source>
+                        </Image>
+                    </Frame>
+                    <StackLayout Grid.Row="0" Grid.Column="1" Margin="2,2,1,2">
+                        <Label
+                            Margin="3" LineBreakMode="WordWrap"
+                            Style="{StaticResource ArticleTitleStyle}"
+                            Text="{Binding Name}" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Grid.Column="1" Margin="2,2,1,2">
+                        <Label LineBreakMode="WordWrap" Text="{Binding Description}" TextColor="WhiteSmoke" />
+                    </StackLayout>
+                </Grid>
             </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

@@ -1,60 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="HaloInfiniteMobileApp.Views.PlayerMatchesView"
-             Title="Recent Matches"
-             BackgroundColor="{AppThemeBinding
-                                    Light={StaticResource WindowBackgroundColorLight},
-                                    Dark={StaticResource WindowBackgroundColorDark}}">
+<ContentPage
+    x:Class="HaloInfiniteMobileApp.Views.PlayerMatchesView" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Recent Matches"
+    BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
+                                      Dark={StaticResource WindowBackgroundColorDark}}">
     <AbsoluteLayout VerticalOptions="FillAndExpand">
-        <StackLayout  AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="0,5,0,0">
-            <ListView x:Name="MyListView" ItemsSource="{Binding PlayerMatches.Matches}" CachingStrategy="RecycleElement" HasUnevenRows="True" SelectionMode="None"
-                          Margin="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalScrollBarVisibility="Always" SeparatorVisibility="None"
-                          IsPullToRefreshEnabled="true" RefreshCommand="{Binding MatchesRefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
-                <ListView.Behaviors>
-                    <xct:EventToCommandBehavior EventName="ItemTapped" Command="{Binding MatchTappedCommand}" EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"/>
-                </ListView.Behaviors>
-                <ListView.ItemTemplate>
+        <RefreshView
+            Padding="0,5,0,0" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+            Command="{Binding MatchesRefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView
+                x:Name="MatchCollectionView" Margin="0" HorizontalOptions="FillAndExpand"
+                ItemsSource="{Binding PlayerMatches.Matches}"
+                SelectionChangedCommand="{Binding MatchTappedCommand}"
+                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference MatchCollectionView}}"
+                SelectionMode="Single" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Always">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <Frame CornerRadius="5" Margin="10,5,10,5" Padding="0">
-                                <Grid BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="50"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Opacity="0.4" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                                        <Image.Source>
-                                            <UriImageSource Uri="{Binding Details.Map.Asset.ThumbnailUrl}" CacheValidity="14" CachingEnabled="true"/>
-                                        </Image.Source>
-                                    </Image>
-                                    <Label Text="{Binding Details.Map.Name}" FontSize="18" Margin="5" Padding="0" TextColor="{StaticResource LightBlue}" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"/>
-                                    <Label Grid.Row="2" Grid.Column="0" Margin="0" Padding="10" FontSize="16" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="Start">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding Details.Playlist.Name}"/>
-                                                <Span Text=" &#x2022; "/>
-                                                <Span Text="{Binding Player.MatchOutcome}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label Text="{Binding PlayedAt, Converter={StaticResource LocalRelativeTimeConverter}}" Grid.Row="0" Grid.Column="1" FontSize="12" Margin="3,5,10,1" Padding="0" TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" HorizontalTextAlignment="End"/>
-                                </Grid>
-                            </Frame>
-                        </ViewCell>
+                        <Frame Margin="0" Padding="0" CornerRadius="5">
+                            <Grid BackgroundColor="{StaticResource DarkBackgroundContrastColor}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Row="0" Grid.RowSpan="3" Grid.Column="0"
+                                    Grid.ColumnSpan="2" Aspect="AspectFill" HorizontalOptions="FillAndExpand"
+                                    Opacity="0.4" VerticalOptions="FillAndExpand">
+                                    <Image.Source>
+                                        <UriImageSource CacheValidity="14" CachingEnabled="true" Uri="{Binding Details.Map.Asset.ThumbnailUrl}" />
+                                    </Image.Source>
+                                </Image>
+                                <Label
+                                    Margin="5" Padding="0" FontSize="18"
+                                    HorizontalTextAlignment="Start"
+                                    Text="{Binding Details.Map.Name}"
+                                    TextColor="{StaticResource LightBlue}"
+                                    TextTransform="Uppercase" VerticalTextAlignment="Start" />
+                                <Label
+                                    Grid.Row="2" Grid.Column="0" Margin="0"
+                                    Padding="10" FontSize="16" HorizontalTextAlignment="Start"
+                                    TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Details.Playlist.Name}" />
+                                            <Span Text=" &#x2022; " />
+                                            <Span Text="{Binding Player.MatchOutcome}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label
+                                    Grid.Row="0" Grid.Column="1" Margin="3,5,10,1"
+                                    Padding="0" FontSize="12" HorizontalTextAlignment="End"
+                                    Text="{Binding PlayedAt, Converter={StaticResource LocalRelativeTimeConverter}}"
+                                    TextColor="White" TextTransform="Uppercase" VerticalTextAlignment="Start" />
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Footer>
-                    <Button Text="Load More Matches" Command="{Binding LoadMoreCommand}" IsVisible="{Binding ShowLoadMoreMatches}" Margin="30,15,30,15" VerticalOptions="Center"></Button>
-                </ListView.Footer>
-            </ListView>
-        </StackLayout>
-        <ActivityIndicator IsRunning="{Binding Path=IsBusy}" Color="{StaticResource ActivitySpinnerColor}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <StackLayout Padding="10">
+                        <Button
+                            Command="{Binding LoadMoreCommand}"
+                            HorizontalOptions="Center"
+                            IsVisible="{Binding ShowLoadMoreMatches}"
+                            Text="Load More Matches" VerticalOptions="Center" />
+                    </StackLayout>
+                </CollectionView.Footer>
+            </CollectionView>
+        </RefreshView>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional"
+            IsRunning="{Binding Path=IsBusy}"
+            Color="{StaticResource ActivitySpinnerColor}" />
     </AbsoluteLayout>
 </ContentPage>

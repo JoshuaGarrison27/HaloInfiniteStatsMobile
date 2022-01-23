@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:converters="clr-namespace:HaloInfiniteMobileApp.Converters;assembly=HaloInfiniteMobileApp"
-             x:Class="HaloInfiniteMobileApp.App">
+<Application
+    x:Class="HaloInfiniteMobileApp.App" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:HaloInfiniteMobileApp.Converters;assembly=HaloInfiniteMobileApp" xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
     <Application.Resources>
         <ResourceDictionary>
 
@@ -32,7 +30,7 @@
                 <On Platform="Android, UWP, WinRT, WinPhone" Value="9" />
             </OnPlatform>
 
-            <OnPlatform x:TypeArguments="x:String" x:Key="MaterialDesignIcons">
+            <OnPlatform x:Key="MaterialDesignIcons" x:TypeArguments="x:String">
                 <On Platform="Android" Value="materialdesignicons-webfont.ttf#MaterialDesignIcons" />
             </OnPlatform>
 
@@ -62,7 +60,7 @@
             <Color x:Key="LightBlue">#70cddf</Color>
 
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="White" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -82,96 +80,96 @@
             </Style>
 
             <Style x:Key="PageHeaderStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"/>
+                <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" />
             </Style>
 
             <Style x:Key="InfoGroupHeader" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
+                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="Padding" Value="5" />
                 <Setter Property="TextTransform" Value="Uppercase" />
             </Style>
 
             <Style x:Key="InfoGroupBody" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
                 <Setter Property="BackgroundColor" Value="{StaticResource HaloInfoGroupBodyBackgroundColor}" />
                 <Setter Property="TextColor" Value="White" />
             </Style>
 
             <Style x:Key="ArticleTitleStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
-                <Setter Property="Margin" Value="3"/>
+                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
+                <Setter Property="Margin" Value="3" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextColor" Value="{StaticResource LightGrey}" />
             </Style>
 
             <Style x:Key="ArticleMessageStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"/>
-                <Setter Property="TextColor" Value="{StaticResource LightGrey}"/>
-                <Setter Property="Margin" Value="3,0,3,5"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
+                <Setter Property="TextColor" Value="{StaticResource LightGrey}" />
+                <Setter Property="Margin" Value="3,0,3,5" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Start" />
             </Style>
 
             <Style x:Key="CreditsFrame" TargetType="{x:Type Frame}">
-                <Setter Property="CornerRadius" Value="10"/>
-                <Setter Property="Margin" Value="10,5,10,5"/>
-                <Setter Property="Padding" Value="10"/>
-                <Setter Property="BackgroundColor" Value="{StaticResource DarkBackgroundContrastColor}"/>
-                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Margin" Value="10,5,10,5" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkBackgroundContrastColor}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
             </Style>
 
             <Style x:Key="CreditHeaderStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
-                <Setter Property="Margin" Value="3"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+                <Setter Property="Margin" Value="3" />
                 <Setter Property="TextTransform" Value="Uppercase" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
-                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
                 <Setter Property="TextColor" Value="{StaticResource LightGrey}" />
             </Style>
 
             <Style x:Key="CreditDetailsStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="Margin" Value="3"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="3" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
             </Style>
 
             <Style x:Key="MenuIconStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"/>
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark }}"/>
-                <Setter Property="Margin" Value="1"/>
-                <Setter Property="Padding" Value="1"/>
-                <Setter Property="WidthRequest" Value="40"/>
-                <Setter Property="FontFamily" Value="{StaticResource MaterialDesignIcons}"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+                <Setter Property="Margin" Value="1" />
+                <Setter Property="Padding" Value="1" />
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="FontFamily" Value="{StaticResource MaterialDesignIcons}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
 
             <Style x:Key="MenuTextStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark }}"/>
-                <Setter Property="Margin" Value="5"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Start" />
             </Style>
 
             <Style x:Key="MenuHeroLabelStyle" TargetType="{x:Type Label}">
-                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Center"/>
-                <Setter Property="Margin" Value="5"/>
+                <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="5" />
             </Style>
 
-            <converters:PercentageConverter x:Key="LocalPercentageConverter"/>
             <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
             <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
-            <converters:RelativeTimeConverter x:Key="LocalRelativeTimeConverter"/>
+            <converters:PercentageConverter x:Key="LocalPercentageConverter" />
+            <converters:RelativeTimeConverter x:Key="LocalRelativeTimeConverter" />
 
         </ResourceDictionary>
     </Application.Resources>
