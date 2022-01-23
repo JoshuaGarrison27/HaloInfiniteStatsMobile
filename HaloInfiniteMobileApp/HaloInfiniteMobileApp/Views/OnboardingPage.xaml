@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HaloInfiniteMobileApp.Views.OnboardingPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
+                                      Dark={StaticResource WindowBackgroundColorDark}}"
+    BackgroundImageSource="halo_ring_wallpaper.jpg" Shell.FlyoutBehavior="Disabled" Shell.NavBarIsVisible="False">
+
+    <Frame
+        Margin="10"
+        BackgroundColor="{StaticResource DarkBackgroundContrastColor}"
+        CornerRadius="10" Opacity="0.9" VerticalOptions="Center">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center" Opacity="1"
+                Style="{StaticResource ArticleTitleStyle}"
+                Text="Welcome to the&#10; Unoffical Halo Infinite Stats App!" VerticalOptions="CenterAndExpand" />
+            <Entry
+                Grid.Row="1" Grid.Column="0" ClearButtonVisibility="WhileEditing"
+                Opacity="1" Placeholder="Enter your Gamertag" PlaceholderColor="WhiteSmoke"
+                Text="{Binding Gamertag}"
+                TextColor="WhiteSmoke" />
+            <Button
+                Grid.Row="2" Grid.Column="0" Margin="50,5,50,5"
+                Command="{Binding ContinueCommand}"
+                Text="Continue" />
+            <ActivityIndicator
+                Grid.Row="3" Grid.Column="0"
+                IsRunning="{Binding IsBusy}"
+                Color="{StaticResource LightBlue}" />
+        </Grid>
+    </Frame>
+</ContentPage>

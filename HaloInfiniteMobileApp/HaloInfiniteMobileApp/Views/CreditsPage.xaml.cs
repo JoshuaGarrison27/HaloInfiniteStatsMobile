@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 
 namespace HaloInfiniteMobileApp.Views;
 [XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class CreditsView : ContentPage
+public partial class CreditsPage : ContentPage
 {
-    public CreditsView()
+    public CreditsPage()
     {
         InitializeComponent();
         BindingContext = DependencyService.Get<CreditsViewModel>();

@@ -9,7 +9,7 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        Routing.RegisterRoute(nameof(OnboardingView), typeof(OnboardingView));
-        Routing.RegisterRoute(nameof(MatchDetailsView), typeof(MatchDetailsView));
+        Routing.RegisterRoute(nameof(OnboardingPage), typeof(OnboardingPage));
+        Routing.RegisterRoute(nameof(MatchDetailsPage), typeof(MatchDetailsPage));
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="HaloInfiniteMobileApp.Views.PlayerMatchesView" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="HaloInfiniteMobileApp.Views.PlayerMatchesPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Recent Matches"
     BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
                                       Dark={StaticResource WindowBackgroundColorDark}}">

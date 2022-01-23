@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="HaloInfiniteMobileApp.Views.ServiceRecordPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding Title}"
+    BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
+                                      Dark={StaticResource WindowBackgroundColorDark}}">
+    <ContentPage Title="Social" BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight}, Dark={StaticResource WindowBackgroundColorDark}}">
+        <AbsoluteLayout VerticalOptions="Fill">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BindingContext="{Binding SocialSR.Data}">
+                <Grid
+                    Margin="5" Padding="0" BackgroundColor="Transparent"
+                    RowSpacing="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Frame
+                        Grid.Row="0" Grid.Column="0" Margin="2"
+                        Padding="0"
+                        BackgroundColor="{StaticResource HaloInfoGroupBodyBackgroundColor}"
+                        CornerRadius="5">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                Style="{StaticResource InfoGroupHeader}"
+                                Text="Matches" TextTransform="Uppercase" />
+                            <Label
+                                Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Wins:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Breakdowns.Matches.Wins}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Losses:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Breakdowns.Matches.Losses}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Left:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Breakdowns.Matches.Left}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Draws:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Breakdowns.Matches.Draws}"
+                                TextColor="{StaticResource LightBlue}" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="0" Grid.Column="1" Margin="2"
+                        Padding="0"
+                        BackgroundColor="{StaticResource HaloInfoGroupBodyBackgroundColor}"
+                        CornerRadius="5">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                Style="{StaticResource InfoGroupHeader}"
+                                Text="Summary" TextTransform="Uppercase" />
+                            <Label
+                                Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Kills:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Summary.Kills}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Assists:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Summary.Assists}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Deaths:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Summary.Deaths}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="K/D Ratio:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.KillDeathRatio, Converter={StaticResource LocalPercentageConverter}, ConverterParameter=3}"
+                                TextColor="{StaticResource LightBlue}" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="1" Grid.Column="0" Margin="2"
+                        Padding="0"
+                        BackgroundColor="{StaticResource HaloInfoGroupBodyBackgroundColor}"
+                        CornerRadius="5">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                Style="{StaticResource InfoGroupHeader}"
+                                Text="Shots" TextTransform="Uppercase" />
+                            <Label
+                                Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Fired:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Shots.Fired}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Landed:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Shots.Landed}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Missed:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Shots.Missed}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Accuracy:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Shots.Accuracy, Converter={StaticResource LocalPercentageConverter}, ConverterParameter=3}"
+                                TextColor="{StaticResource LightBlue}" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="1" Grid.Column="1" Margin="2"
+                        Padding="0"
+                        BackgroundColor="{StaticResource HaloInfoGroupBodyBackgroundColor}"
+                        CornerRadius="5">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                Style="{StaticResource InfoGroupHeader}"
+                                Text="Damage" TextTransform="Uppercase" />
+                            <Label
+                                Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Taken:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Damage.Taken}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Dealt:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Damage.Dealt}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Average:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Damage.Average}"
+                                TextColor="{StaticResource LightBlue}" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+            <ActivityIndicator
+                AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsRunning="{Binding Path=IsBusy}"
+                Color="{StaticResource ActivitySpinnerColor}" />
+        </AbsoluteLayout>
+    </ContentPage>
+    <ContentPage Title="Ranked" BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight}, Dark={StaticResource WindowBackgroundColorDark}}">
+        <AbsoluteLayout VerticalOptions="Fill">
+            <StackLayout BindingContext="{Binding RankedSR.Data}">
+                <Grid
+                    Margin="5" Padding="0" BackgroundColor="Transparent"
+                    RowSpacing="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Frame
+                        Grid.Row="0" Grid.Column="0" Margin="2"
+                        Padding="0"
+                        BackgroundColor="{StaticResource HaloInfoGroupBodyBackgroundColor}"
+                        CornerRadius="5">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                Style="{StaticResource InfoGroupHeader}"
+                                Text="Matches" TextTransform="Uppercase" />
+                            <Label
+                                Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Wins:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Breakdowns.Matches.Wins}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Losses:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Breakdowns.Matches.Losses}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Left:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Breakdowns.Matches.Left}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Draws:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Breakdowns.Matches.Draws}"
+                                TextColor="{StaticResource LightBlue}" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="0" Grid.Column="1" Margin="2"
+                        Padding="0"
+                        BackgroundColor="{StaticResource HaloInfoGroupBodyBackgroundColor}"
+                        CornerRadius="5">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                Style="{StaticResource InfoGroupHeader}"
+                                Text="Summary" TextTransform="Uppercase" />
+                            <Label
+                                Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Kills:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Summary.Kills}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Assists:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Summary.Assists}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Deaths:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Summary.Deaths}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="K/D Ratio:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.KillDeathRatio, Converter={StaticResource LocalPercentageConverter}, ConverterParameter=3}"
+                                TextColor="{StaticResource LightBlue}" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="1" Grid.Column="0" Margin="2"
+                        Padding="0"
+                        BackgroundColor="{StaticResource HaloInfoGroupBodyBackgroundColor}"
+                        CornerRadius="5">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                Style="{StaticResource InfoGroupHeader}"
+                                Text="Shots" TextTransform="Uppercase" />
+                            <Label
+                                Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Fired:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Shots.Fired}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Landed:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Shots.Landed}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Missed:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Shots.Missed}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Accuracy:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Shots.Accuracy, Converter={StaticResource LocalPercentageConverter}, ConverterParameter=3}"
+                                TextColor="{StaticResource LightBlue}" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="1" Grid.Column="1" Margin="2"
+                        Padding="0"
+                        BackgroundColor="{StaticResource HaloInfoGroupBodyBackgroundColor}"
+                        CornerRadius="5">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                Style="{StaticResource InfoGroupHeader}"
+                                Text="Damage" TextTransform="Uppercase" />
+                            <Label
+                                Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Taken:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Damage.Taken}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Dealt:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Damage.Dealt}"
+                                TextColor="{StaticResource LightBlue}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="End"
+                                Text="Average:"
+                                TextColor="{StaticResource LightGrey}" />
+                            <Label
+                                Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Start"
+                                Text="{Binding Core.Damage.Average}"
+                                TextColor="{StaticResource LightBlue}" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+            <ActivityIndicator
+                AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsRunning="{Binding Path=IsBusy}"
+                Color="{StaticResource ActivitySpinnerColor}" />
+        </AbsoluteLayout>
+    </ContentPage>
+</TabbedPage>

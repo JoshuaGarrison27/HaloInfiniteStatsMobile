@@ -24,7 +24,7 @@ public class HomeViewModel : ViewModelBase
         var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
         if (string.IsNullOrWhiteSpace(gamertag))
         {
-            await Shell.Current.GoToAsync(nameof(OnboardingView));
+            await Shell.Current.GoToAsync(nameof(OnboardingPage));
         } else
         {
             Gamertag = gamertag;
@@ -59,7 +59,7 @@ public class HomeViewModel : ViewModelBase
     {
         _settingsService.RemoveItem(SettingsConstants.Gamertag);
         _haloInfiniteService.InvalidateCache();
-        await Shell.Current.GoToAsync(nameof(OnboardingView));
+        await Shell.Current.GoToAsync(nameof(OnboardingPage));
     }
 
     public string Gamertag

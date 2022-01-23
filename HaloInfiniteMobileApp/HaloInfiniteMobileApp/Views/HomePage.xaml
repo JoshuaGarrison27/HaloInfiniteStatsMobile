@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HaloInfiniteMobileApp.Views.HomePage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Welcome"
+    BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
+                                      Dark={StaticResource WindowBackgroundColorDark}}">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout
+                    Grid.Row="0" Grid.Column="0" Padding="5,10,5,10"
+                    BackgroundColor="#121617">
+                    <Label
+                        Margin="5" Text="Welcome to Halo Infinite Stats" TextColor="White"
+                        TextTransform="Uppercase" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="1" Grid.Column="0" Padding="10"
+                    BackgroundColor="#191f21">
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource PageHeaderStyle}"
+                        Text="{Binding Gamertag}"
+                        TextColor="White" VerticalOptions="Center" />
+                    <Image Aspect="AspectFit" Source="{Binding EmblemUrl}" />
+                    <Button Margin="20,0,20,0" Command="{Binding ClearCacheCommand}" Text="Clear Cache" />
+                    <Button Margin="20,0,20,0" Command="{Binding SwitchAccountsCommand}" Text="Switch Accounts" />
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

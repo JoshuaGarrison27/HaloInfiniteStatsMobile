@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="HaloInfiniteMobileApp.Views.HaloNewsView" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="HaloInfiniteMobileApp.Views.HaloNewsPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="{Binding Title}"
     BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
                                       Dark={StaticResource WindowBackgroundColorDark}}">

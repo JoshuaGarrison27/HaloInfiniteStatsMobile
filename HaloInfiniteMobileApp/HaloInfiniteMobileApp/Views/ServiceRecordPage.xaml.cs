@@ -5,19 +5,19 @@ using Xamarin.Forms.Xaml;
 namespace HaloInfiniteMobileApp.Views;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class HaloNewsView : ContentPage
+public partial class ServiceRecordPage : TabbedPage
 {
-    public HaloNewsView()
+    public ServiceRecordPage()
     {
         InitializeComponent();
-        BindingContext = DependencyService.Get<HaloNewsViewModel>();
+        BindingContext = DependencyService.Get<ServiceRecordViewModel>();
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
 
-        if (BindingContext is HaloNewsViewModel)
-            await ((BindingContext as HaloNewsViewModel)?.Initialize(null)).ConfigureAwait(false);
+        if (BindingContext is ServiceRecordViewModel)
+            await ((BindingContext as ServiceRecordViewModel)?.Initialize(null)).ConfigureAwait(false);
     }
 }

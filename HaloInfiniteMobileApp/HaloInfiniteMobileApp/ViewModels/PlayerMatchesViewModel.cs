@@ -45,7 +45,7 @@ public class PlayerMatchesViewModel : ViewModelBase
 
     private void OnMatchTapped(Match match)
     {
-        Shell.Current.GoToAsync($"{nameof(MatchDetailsView)}?MatchId={match.Id}");
+        Shell.Current.GoToAsync($"{nameof(MatchDetailsPage)}?MatchId={match.Id}");
     }
 
     private async Task OnPullToRefreshMatchList()

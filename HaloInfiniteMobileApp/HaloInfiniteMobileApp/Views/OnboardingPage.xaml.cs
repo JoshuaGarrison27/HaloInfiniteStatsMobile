@@ -3,20 +3,21 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace HaloInfiniteMobileApp.Views;
+
 [XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class CampaignView : ContentPage
+public partial class OnboardingPage : ContentPage
 {
-    public CampaignView()
+    public OnboardingPage()
     {
         InitializeComponent();
-        BindingContext = DependencyService.Get<CampaignViewModel>();
+        BindingContext = DependencyService.Get<OnboardingViewModel>();
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
 
-        if (BindingContext is CampaignViewModel)
-            await ((BindingContext as CampaignViewModel)?.Initialize(null)).ConfigureAwait(false);
+        if (BindingContext is OnboardingViewModel)
+            await ((BindingContext as OnboardingViewModel)?.Initialize(null)).ConfigureAwait(false);
     }
 }

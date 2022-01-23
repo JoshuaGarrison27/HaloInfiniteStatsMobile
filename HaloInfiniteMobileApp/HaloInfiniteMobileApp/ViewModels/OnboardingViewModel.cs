@@ -29,7 +29,7 @@ public class OnboardingViewModel : ViewModelBase
                     _settingsService.AddItem(SettingsConstants.Gamertag, player.Additional.Gamertag);
                     MessagingCenter.Send<object>(this, MessagingCenterConstants.PlayerUpdated);
                     ResetControls();
-                    await Shell.Current.GoToAsync($"//{nameof(HomeView)}");
+                    await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
                     return;
                 }
             }

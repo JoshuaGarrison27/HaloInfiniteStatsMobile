@@ -14,7 +14,8 @@ public class CampaignViewModel : ViewModelBase
     private Campaign _campaign;
     private string _highestDifficulty;
     public ICommand HelpCommand => new Command(CampaignHelpCommand);
-    public ICommand RefreshCommand => new AsyncCommand(() => CampaignRefreshCommand());
+    public ICommand RefreshCommand => new AsyncCommand(() => CampaignRefreshCommand(false));
+    public ICommand PullToRefreshCommand => new AsyncCommand(() => CampaignRefreshCommand(true));
 
     public CampaignViewModel()
     {
@@ -55,10 +56,12 @@ public class CampaignViewModel : ViewModelBase
         CheckCampaignDataShared();
     }
 
-    private async Task CampaignRefreshCommand()
+    private async Task CampaignRefreshCommand(bool isPullToRefresh)
     {
-        IsBusy = true;
+        IsBusy = !isPullToRefresh;
+        IsRefreshing = isPullToRefresh;
         await RefreshCampaignData(true).ConfigureAwait(false);
+        IsRefreshing = false;
         IsBusy = false;
     }
 

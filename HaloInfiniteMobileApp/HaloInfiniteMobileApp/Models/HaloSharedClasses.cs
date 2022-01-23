@@ -370,13 +370,13 @@ public class KillsAs
 public class Zones : GameMode
 {
     [JsonProperty("secured")]
-    public int secured { get; set; }
+    public int Secured { get; set; }
     [JsonProperty("captured")]
-    public int captured { get; set; }
+    public int Captured { get; set; }
     [JsonProperty("occupation")]
-    public Occupation occupation { get; set; }
+    public Occupation Occupation { get; set; }
     [JsonProperty("kills")]
-    public ZoneKills kills { get; set; }
+    public ZoneKills Kills { get; set; }
 }
 
 public class Occupation

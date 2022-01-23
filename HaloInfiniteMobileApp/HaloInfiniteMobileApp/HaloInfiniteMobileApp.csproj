@@ -28,8 +28,32 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\HomeView.xaml.cs">
-      <DependentUpon>HomeView.xaml</DependentUpon>
+    <Compile Update="Views\CampaignPage.xaml.cs">
+      <DependentUpon>CampaignPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CreditsPage.xaml.cs">
+      <DependentUpon>CreditsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\HaloNewsPage.xaml.cs">
+      <DependentUpon>HaloNewsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MatchDetailsPage.xaml.cs">
+      <DependentUpon>MatchDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MedalsPage.xaml.cs">
+      <DependentUpon>MedalsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\OnboardingPage.xaml.cs">
+      <DependentUpon>OnboardingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\PlayerMatchesPage.xaml.cs">
+      <DependentUpon>PlayerMatchesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ServiceRecordPage.xaml.cs">
+      <DependentUpon>ServiceRecordPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -40,31 +64,31 @@
     <EmbeddedResource Update="Templates\FlyoutHeaderTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CampaignView.xaml">
+    <EmbeddedResource Update="Views\CampaignPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CreditsView.xaml">
+    <EmbeddedResource Update="Views\CreditsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\HaloNewsView.xaml">
+    <EmbeddedResource Update="Views\HaloNewsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\HomeView.xaml">
+    <EmbeddedResource Update="Views\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MatchDetailsView.xaml">
+    <EmbeddedResource Update="Views\MatchDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MedalsView.xaml">
+    <EmbeddedResource Update="Views\MedalsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\OnboardingView.xaml">
+    <EmbeddedResource Update="Views\OnboardingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PlayerMatchesView.xaml">
+    <EmbeddedResource Update="Views\PlayerMatchesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ServiceRecordView.xaml">
+    <EmbeddedResource Update="Views\ServiceRecordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

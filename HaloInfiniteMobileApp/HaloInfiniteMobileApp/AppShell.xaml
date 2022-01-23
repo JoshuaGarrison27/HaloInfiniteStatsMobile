@@ -1,12 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:views="clr-namespace:HaloInfiniteMobileApp.Views"
-       xmlns:templates="clr-namespace:HaloInfiniteMobileApp.Templates"
-       Title="Halo Infinite"
-       FlyoutHeaderTemplate="{DataTemplate templates:FlyoutHeaderTemplate}"
-       FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource FlyoutBackgroundColorLight}, Dark={StaticResource FlyoutBackgroundColorDark}}"
-       x:Class="HaloInfiniteMobileApp.AppShell">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="HaloInfiniteMobileApp.AppShell" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:templates="clr-namespace:HaloInfiniteMobileApp.Templates" xmlns:views="clr-namespace:HaloInfiniteMobileApp.Views" Title="Halo Infinite"
+    FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource FlyoutBackgroundColorLight},
+                                            Dark={StaticResource FlyoutBackgroundColorDark}}"
+    FlyoutHeaderTemplate="{DataTemplate templates:FlyoutHeaderTemplate}">
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -17,56 +15,56 @@
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarTitleColor" Value="White" />
             </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
-            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="FlyoutItem" />
         </ResourceDictionary>
     </Shell.Resources>
-    
-    <FlyoutItem Title="Home" Icon="&#xF1004;" >
-        <ShellContent Route="HomeView" ContentTemplate="{DataTemplate views:HomeView}" />
+
+    <FlyoutItem Title="Home" Icon="&#xF1004;">
+        <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="HomeView" />
     </FlyoutItem>
-    
-    <FlyoutItem Title="Halo News" Icon="&#xF02DC;" >
-        <ShellContent Route="HaloNewsView" ContentTemplate="{DataTemplate views:HaloNewsView}" />
+
+    <FlyoutItem Title="Halo News" Icon="&#xF02DC;">
+        <ShellContent ContentTemplate="{DataTemplate views:HaloNewsPage}" Route="HaloNewsView" />
     </FlyoutItem>
 
     <FlyoutItem Title="Campaign" Icon="&#xF034D;">
-        <ShellContent Route="CampaignView" ContentTemplate="{DataTemplate views:CampaignView}" />
+        <ShellContent ContentTemplate="{DataTemplate views:CampaignPage}" Route="CampaignView" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Service Record" Icon="&#xF042D;" >
-        <ShellContent Route="ServiceRecordView" ContentTemplate="{DataTemplate views:ServiceRecordView}" />
+    <FlyoutItem Title="Service Record" Icon="&#xF042D;">
+        <ShellContent ContentTemplate="{DataTemplate views:ServiceRecordPage}" Route="ServiceRecordView" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Recent Matches" Icon="&#xF0520;" >
-        <ShellContent Route="PlayerMatchesView" ContentTemplate="{DataTemplate views:PlayerMatchesView}" />
+    <FlyoutItem Title="Recent Matches" Icon="&#xF0520;">
+        <ShellContent ContentTemplate="{DataTemplate views:PlayerMatchesPage}" Route="PlayerMatchesView" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Medals" Icon="&#xF0987;" >
-        <ShellContent Route="MedalsView" ContentTemplate="{DataTemplate views:MedalsView}" />
+    <FlyoutItem Title="Medals" Icon="&#xF0987;">
+        <ShellContent ContentTemplate="{DataTemplate views:MedalsPage}" Route="MedalsView" />
     </FlyoutItem>
 
-    <FlyoutItem Title="About" Icon="&#xF02fD;" >
-        <ShellContent Route="CreditsView" ContentTemplate="{DataTemplate views:CreditsView}" />
+    <FlyoutItem Title="About" Icon="&#xF02fD;">
+        <ShellContent ContentTemplate="{DataTemplate views:CreditsPage}" Route="CreditsView" />
     </FlyoutItem>
 
     <Shell.ItemTemplate>
         <DataTemplate>
             <ContentView>
-                <Grid ColumnSpacing="12" Padding="10, 10, 0, 10">
+                <Grid Padding="10,10,0,10" ColumnSpacing="12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="{Binding Icon}" Style="{StaticResource MenuIconStyle}"/>
-                    <Label Grid.Column="1" Text="{Binding Title}" Style="{StaticResource MenuTextStyle}"/>
+                    <Label Grid.Column="0" Style="{StaticResource MenuIconStyle}" Text="{Binding Icon}" />
+                    <Label Grid.Column="1" Style="{StaticResource MenuTextStyle}" Text="{Binding Title}" />
                 </Grid>
             </ContentView>
         </DataTemplate>
     </Shell.ItemTemplate>
-    
+
 </Shell>

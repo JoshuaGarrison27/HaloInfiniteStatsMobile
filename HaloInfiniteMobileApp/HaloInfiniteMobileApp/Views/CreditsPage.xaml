@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HaloInfiniteMobileApp.Views.CreditsPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Credits"
+    BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
+                                      Dark={StaticResource WindowBackgroundColorDark}}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame Style="{StaticResource CreditsFrame}">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Style="{StaticResource CreditHeaderStyle}" Text="Creator" />
+                    <Label Style="{StaticResource CreditDetailsStyle}" Text="Joshua Garrison" />
+                </StackLayout>
+            </Frame>
+            <Frame Style="{StaticResource CreditsFrame}">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Style="{StaticResource CreditHeaderStyle}" Text="Special Thanks" />
+                    <Label Style="{StaticResource CreditDetailsStyle}" Text="Darin Campbell" />
+                </StackLayout>
+            </Frame>
+            <Frame Style="{StaticResource CreditsFrame}">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Style="{StaticResource CreditHeaderStyle}" Text="API Data" />
+                    <Label Style="{StaticResource CreditDetailsStyle}" Text="Autocode.com" />
+                </StackLayout>
+            </Frame>
+            <Frame Style="{StaticResource CreditsFrame}">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Style="{StaticResource CreditHeaderStyle}" Text="Halo Images / Etc" />
+                    <Label Style="{StaticResource CreditDetailsStyle}" Text="343 Industries" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

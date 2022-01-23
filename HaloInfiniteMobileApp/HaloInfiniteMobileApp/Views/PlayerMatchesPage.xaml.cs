@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 
 namespace HaloInfiniteMobileApp.Views;
 [XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class PlayerMatchesView : ContentPage
+public partial class PlayerMatchesPage : ContentPage
 {
-    public PlayerMatchesView()
+    public PlayerMatchesPage()
     {
         InitializeComponent();
         BindingContext = DependencyService.Get<PlayerMatchesViewModel>();
