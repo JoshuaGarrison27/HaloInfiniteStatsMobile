@@ -25,31 +25,31 @@
     </Shell.Resources>
 
     <FlyoutItem Title="Home" Icon="&#xF1004;">
-        <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="HomeView" />
+        <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="HomePage" />
     </FlyoutItem>
 
     <FlyoutItem Title="Halo News" Icon="&#xF02DC;">
-        <ShellContent ContentTemplate="{DataTemplate views:HaloNewsPage}" Route="HaloNewsView" />
+        <ShellContent ContentTemplate="{DataTemplate views:HaloNewsPage}" Route="HaloNewsPage" />
     </FlyoutItem>
 
     <FlyoutItem Title="Campaign" Icon="&#xF034D;">
-        <ShellContent ContentTemplate="{DataTemplate views:CampaignPage}" Route="CampaignView" />
+        <ShellContent ContentTemplate="{DataTemplate views:CampaignPage}" Route="CampaignPage" />
     </FlyoutItem>
 
     <FlyoutItem Title="Service Record" Icon="&#xF042D;">
-        <ShellContent ContentTemplate="{DataTemplate views:ServiceRecordPage}" Route="ServiceRecordView" />
+        <ShellContent ContentTemplate="{DataTemplate views:ServiceRecordPage}" Route="ServiceRecordPage" />
     </FlyoutItem>
 
     <FlyoutItem Title="Recent Matches" Icon="&#xF0520;">
-        <ShellContent ContentTemplate="{DataTemplate views:PlayerMatchesPage}" Route="PlayerMatchesView" />
+        <ShellContent ContentTemplate="{DataTemplate views:PlayerMatchesPage}" Route="PlayerMatchesPage" />
     </FlyoutItem>
 
     <FlyoutItem Title="Medals" Icon="&#xF0987;">
-        <ShellContent ContentTemplate="{DataTemplate views:MedalsPage}" Route="MedalsView" />
+        <ShellContent ContentTemplate="{DataTemplate views:MedalsPage}" Route="MedalsPage" />
     </FlyoutItem>
 
     <FlyoutItem Title="About" Icon="&#xF02fD;">
-        <ShellContent ContentTemplate="{DataTemplate views:CreditsPage}" Route="CreditsView" />
+        <ShellContent ContentTemplate="{DataTemplate views:CreditsPage}" Route="CreditsPage" />
     </FlyoutItem>
 
     <Shell.ItemTemplate>
