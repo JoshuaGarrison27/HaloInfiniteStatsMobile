@@ -47,17 +47,19 @@ public class MatchDetailsViewModel : ViewModelBase
             var isTeamGame = MatchDetails.Match.Teams.Enabled;
             var playlistName = MatchDetails.Match.Details.Playlist.Name;
 
+            var gametype = MatchDetails.Match.Player?.Stats?.Mode?.GetType();
+
             if (isTeamGame)
             {
-                Players = MatchDetails.Match.Players.OrderBy(o => o.Rank).ToObservableCollection();
-                Teams = MatchDetails.Match.Teams.details.OrderBy(o => o.Rank).ToObservableCollection();
+                Players = MatchDetails.Match.Players?.OrderBy(o => o.Rank).ToObservableCollection();
+                Teams = MatchDetails.Match.Teams.Details.OrderBy(o => o.Rank).ToObservableCollection();
             }
             else
             {
-                Players = MatchDetails.Match.Players.OrderBy(o => o.Rank).ToObservableCollection();
+                Players = MatchDetails.Match.Players?.OrderBy(o => o.Rank).ToObservableCollection();
             }
 
-            MyPlayer = Players.FirstOrDefault(o => string.Equals(gamertag, o.Gamertag, StringComparison.OrdinalIgnoreCase));
+            MyPlayer = Players?.FirstOrDefault(o => string.Equals(gamertag, o.Gamertag, StringComparison.OrdinalIgnoreCase));
             ShowCsr = MyPlayer?.Progression != null;
 
             GetPlayersMedals(gamertag);

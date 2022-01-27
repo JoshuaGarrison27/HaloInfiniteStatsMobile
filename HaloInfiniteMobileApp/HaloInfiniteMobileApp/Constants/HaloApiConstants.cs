@@ -2,7 +2,7 @@
 
 public static class HaloApiConstants
 {
-    public const string BaseApiUrl = "https://halo.api.stdlib.com/infinite@0.3.7/";
+    public const string BaseApiUrl = "https://halo.api.stdlib.com/infinite@0.3.8/";
     public const string Appearance = "appearance/";
     public const string Articles = "articles/list/";
     public const string ServiceRecordMultiplayer = "stats/service-record/multiplayer/";

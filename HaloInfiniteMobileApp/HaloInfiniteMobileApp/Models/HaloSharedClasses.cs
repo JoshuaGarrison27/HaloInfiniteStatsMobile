@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HaloInfiniteMobileApp.Converters;
+using Newtonsoft.Json;
 using System;
 
 namespace HaloInfiniteMobileApp.Models;
@@ -86,7 +87,7 @@ public class Teams
     [JsonProperty("scoring")]
     public bool Scoring { get; set; }
     [JsonProperty("details")]
-    public Detail[] details { get; set; }
+    public Detail[] Details { get; set; }
 }
 
 public class Detail
@@ -109,14 +110,22 @@ public class Team
     public string Name { get; set; }
     [JsonProperty("emblem_url")]
     public string EmblemUrl { get; set; }
+    [JsonProperty("skill")]
+    public TeamSkill Skill { get; set; }
+}
+
+public class TeamSkill
+{
+    [JsonProperty("mmr")]
+    public double? Mmr { get; set; }
 }
 
 public class Stats
 {
     [JsonProperty("core")]
     public Core Core { get; set; }
-    [JsonProperty("mode")]
-    public Mode Mode { get; set; }
+    [JsonProperty("mode"), JsonConverter(typeof(GameModeJsonConverter))]
+    public GameMode Mode { get; set; }
 }
 
 public class Core
@@ -255,17 +264,17 @@ public class Image_Urls
     public string Large { get; set; }
 }
 
-public class Mode
-{
-    [JsonProperty("zones")]
-    public Zones Zones { get; set; }
-    [JsonProperty("flags")]
-    public Flags Flags { get; set; }
-    [JsonProperty("elimination")]
-    public Elimination Elimination { get; set; }
-}
+//public class Mode
+//{
+//    [JsonProperty("zones")]
+//    public Zones Zones { get; set; }
+//    [JsonProperty("flags")]
+//    public Flags Flags { get; set; }
+//    [JsonProperty("elimination")]
+//    public Elimination Elimination { get; set; }
+//}
 
-public class GameMode
+public abstract class GameMode
 {
 }
 

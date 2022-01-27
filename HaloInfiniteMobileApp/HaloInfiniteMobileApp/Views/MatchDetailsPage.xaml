@@ -108,24 +108,38 @@
                                 <Label
                                     Grid.Row="1" Grid.Column="0" FontSize="18"
                                     HorizontalOptions="Center"
-                                    Text="{Binding Progression.Csr.PreMatch.tier}"
                                     TextColor="{StaticResource LightBlue}"
-                                    VerticalOptions="Fill" />
+                                    VerticalOptions="Fill">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Progression.Csr.PreMatch.Tier}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Progression.Csr.PreMatch.SubTier, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x-1'}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
                                 <Label
                                     Grid.Row="1" Grid.Column="2" FontSize="18"
                                     HorizontalOptions="Center"
-                                    Text="{Binding Progression.Csr.PostMatch.tier}"
                                     TextColor="{StaticResource LightBlue}"
-                                    VerticalOptions="Fill" />
+                                    VerticalOptions="Fill">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Progression.Csr.PostMatch.Tier}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Progression.Csr.PostMatch.SubTier, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x-1'}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
                                 <Label
                                     Grid.Row="2" Grid.Column="0" FontSize="16"
                                     HorizontalOptions="Center"
-                                    Text="{Binding Progression.Csr.PreMatch.value}"
+                                    Text="{Binding Progression.Csr.PreMatch.Value}"
                                     TextColor="Gold" VerticalOptions="Fill" />
                                 <Label
                                     Grid.Row="2" Grid.Column="2" FontSize="16"
                                     HorizontalOptions="Center"
-                                    Text="{Binding Progression.Csr.PostMatch.value}"
+                                    Text="{Binding Progression.Csr.PostMatch.Value}"
                                     TextColor="Gold" VerticalOptions="Fill" />
                             </Grid>
                         </StackLayout>
