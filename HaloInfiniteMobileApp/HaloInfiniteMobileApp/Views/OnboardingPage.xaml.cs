@@ -2,22 +2,23 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HaloInfiniteMobileApp.Views;
-
-[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class OnboardingPage : ContentPage
+namespace HaloInfiniteMobileApp.Views
 {
-    public OnboardingPage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class OnboardingPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = DependencyService.Get<OnboardingViewModel>();
-    }
+        public OnboardingPage()
+        {
+            InitializeComponent();
+            BindingContext = DependencyService.Get<OnboardingViewModel>();
+        }
 
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
 
-        if (BindingContext is OnboardingViewModel)
-            await ((BindingContext as OnboardingViewModel)?.Initialize(null)).ConfigureAwait(false);
+            if (BindingContext is OnboardingViewModel)
+                await ((BindingContext as OnboardingViewModel)?.Initialize(null)).ConfigureAwait(false);
+        }
     }
 }

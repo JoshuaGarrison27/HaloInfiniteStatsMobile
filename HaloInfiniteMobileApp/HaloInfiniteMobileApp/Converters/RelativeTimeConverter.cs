@@ -3,27 +3,30 @@ using System;
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace HaloInfiniteMobileApp.Converters;
-public class RelativeTimeConverter : IValueConverter
+namespace HaloInfiniteMobileApp.Converters
 {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public class RelativeTimeConverter : IValueConverter
     {
-        var relativeTime = "Unknown";
-        try
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is DateTime valueDateTime)
+            var relativeTime = "Unknown";
+            try
             {
-                relativeTime = valueDateTime.GetRelativeTime();
+                if (value is DateTime valueDateTime)
+                {
+                    relativeTime = valueDateTime.GetRelativeTime();
+                }
             }
-        } catch (Exception)
-        {
+            catch (Exception)
+            {
+                return relativeTime;
+            }
             return relativeTime;
         }
-        return relativeTime;
-    }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

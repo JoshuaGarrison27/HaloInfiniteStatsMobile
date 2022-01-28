@@ -5,35 +5,36 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HaloInfiniteMobileApp.ViewModels;
-
-public class MedalsViewModel : ViewModelBase
+namespace HaloInfiniteMobileApp.ViewModels
 {
-    private ObservableCollection<Medal> _haloMedals;
-
-    public MedalsViewModel()
-    {}
-
-    public override Task Initialize(object data)
+    public class MedalsViewModel : ViewModelBase
     {
-        _ = base.Initialize(data);
-        LoadDataAsync();
-        return Task.CompletedTask;
-    }
+        private ObservableCollection<Medal> _haloMedals;
 
-    private async void LoadDataAsync()
-    {
-        var apiMedals = await _haloInfiniteService.GetHaloMedals().ConfigureAwait(false);
-        Medals = apiMedals.Medals.OrderBy(o => o.Name).ToObservableCollection();
-    }
+        public MedalsViewModel()
+        { }
 
-    public ObservableCollection<Medal> Medals
-    {
-        get => _haloMedals;
-        set
+        public override Task Initialize(object data)
         {
-            _haloMedals = value;
-            OnPropertyChanged();
+            _ = base.Initialize(data);
+            LoadDataAsync();
+            return Task.CompletedTask;
+        }
+
+        private async void LoadDataAsync()
+        {
+            var apiMedals = await _haloInfiniteService.GetHaloMedals().ConfigureAwait(false);
+            Medals = apiMedals.Medals.OrderBy(o => o.Name).ToObservableCollection();
+        }
+
+        public ObservableCollection<Medal> Medals
+        {
+            get => _haloMedals;
+            set
+            {
+                _haloMedals = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

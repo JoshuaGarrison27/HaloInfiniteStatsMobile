@@ -1,5 +1,7 @@
-﻿namespace HaloInfiniteMobileApp.Constants;
-public class MessagingCenterConstants
+﻿namespace HaloInfiniteMobileApp.Constants
 {
-    public const string PlayerUpdated = "PlayerUpdated";
+    public class MessagingCenterConstants
+    {
+        public const string PlayerUpdated = "PlayerUpdated";
+    }
 }

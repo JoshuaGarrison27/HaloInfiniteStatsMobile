@@ -2,22 +2,23 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HaloInfiniteMobileApp.Views;
-
-[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class HomePage : ContentPage
+namespace HaloInfiniteMobileApp.Views
 {
-    public HomePage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class HomePage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = DependencyService.Get<HomeViewModel>();
-    }
+        public HomePage()
+        {
+            InitializeComponent();
+            BindingContext = DependencyService.Get<HomeViewModel>();
+        }
 
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
 
-        if(BindingContext is HomeViewModel)
-            await ((BindingContext as HomeViewModel)?.Initialize(null)).ConfigureAwait(false);
+            if (BindingContext is HomeViewModel)
+                await ((BindingContext as HomeViewModel)?.Initialize(null)).ConfigureAwait(false);
+        }
     }
 }

@@ -3,36 +3,37 @@ using System.Collections.Generic;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 
-namespace HaloInfiniteMobileApp.Services;
-
-public class BaseService
+namespace HaloInfiniteMobileApp.Services
 {
-    protected IBlobCache Cache;
-
-    public BaseService(IBlobCache cache)
+    public class BaseService
     {
-        Cache = cache ?? BlobCache.LocalMachine;
-    }
+        protected IBlobCache Cache;
 
-    public async Task<T> GetFromCache<T>(string cacheName)
-    {
-        try
+        public BaseService(IBlobCache cache)
         {
-            return await Cache.GetObject<T>(cacheName);
+            Cache = cache ?? BlobCache.LocalMachine;
         }
-        catch (KeyNotFoundException)
+
+        public async Task<T> GetFromCache<T>(string cacheName)
         {
-            return default;
+            try
+            {
+                return await Cache.GetObject<T>(cacheName);
+            }
+            catch (KeyNotFoundException)
+            {
+                return default;
+            }
         }
-    }
 
-    public void InvalidateCache()
-    {
-        Cache.InvalidateAll();
-    }
+        public void InvalidateCache()
+        {
+            Cache.InvalidateAll();
+        }
 
-    public void InvalidateCacheKey(string key)
-    {
-        Cache.Invalidate(key);
+        public void InvalidateCacheKey(string key)
+        {
+            Cache.Invalidate(key);
+        }
     }
 }

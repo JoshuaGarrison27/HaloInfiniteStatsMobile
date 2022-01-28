@@ -2,22 +2,23 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HaloInfiniteMobileApp.Views;
-
-[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class HaloNewsPage : ContentPage
+namespace HaloInfiniteMobileApp.Views
 {
-    public HaloNewsPage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class HaloNewsPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = DependencyService.Get<HaloNewsViewModel>();
-    }
+        public HaloNewsPage()
+        {
+            InitializeComponent();
+            BindingContext = DependencyService.Get<HaloNewsViewModel>();
+        }
 
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
 
-        if (BindingContext is HaloNewsViewModel)
-            await ((BindingContext as HaloNewsViewModel)?.Initialize(null)).ConfigureAwait(false);
+            if (BindingContext is HaloNewsViewModel)
+                await ((BindingContext as HaloNewsViewModel)?.Initialize(null)).ConfigureAwait(false);
+        }
     }
 }

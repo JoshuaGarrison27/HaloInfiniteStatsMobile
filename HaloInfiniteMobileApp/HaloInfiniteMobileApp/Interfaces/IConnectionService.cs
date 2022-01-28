@@ -1,6 +1,7 @@
-﻿namespace HaloInfiniteMobileApp.Interfaces;
-
-public interface IConnectionService
+﻿namespace HaloInfiniteMobileApp.Interfaces
 {
-    bool IsConnected { get; }
+    public interface IConnectionService
+    {
+        bool IsConnected { get; }
+    }
 }

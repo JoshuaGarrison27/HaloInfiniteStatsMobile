@@ -6,64 +6,66 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HaloInfiniteMobileApp.Templates;
-[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class FlyoutHeaderTemplate : Grid
+namespace HaloInfiniteMobileApp.Templates
 {
-    private IHaloInfiniteService _haloInfiniteService;
-    private ISettingsService _settingsService;
-    private PlayerAppearance _playerAppearance;
-    private string _heroText;
-
-    public FlyoutHeaderTemplate()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class FlyoutHeaderTemplate : Grid
     {
-        InitializeComponent();
-        BindingContext = this;
+        private IHaloInfiniteService _haloInfiniteService;
+        private ISettingsService _settingsService;
+        private PlayerAppearance _playerAppearance;
+        private string _heroText;
 
-        _haloInfiniteService = DependencyService.Get<IHaloInfiniteService>();
-        _settingsService = DependencyService.Get<ISettingsService>();
-
-        _ = SetHeaderContent();
-
-        MessagingCenter.Subscribe<object>(this, MessagingCenterConstants.PlayerUpdated, async (_) =>
+        public FlyoutHeaderTemplate()
         {
-            await SetHeaderContent();
-        });
-    }
+            InitializeComponent();
+            BindingContext = this;
 
-    private async Task SetHeaderContent()
-    {
-        var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
-        if (!string.IsNullOrWhiteSpace(gamertag))
-        {
-            HeroText = gamertag;
-            var playerAppearanceRequest = new PlayerAppearanceRequest() { Gamertag = gamertag };
-            PlayerAppearance = await _haloInfiniteService.GetPlayerAppearance(playerAppearanceRequest).ConfigureAwait(false);
+            _haloInfiniteService = DependencyService.Get<IHaloInfiniteService>();
+            _settingsService = DependencyService.Get<ISettingsService>();
+
+            _ = SetHeaderContent();
+
+            MessagingCenter.Subscribe<object>(this, MessagingCenterConstants.PlayerUpdated, async (_) =>
+            {
+                await SetHeaderContent();
+            });
         }
-        else
-        {
-            HeroText = "Unknown";
-            PlayerAppearance = new PlayerAppearance();
-        }
-    }
 
-    public string HeroText
-    {
-        get => _heroText;
-        set
+        private async Task SetHeaderContent()
         {
-            _heroText = value;
-            OnPropertyChanged();
+            var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
+            if (!string.IsNullOrWhiteSpace(gamertag))
+            {
+                HeroText = gamertag;
+                var playerAppearanceRequest = new PlayerAppearanceRequest() { Gamertag = gamertag };
+                PlayerAppearance = await _haloInfiniteService.GetPlayerAppearance(playerAppearanceRequest).ConfigureAwait(false);
+            }
+            else
+            {
+                HeroText = "Unknown";
+                PlayerAppearance = new PlayerAppearance();
+            }
         }
-    }
 
-    public PlayerAppearance PlayerAppearance
-    {
-        get => _playerAppearance;
-        set
+        public string HeroText
         {
-            _playerAppearance = value;
-            OnPropertyChanged();
+            get => _heroText;
+            set
+            {
+                _heroText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public PlayerAppearance PlayerAppearance
+        {
+            get => _playerAppearance;
+            set
+            {
+                _playerAppearance = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace HaloInfiniteMobileApp.Extensions;
-
-public static class ListExtensions
+namespace HaloInfiniteMobileApp.Extensions
 {
-    public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> list)
+    public static class ListExtensions
     {
-        var collection = new ObservableCollection<T>();
-        foreach (var item in list)
+        public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> list)
         {
-            collection.Add(item);
-        }
+            var collection = new ObservableCollection<T>();
+            foreach (var item in list)
+            {
+                collection.Add(item);
+            }
 
-        return collection;
+            return collection;
+        }
     }
 }

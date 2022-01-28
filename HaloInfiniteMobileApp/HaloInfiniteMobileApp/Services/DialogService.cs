@@ -2,17 +2,18 @@
 using HaloInfiniteMobileApp.Interfaces;
 using System.Threading.Tasks;
 
-namespace HaloInfiniteMobileApp.Services;
-
-public class DialogService : IDialogService
+namespace HaloInfiniteMobileApp.Services
 {
-    public Task ShowDialog(string message, string title, string buttonLabel)
+    public class DialogService : IDialogService
     {
-        return UserDialogs.Instance.AlertAsync(message, title, buttonLabel);
-    }
+        public Task ShowDialog(string message, string title, string buttonLabel)
+        {
+            return UserDialogs.Instance.AlertAsync(message, title, buttonLabel);
+        }
 
-    public void ShowToast(string message)
-    {
-        UserDialogs.Instance.Toast(message);
+        public void ShowToast(string message)
+        {
+            UserDialogs.Instance.Toast(message);
+        }
     }
 }

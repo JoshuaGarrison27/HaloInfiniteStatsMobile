@@ -8,146 +8,148 @@ using System.Linq;
 using Xamarin.Forms;
 using System;
 
-namespace HaloInfiniteMobileApp.ViewModels;
-
-[QueryProperty(nameof(MatchId), nameof(MatchId))]
-public class MatchDetailsViewModel : ViewModelBase
+namespace HaloInfiniteMobileApp.ViewModels
 {
-    private string _matchId;
-    private MatchData _matchDetails;
-    private ObservableCollection<Medal> _playerMedals;
-    private ObservableCollection<Detail> _teamsDetails;
-    private ObservableCollection<Player> _players;
-    private Player _myPlayer;
-    private bool _showCsr = true;
-
-    public MatchDetailsViewModel()
+    [QueryProperty(nameof(MatchId), nameof(MatchId))]
+    public class MatchDetailsViewModel : ViewModelBase
     {
-        Title = "Match Details";
-    }
+        private string _matchId;
+        private MatchData _matchDetails;
+        private ObservableCollection<Medal> _playerMedals;
+        private ObservableCollection<Detail> _teamsDetails;
+        private ObservableCollection<Player> _players;
+        private Player _myPlayer;
+        private bool _showCsr = true;
 
-    public override Task Initialize(object data)
-    {
-        base.Initialize(data);
-        if (!string.IsNullOrWhiteSpace(MatchId))
+        public MatchDetailsViewModel()
         {
-            GetMatchDetails(MatchId);
+            Title = "Match Details";
         }
-        return Task.CompletedTask;
-    }
 
-    public async void GetMatchDetails(string matchId)
-    {
-        try
+        public override Task Initialize(object data)
         {
-            IsBusy = true;
-            var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
-            var matchDetailsRequest = new MatchDataRequest() { Id = matchId };
-            MatchDetails = await _haloInfiniteService.GetMatchDetails(matchDetailsRequest).ConfigureAwait(false);
-            var isTeamGame = MatchDetails.Match.Teams.Enabled;
-            var playlistName = MatchDetails.Match.Details.Playlist.Name;
-
-            var gametype = MatchDetails.Match.Player?.Stats?.Mode?.GetType();
-
-            if (isTeamGame)
+            base.Initialize(data);
+            if (!string.IsNullOrWhiteSpace(MatchId))
             {
-                Players = MatchDetails.Match.Players?.OrderBy(o => o.Rank).ToObservableCollection();
-                Teams = MatchDetails.Match.Teams.Details.OrderBy(o => o.Rank).ToObservableCollection();
+                GetMatchDetails(MatchId);
             }
-            else
-            {
-                Players = MatchDetails.Match.Players?.OrderBy(o => o.Rank).ToObservableCollection();
-            }
-
-            MyPlayer = Players?.FirstOrDefault(o => string.Equals(gamertag, o.Gamertag, StringComparison.OrdinalIgnoreCase));
-            ShowCsr = MyPlayer?.Progression != null;
-
-            GetPlayersMedals(gamertag);
-
-            IsBusy = false;
-        } catch (Exception ex)
-        {
-            var d = ex;
+            return Task.CompletedTask;
         }
-    }
 
-    public void GetPlayersMedals(string playerGamertag)
-    {
-        foreach (var player in Players)
+        public async void GetMatchDetails(string matchId)
         {
-            if (player.Gamertag.Equals(playerGamertag, System.StringComparison.OrdinalIgnoreCase))
+            try
             {
-                PlayerMedals = player.Stats?.Core?.Breakdowns?.Medals?.ToObservableCollection();
+                IsBusy = true;
+                var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
+                var matchDetailsRequest = new MatchDataRequest() { Id = matchId };
+                MatchDetails = await _haloInfiniteService.GetMatchDetails(matchDetailsRequest).ConfigureAwait(false);
+                var isTeamGame = MatchDetails.Match.Teams.Enabled;
+                var playlistName = MatchDetails.Match.Details.Playlist.Name;
+
+                var gametype = MatchDetails.Match.Player?.Stats?.Mode?.GetType();
+
+                if (isTeamGame)
+                {
+                    Players = MatchDetails.Match.Players?.OrderBy(o => o.Rank).ToObservableCollection();
+                    Teams = MatchDetails.Match.Teams.Details.OrderBy(o => o.Rank).ToObservableCollection();
+                }
+                else
+                {
+                    Players = MatchDetails.Match.Players?.OrderBy(o => o.Rank).ToObservableCollection();
+                }
+
+                MyPlayer = Players?.FirstOrDefault(o => string.Equals(gamertag, o.Gamertag, StringComparison.OrdinalIgnoreCase));
+                ShowCsr = MyPlayer?.Progression != null;
+
+                GetPlayersMedals(gamertag);
+
+                IsBusy = false;
+            }
+            catch (Exception ex)
+            {
+                var d = ex;
             }
         }
-    }
 
-    public string MatchId
-    {
-        get => _matchId;
-        set
+        public void GetPlayersMedals(string playerGamertag)
         {
-            _matchId = value;
-            OnPropertyChanged();
+            foreach (var player in Players)
+            {
+                if (player.Gamertag.Equals(playerGamertag, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    PlayerMedals = player.Stats?.Core?.Breakdowns?.Medals?.ToObservableCollection();
+                }
+            }
         }
-    }
 
-    public MatchData MatchDetails
-    {
-        get => _matchDetails;
-        set
+        public string MatchId
         {
-            _matchDetails = value;
-            OnPropertyChanged();
+            get => _matchId;
+            set
+            {
+                _matchId = value;
+                OnPropertyChanged();
+            }
         }
-    }
 
-    public ObservableCollection<Medal> PlayerMedals
-    {
-        get => _playerMedals;
-        set
+        public MatchData MatchDetails
         {
-            _playerMedals = value;
-            OnPropertyChanged();
+            get => _matchDetails;
+            set
+            {
+                _matchDetails = value;
+                OnPropertyChanged();
+            }
         }
-    }
 
-    public Player MyPlayer
-    {
-        get => _myPlayer;
-        set
+        public ObservableCollection<Medal> PlayerMedals
         {
-            _myPlayer = value;
-            OnPropertyChanged();
+            get => _playerMedals;
+            set
+            {
+                _playerMedals = value;
+                OnPropertyChanged();
+            }
         }
-    }
-    public ObservableCollection<Detail> Teams
-    {
-        get => _teamsDetails;
-        set
-        {
-            _teamsDetails = value;
-            OnPropertyChanged();
-        }
-    }
 
-    public ObservableCollection<Player> Players
-    {
-        get => _players;
-        set
+        public Player MyPlayer
         {
-            _players = value;
-            OnPropertyChanged();
+            get => _myPlayer;
+            set
+            {
+                _myPlayer = value;
+                OnPropertyChanged();
+            }
         }
-    }
-
-    public bool ShowCsr
-    {
-        get => _showCsr;
-        set
+        public ObservableCollection<Detail> Teams
         {
-            _showCsr = value;
-            OnPropertyChanged();
+            get => _teamsDetails;
+            set
+            {
+                _teamsDetails = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Player> Players
+        {
+            get => _players;
+            set
+            {
+                _players = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool ShowCsr
+        {
+            get => _showCsr;
+            set
+            {
+                _showCsr = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

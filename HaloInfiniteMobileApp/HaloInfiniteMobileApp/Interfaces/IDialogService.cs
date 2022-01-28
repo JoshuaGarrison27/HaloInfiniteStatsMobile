@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
 
-namespace HaloInfiniteMobileApp.Interfaces;
-
-public interface IDialogService
+namespace HaloInfiniteMobileApp.Interfaces
 {
-    Task ShowDialog(string message, string title, string buttonLabel);
-    void ShowToast(string message);
+    public interface IDialogService
+    {
+        Task ShowDialog(string message, string title, string buttonLabel);
+        void ShowToast(string message);
+    }
 }
