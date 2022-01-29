@@ -34,7 +34,7 @@
             </Grid>
             <Frame BackgroundColor="{StaticResource DarkBackgroundContrastColor}" CornerRadius="10">
                 <StackLayout>
-                    <Label>
+                    <Label TextColor="WhiteSmoke">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span FontAttributes="Bold" Text="Disclaimer: " />

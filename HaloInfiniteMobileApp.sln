@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		buildtools.json = buildtools.json
+		PrivacyPolicy.md = PrivacyPolicy.md
 		README.md = README.md
+		TermsConditions.md = TermsConditions.md
 	EndProjectSection
 EndProject
 Global
