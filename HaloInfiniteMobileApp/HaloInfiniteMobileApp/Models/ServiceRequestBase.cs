@@ -1,6 +1,7 @@
-﻿namespace HaloInfiniteMobileApp.Models;
-
-public class ServiceRequestBase
+﻿namespace HaloInfiniteMobileApp.Models
 {
-    public bool IgnoreCache { get; set; } = false;
+    public class ServiceRequestBase
+    {
+        public bool IgnoreCache { get; set; } = false;
+    }
 }

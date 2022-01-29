@@ -30,10 +30,26 @@
                         Text="{Binding Gamertag}"
                         TextColor="White" VerticalOptions="Center" />
                     <Image Aspect="AspectFit" Source="{Binding EmblemUrl}" />
-                    <Button Margin="20,0,20,0" Command="{Binding ClearCacheCommand}" Text="Clear Cache" />
-                    <Button Margin="20,0,20,0" Command="{Binding SwitchAccountsCommand}" Text="Switch Accounts" />
                 </StackLayout>
             </Grid>
+            <Frame BackgroundColor="{StaticResource DarkBackgroundContrastColor}" CornerRadius="10">
+                <StackLayout>
+                    <Label TextColor="WhiteSmoke">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontAttributes="Bold" Text="Disclaimer: " />
+                                <Span Text="This application is still in ALPHA status. You will most likely run into issues. Please be patient and report any issues on GitHub using the button below." />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Button
+                        BackgroundColor="#171515"
+                        Command="{Binding GoToGithubCommand}"
+                        FontFamily="{StaticResource Key=MaterialDesignIcons}"
+                        FontSize="{StaticResource XLargeFontSize}"
+                        Text="&#xF02a4; GitHub" />
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Shell
     x:Class="HaloInfiniteMobileApp.AppShell" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:templates="clr-namespace:HaloInfiniteMobileApp.Templates" xmlns:views="clr-namespace:HaloInfiniteMobileApp.Views" Title="Halo Infinite"
+    xmlns:templates="clr-namespace:HaloInfiniteMobileApp.Templates" xmlns:views="clr-namespace:HaloInfiniteMobileApp.Views" x:Name="Shell"
+    Title="Halo Infinite"
     FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource FlyoutBackgroundColorLight},
                                             Dark={StaticResource FlyoutBackgroundColorDark}}"
     FlyoutHeaderTemplate="{DataTemplate templates:FlyoutHeaderTemplate}">
@@ -48,9 +49,18 @@
         <ShellContent ContentTemplate="{DataTemplate views:MedalsPage}" Route="MedalsPage" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Settings" FlyoutItemIsVisible="true" Icon="&#xF0493;">
+        <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}" Route="SettingsPage" />
+    </FlyoutItem>
+
     <FlyoutItem Title="About" Icon="&#xF02fD;">
         <ShellContent ContentTemplate="{DataTemplate views:CreditsPage}" Route="CreditsPage" />
     </FlyoutItem>
+
+    <MenuItem
+        BindingContext="{x:Reference Shell}"
+        Command="{Binding SwitchAccountCommand}"
+        IconImageSource="&#xF0343;" Text="Switch Account" />
 
     <Shell.ItemTemplate>
         <DataTemplate>
@@ -66,5 +76,20 @@
             </ContentView>
         </DataTemplate>
     </Shell.ItemTemplate>
+
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <ContentView>
+                <Grid Padding="10,10,0,10" ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Style="{StaticResource MenuIconStyle}" Text="{Binding Icon}" />
+                    <Label Grid.Column="1" Style="{StaticResource MenuTextStyle}" Text="{Binding Title}" />
+                </Grid>
+            </ContentView>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
 
 </Shell>

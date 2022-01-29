@@ -2,21 +2,23 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HaloInfiniteMobileApp.Views;
-[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class PlayerMatchesPage : ContentPage
+namespace HaloInfiniteMobileApp.Views
 {
-    public PlayerMatchesPage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PlayerMatchesPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = DependencyService.Get<PlayerMatchesViewModel>();
-    }
+        public PlayerMatchesPage()
+        {
+            InitializeComponent();
+            BindingContext = DependencyService.Get<PlayerMatchesViewModel>();
+        }
 
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
 
-        if (BindingContext is PlayerMatchesViewModel)
-            await ((BindingContext as PlayerMatchesViewModel)?.Initialize(null)).ConfigureAwait(false);
+            if (BindingContext is PlayerMatchesViewModel)
+                await ((BindingContext as PlayerMatchesViewModel)?.Initialize(this)).ConfigureAwait(false);
+        }
     }
 }

@@ -1,8 +1,10 @@
-﻿namespace HaloInfiniteMobileApp.Extensions;
-public static class NumberExtensions
+﻿namespace HaloInfiniteMobileApp.Extensions
 {
-    public static bool IsNullOrValue(this int? value, int valueToCheck)
+    public static class NumberExtensions
     {
-        return (value ?? valueToCheck) == valueToCheck;
+        public static bool IsNullOrValue(this int? value, int valueToCheck)
+        {
+            return (value ?? valueToCheck) == valueToCheck;
+        }
     }
 }

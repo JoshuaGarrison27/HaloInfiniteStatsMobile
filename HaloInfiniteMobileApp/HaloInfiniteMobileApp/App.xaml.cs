@@ -3,52 +3,60 @@ using HaloInfiniteMobileApp.Repository;
 using HaloInfiniteMobileApp.Services;
 using HaloInfiniteMobileApp.ViewModels;
 using Xamarin.Forms;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using MonkeyCache.FileStore;
+using Xamarin.Essentials;
 
-namespace HaloInfiniteMobileApp;
-
-public partial class App : Application
+namespace HaloInfiniteMobileApp
 {
-    public static System.IServiceProvider ServiceProvider { get; set; }
-
-    public App()
+    public partial class App : Application
     {
-        InitializeComponent();
-        RegisterDependencies();
-        MainPage = new AppShell();
-    }
+        public static System.IServiceProvider ServiceProvider { get; set; }
 
-    private void RegisterDependencies()
-    {
-        //ViewModels
-        DependencyService.Register<HomeViewModel>();
-        DependencyService.Register<OnboardingViewModel>();
-        DependencyService.Register<HaloNewsViewModel>();
-        DependencyService.Register<ServiceRecordViewModel>();
-        DependencyService.Register<MedalsViewModel>();
-        DependencyService.Register<PlayerMatchesViewModel>();
-        DependencyService.Register<MatchDetailsViewModel>();
-        DependencyService.Register<CreditsViewModel>();
-        DependencyService.Register<CampaignViewModel>();
+        public App()
+        {
+            InitializeComponent();
+            RegisterDependencies();
+            Barrel.ApplicationId = AppInfo.PackageName;
+            MainPage = new AppShell();
+        }
 
-        //Services
-        DependencyService.RegisterSingleton<ISettingsService>(new SettingsService());
-        DependencyService.Register<IConnectionService, ConnectionService>();
-        DependencyService.Register<IDialogService, DialogService>();
-        DependencyService.Register<IHaloInfiniteService, HaloInfiniteService>();
+        private void RegisterDependencies()
+        {
+            //ViewModels
+            DependencyService.Register<HomeViewModel>();
+            DependencyService.Register<OnboardingViewModel>();
+            DependencyService.Register<HaloNewsViewModel>();
+            DependencyService.Register<ServiceRecordViewModel>();
+            DependencyService.Register<MedalsViewModel>();
+            DependencyService.Register<PlayerMatchesViewModel>();
+            DependencyService.Register<MatchDetailsViewModel>();
+            DependencyService.Register<CreditsViewModel>();
+            DependencyService.Register<CampaignViewModel>();
+            DependencyService.Register<SettingsViewModel>();
 
-        //General
-        DependencyService.Register<IGenericRepository, GenericRepository>();
-    }
+            //Services
+            DependencyService.RegisterSingleton<ISettingsService>(new SettingsService());
+            DependencyService.Register<IConnectionService, ConnectionService>();
+            DependencyService.Register<IDialogService, DialogService>();
+            DependencyService.Register<IHaloInfiniteService, HaloInfiniteService>();
 
-    protected override void OnStart()
-    {
-    }
+            //General
+            DependencyService.Register<IGenericRepository, GenericRepository>();
+        }
 
-    protected override void OnSleep()
-    {
-    }
+        protected override void OnStart()
+        {
+        }
 
-    protected override void OnResume()
-    {
+        protected override void OnSleep()
+        {
+        }
+
+        protected override void OnResume()
+        {
+        }
     }
 }

@@ -2,22 +2,23 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HaloInfiniteMobileApp.Views;
-
-[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class MedalsPage : ContentPage
+namespace HaloInfiniteMobileApp.Views
 {
-    public MedalsPage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MedalsPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = DependencyService.Get<MedalsViewModel>();
-    }
+        public MedalsPage()
+        {
+            InitializeComponent();
+            BindingContext = DependencyService.Get<MedalsViewModel>();
+        }
 
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
 
-        if (BindingContext is MedalsViewModel)
-            await ((BindingContext as MedalsViewModel)?.Initialize(null)).ConfigureAwait(false);
+            if (BindingContext is MedalsViewModel)
+                await ((BindingContext as MedalsViewModel)?.Initialize(this)).ConfigureAwait(false);
+        }
     }
 }

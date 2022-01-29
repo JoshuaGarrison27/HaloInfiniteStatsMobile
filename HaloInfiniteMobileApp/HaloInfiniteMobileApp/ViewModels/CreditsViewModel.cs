@@ -1,9 +1,10 @@
 ﻿using HaloInfiniteMobileApp.ViewModels.Base;
 
-namespace HaloInfiniteMobileApp.ViewModels;
-
-public class CreditsViewModel : ViewModelBase
+namespace HaloInfiniteMobileApp.ViewModels
 {
-    public CreditsViewModel()
-    { }
+    public class CreditsViewModel : ViewModelBase
+    {
+        public CreditsViewModel()
+        { }
+    }
 }

@@ -6,54 +6,55 @@ using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace HaloInfiniteMobileApp.ViewModels;
-
-public class OnboardingViewModel : ViewModelBase
+namespace HaloInfiniteMobileApp.ViewModels
 {
-    private string _gamertag;
-
-    public ICommand ContinueCommand => new Command(ContinueOnboarding);
-
-    private async void ContinueOnboarding()
+    public class OnboardingViewModel : ViewModelBase
     {
-        IsBusy = true;
-        if (!string.IsNullOrWhiteSpace(Gamertag))
-        {
-            try
-            {
-                var playerAppearanceRequest = new PlayerAppearanceRequest() { Gamertag = Gamertag };
-                var player = await _haloInfiniteService.GetPlayerAppearance(playerAppearanceRequest);
+        private string _gamertag;
 
-                if (player != null)
+        public ICommand ContinueCommand => new Command(ContinueOnboarding);
+
+        private async void ContinueOnboarding()
+        {
+            IsBusy = true;
+            if (!string.IsNullOrWhiteSpace(Gamertag))
+            {
+                try
                 {
-                    _settingsService.AddItem(SettingsConstants.Gamertag, player.Additional.Gamertag);
-                    MessagingCenter.Send<object>(this, MessagingCenterConstants.PlayerUpdated);
-                    ResetControls();
-                    await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
-                    return;
+                    var playerAppearanceRequest = new PlayerAppearanceRequest() { Gamertag = Gamertag };
+                    var player = await _haloInfiniteService.GetPlayerAppearance(playerAppearanceRequest);
+
+                    if (player != null)
+                    {
+                        _settingsService.AddItem(SettingsConstants.Gamertag, player.Additional.Gamertag);
+                        MessagingCenter.Send<object>(this, MessagingCenterConstants.PlayerUpdated);
+                        ResetControls();
+                        await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+                        return;
+                    }
+                }
+                catch (Exception)
+                {
+                    await _dialogService.ShowDialog("Invalid Gamertag Entered", "Invalid", "Try Again");
                 }
             }
-            catch (Exception)
-            {
-                await _dialogService.ShowDialog("Invalid Gamertag Entered", "Invalid", "Try Again");
-            }
+            IsBusy = false;
         }
-        IsBusy = false;
-    }
 
-    public void ResetControls()
-    {
-        Gamertag = null;
-        IsBusy = false;
-    }
-
-    public string Gamertag
-    {
-        get => _gamertag;
-        set
+        public void ResetControls()
         {
-            _gamertag = value;
-            OnPropertyChanged();
+            Gamertag = null;
+            IsBusy = false;
+        }
+
+        public string Gamertag
+        {
+            get => _gamertag;
+            set
+            {
+                _gamertag = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

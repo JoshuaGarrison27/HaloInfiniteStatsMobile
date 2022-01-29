@@ -1,6 +1,7 @@
-﻿namespace HaloInfiniteMobileApp.Constants;
-
-public static class SettingsConstants
+﻿namespace HaloInfiniteMobileApp.Constants
 {
-    public const string Gamertag = "Gamertag";
+    public static class SettingsConstants
+    {
+        public const string Gamertag = "Gamertag";
+    }
 }

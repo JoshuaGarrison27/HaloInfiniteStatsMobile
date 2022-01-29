@@ -1,38 +1,37 @@
-﻿using Akavache;
-using System.Collections.Generic;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
+﻿using MonkeyCache.FileStore;
+using Newtonsoft.Json;
+using System;
 
-namespace HaloInfiniteMobileApp.Services;
-
-public class BaseService
+namespace HaloInfiniteMobileApp.Services
 {
-    protected IBlobCache Cache;
-
-    public BaseService(IBlobCache cache)
+    public class BaseService
     {
-        Cache = cache ?? BlobCache.LocalMachine;
-    }
-
-    public async Task<T> GetFromCache<T>(string cacheName)
-    {
-        try
+        public T GetFromCache<T>(string cacheKey)
         {
-            return await Cache.GetObject<T>(cacheName);
+            try
+            {
+                return Barrel.Current.Get<T>(cacheKey);
+            }
+            catch (JsonSerializationException)
+            {
+                InvalidateCacheKeys(cacheKey);
+                return default;
+            }
         }
-        catch (KeyNotFoundException)
+
+        public void AddToCache<T>(string cacheKey, T data, TimeSpan expireIn)
         {
-            return default;
+            Barrel.Current.Add(cacheKey, data, expireIn);
         }
-    }
 
-    public void InvalidateCache()
-    {
-        Cache.InvalidateAll();
-    }
+        public void InvalidateCache()
+        {
+            Barrel.Current.EmptyAll();
+        }
 
-    public void InvalidateCacheKey(string key)
-    {
-        Cache.Invalidate(key);
+        public void InvalidateCacheKeys(params string[] keys)
+        {
+            Barrel.Current.Empty(keys);
+        }
     }
 }
