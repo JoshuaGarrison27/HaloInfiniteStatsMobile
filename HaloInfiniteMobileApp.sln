@@ -5,11 +5,12 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HaloInfiniteMobileApp.Android", "HaloInfiniteMobileApp\HaloInfiniteMobileApp.Android\HaloInfiniteMobileApp.Android.csproj", "{04F1DEC5-F2FF-4458-8D93-F428CFC18331}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HaloInfiniteMobileApp", "HaloInfiniteMobileApp\HaloInfiniteMobileApp\HaloInfiniteMobileApp.csproj", "{5B0EF10D-7094-43BF-882E-4E6A84F6A9BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HaloInfiniteMobileApp", "HaloInfiniteMobileApp\HaloInfiniteMobileApp\HaloInfiniteMobileApp.csproj", "{5B0EF10D-7094-43BF-882E-4E6A84F6A9BE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{400C7E73-A82C-4E64-86C8-45CF0BDEA4FD}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		buildtools.json = buildtools.json
 		README.md = README.md
 	EndProjectSection
 EndProject
