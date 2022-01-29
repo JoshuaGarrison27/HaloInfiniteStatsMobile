@@ -6,6 +6,7 @@ using HaloInfiniteMobileApp.Views;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HaloInfiniteMobileApp.ViewModels
@@ -14,8 +15,7 @@ namespace HaloInfiniteMobileApp.ViewModels
     {
         private string _gamertag;
         private string _emblemUrl;
-        public ICommand ClearCacheCommand => new Command(ClearCache);
-        public ICommand SwitchAccountsCommand => new AsyncCommand(SwitchAccounts);
+        public ICommand GoToGithubCommand => new AsyncCommand(GoToGithub);
 
         public override async Task Initialize(object data)
         {
@@ -50,20 +50,12 @@ namespace HaloInfiniteMobileApp.ViewModels
             }
         }
 
-        private void ClearCache()
+        private async Task GoToGithub()
         {
-            _haloInfiniteService.InvalidateCache();
-            _dialogService.ShowToast("Halo Cache Cleared");
+            await Browser.OpenAsync(GeneralConstants.GithubLinkIssues);
         }
 
-        private async Task SwitchAccounts()
-        {
-            _settingsService.RemoveItem(SettingsConstants.Gamertag);
-            _haloInfiniteService.InvalidateCache();
-            await Shell.Current.GoToAsync(nameof(OnboardingPage));
-        }
-
-        public string Gamertag
+       public string Gamertag
         {
             get => _gamertag;
             set

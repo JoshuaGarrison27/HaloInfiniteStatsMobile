@@ -18,7 +18,7 @@ namespace HaloInfiniteMobileApp.Views
             base.OnAppearing();
 
             if (BindingContext is ServiceRecordViewModel)
-                await ((BindingContext as ServiceRecordViewModel)?.Initialize(null)).ConfigureAwait(false);
+                await ((BindingContext as ServiceRecordViewModel)?.Initialize(this)).ConfigureAwait(false);
         }
     }
 }

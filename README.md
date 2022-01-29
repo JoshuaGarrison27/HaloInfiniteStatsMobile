@@ -11,7 +11,7 @@ ____
 
 To start debugging this application, there are a few steps you need to complete.
 
-### Prerequisites:
+### Prerequisites
 - [Autocode Api Key](https://autocode.com/)
 
 
@@ -19,3 +19,8 @@ To start debugging this application, there are a few steps you need to complete.
 > Note: You will get a warning saying secrets.json has been deprecated. Ignore this error for now. I could not figure out how to fix it for the BuildTools NuGet project.
 2. Paste your Autocode API Key into the string property for the HaloApiToken
 3. Build the app within your IDE and start debugging.
+
+
+### Resources
+App Icon Generator: [AndroidAssetStudio](https://romannurik.github.io/AndroidAssetStudio/)
+Google Play Store Asset Generator: [AppLaunchPad](https://theapplaunchpad.com)

@@ -18,7 +18,7 @@ namespace HaloInfiniteMobileApp.Views
             base.OnAppearing();
 
             if (BindingContext is HomeViewModel)
-                await ((BindingContext as HomeViewModel)?.Initialize(null)).ConfigureAwait(false);
+                await ((BindingContext as HomeViewModel)?.Initialize(this)).ConfigureAwait(false);
         }
     }
 }

@@ -6,6 +6,8 @@ using Xamarin.Forms;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using MonkeyCache.FileStore;
+using Xamarin.Essentials;
 
 namespace HaloInfiniteMobileApp
 {
@@ -17,6 +19,7 @@ namespace HaloInfiniteMobileApp
         {
             InitializeComponent();
             RegisterDependencies();
+            Barrel.ApplicationId = AppInfo.PackageName;
             MainPage = new AppShell();
         }
 
@@ -32,6 +35,7 @@ namespace HaloInfiniteMobileApp
             DependencyService.Register<MatchDetailsViewModel>();
             DependencyService.Register<CreditsViewModel>();
             DependencyService.Register<CampaignViewModel>();
+            DependencyService.Register<SettingsViewModel>();
 
             //Services
             DependencyService.RegisterSingleton<ISettingsService>(new SettingsService());

@@ -18,7 +18,7 @@ namespace HaloInfiniteMobileApp.Views
             base.OnAppearing();
 
             if (BindingContext is PlayerMatchesViewModel)
-                await ((BindingContext as PlayerMatchesViewModel)?.Initialize(null)).ConfigureAwait(false);
+                await ((BindingContext as PlayerMatchesViewModel)?.Initialize(this)).ConfigureAwait(false);
         }
     }
 }

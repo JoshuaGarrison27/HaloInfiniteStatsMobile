@@ -5,20 +5,20 @@ using Xamarin.Forms.Xaml;
 namespace HaloInfiniteMobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MatchDetailsPage : ContentPage
+    public partial class SettingsPage : ContentPage
     {
-        public MatchDetailsPage()
+        public SettingsPage()
         {
             InitializeComponent();
-            BindingContext = DependencyService.Get<MatchDetailsViewModel>();
+            BindingContext = DependencyService.Get<SettingsViewModel>();
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            if (BindingContext is MatchDetailsViewModel)
-                await ((BindingContext as MatchDetailsViewModel)?.Initialize(this)).ConfigureAwait(false);
+            if (BindingContext is SettingsViewModel)
+                await ((BindingContext as SettingsViewModel)?.Initialize(this)).ConfigureAwait(false);
         }
     }
 }

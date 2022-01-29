@@ -19,7 +19,7 @@ namespace HaloInfiniteMobileApp.Views
             base.OnAppearing();
 
             if (BindingContext is CreditsViewModel)
-                await ((BindingContext as CreditsViewModel)?.Initialize(null)).ConfigureAwait(false);
+                await ((BindingContext as CreditsViewModel)?.Initialize(this)).ConfigureAwait(false);
         }
     }
 }

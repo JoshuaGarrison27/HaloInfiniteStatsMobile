@@ -18,7 +18,7 @@ namespace HaloInfiniteMobileApp.Views
             base.OnAppearing();
 
             if (BindingContext is OnboardingViewModel)
-                await ((BindingContext as OnboardingViewModel)?.Initialize(null)).ConfigureAwait(false);
+                await ((BindingContext as OnboardingViewModel)?.Initialize(this)).ConfigureAwait(false);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace HaloInfiniteMobileApp.Views
             base.OnAppearing();
 
             if (BindingContext is HaloNewsViewModel)
-                await ((BindingContext as HaloNewsViewModel)?.Initialize(null)).ConfigureAwait(false);
+                await ((BindingContext as HaloNewsViewModel)?.Initialize(this)).ConfigureAwait(false);
         }
     }
 }

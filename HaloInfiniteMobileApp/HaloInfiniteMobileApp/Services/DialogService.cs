@@ -11,6 +11,11 @@ namespace HaloInfiniteMobileApp.Services
             return UserDialogs.Instance.AlertAsync(message, title, buttonLabel);
         }
 
+        public async Task<bool> ShowDialogYesNoQuestion(string title, string message, string accept, string cancel)
+        {
+            return await Xamarin.Forms.Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);
+        }
+
         public void ShowToast(string message)
         {
             UserDialogs.Instance.Toast(message);

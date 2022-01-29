@@ -18,7 +18,7 @@ namespace HaloInfiniteMobileApp.Views
             base.OnAppearing();
 
             if (BindingContext is CampaignViewModel)
-                await ((BindingContext as CampaignViewModel)?.Initialize(null)).ConfigureAwait(false);
+                await ((BindingContext as CampaignViewModel)?.Initialize(this)).ConfigureAwait(false);
         }
     }
 }

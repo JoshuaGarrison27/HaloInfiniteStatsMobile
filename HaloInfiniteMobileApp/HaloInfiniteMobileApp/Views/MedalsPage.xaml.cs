@@ -18,7 +18,7 @@ namespace HaloInfiniteMobileApp.Views
             base.OnAppearing();
 
             if (BindingContext is MedalsViewModel)
-                await ((BindingContext as MedalsViewModel)?.Initialize(null)).ConfigureAwait(false);
+                await ((BindingContext as MedalsViewModel)?.Initialize(this)).ConfigureAwait(false);
         }
     }
 }
