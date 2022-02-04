@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Views\CampaignPage.xaml.cs">
       <DependentUpon>CampaignPage.xaml</DependentUpon>
     </Compile>

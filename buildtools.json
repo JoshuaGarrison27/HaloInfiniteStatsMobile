@@ -42,7 +42,6 @@
     "HaloInfiniteMobileApp": [
       {
         "className": "Secrets",
-        "accessibility": "Public",
         "namespace": "Helpers",
         "properties": [
           {
