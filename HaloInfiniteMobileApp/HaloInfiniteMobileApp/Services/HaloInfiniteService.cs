@@ -15,11 +15,6 @@ namespace HaloInfiniteMobileApp.Services
 
         public HaloInfiniteService()
         {
-            if(Secrets.HaloApiToken == null)
-            {
-                throw new InvalidOperationException($"{nameof(Secrets.HaloApiToken)} is null or empty. This is not valid for this operation.");
-            }
-
             _genericRepository = DependencyService.Get<IGenericRepository>();
             _haloApiAuthToken = Secrets.HaloApiToken;
         }
