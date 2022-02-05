@@ -25,11 +25,11 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <FlyoutItem Title="Home" Icon="&#xF1004;">
+    <FlyoutItem Title="Home" Icon="&#xF02DC;">
         <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="HomePage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Halo News" Icon="&#xF02DC;">
+    <FlyoutItem Title="Halo News" Icon="&#xF1004;">
         <ShellContent ContentTemplate="{DataTemplate views:HaloNewsPage}" Route="HaloNewsPage" />
     </FlyoutItem>
 

@@ -3,6 +3,7 @@
     x:Class="HaloInfiniteMobileApp.Views.CampaignPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModel="clr-namespace:HaloInfiniteMobileApp.ViewModels"
     Title="{Binding Title}"
+    x:DataType="viewModel:CampaignViewModel"
     BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
                                       Dark={StaticResource WindowBackgroundColorDark}}">
     <ContentPage.ToolbarItems>
@@ -13,22 +14,19 @@
             Command="{Binding HelpCommand}"
             Order="Secondary" Priority="1" Text="Help" />
     </ContentPage.ToolbarItems>
-    <ContentPage.BindingContext>
-        <viewModel:CampaignViewModel />
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <AbsoluteLayout VerticalOptions="FillAndExpand">
-            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
-                <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <RefreshView
+                AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+                Command="{Binding RefreshCommand}"
+                IsRefreshing="{Binding IsRefreshing}">
+                <ScrollView>
                     <StackLayout Padding="0,0,0,30">
                         <Frame
                             Margin="5" Padding="0"
                             BackgroundColor="{StaticResource DarkBackgroundContrastColor}"
                             CornerRadius="5">
-                            <Grid
-                                Margin="3" BackgroundColor="Transparent"
-                                BindingContext="{Binding Campaign}"
-                                VerticalOptions="FillAndExpand">
+                            <Grid Margin="3" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -40,7 +38,7 @@
                                     Grid.Row="0" Grid.Column="0" Aspect="AspectFit"
                                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Image.Source>
-                                        <UriImageSource CacheValidity="14" CachingEnabled="true" Uri="{Binding Difficulty.HighestCompletedImageUrl}" />
+                                        <UriImageSource CacheValidity="14" CachingEnabled="true" Uri="{Binding Campaign.Difficulty.HighestCompletedImageUrl}" />
                                     </Image.Source>
                                 </Image>
                                 <StackLayout
@@ -60,10 +58,7 @@
                             Margin="5" Padding="0"
                             BackgroundColor="{StaticResource DarkBackgroundContrastColor}"
                             CornerRadius="5">
-                            <Grid
-                                Margin="3" BackgroundColor="Transparent"
-                                BindingContext="{Binding Campaign}"
-                                VerticalOptions="FillAndExpand">
+                            <Grid Margin="3" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -91,9 +86,9 @@
                                         VerticalTextAlignment="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Skulls}" />
+                                                <Span Text="{Binding Campaign.Skulls}" />
                                                 <Span Text="/" />
-                                                <Span Text="{Binding Defaults.TotalSkulls}" />
+                                                <Span Text="{Binding Campaign.Defaults.TotalSkulls}" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
@@ -105,10 +100,7 @@
                             Margin="5" Padding="0"
                             BackgroundColor="{StaticResource DarkBackgroundContrastColor}"
                             CornerRadius="5">
-                            <Grid
-                                Margin="3" BackgroundColor="Transparent"
-                                BindingContext="{Binding Campaign}"
-                                VerticalOptions="FillAndExpand">
+                            <Grid Margin="3" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -136,9 +128,9 @@
                                         VerticalTextAlignment="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding FobSecured}" />
+                                                <Span Text="{Binding Campaign.FobSecured}" />
                                                 <Span Text="/" />
-                                                <Span Text="{Binding Defaults.TotalFobSecured}" />
+                                                <Span Text="{Binding Campaign.Defaults.TotalFobSecured}" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
@@ -150,10 +142,7 @@
                             Margin="5" Padding="0"
                             BackgroundColor="{StaticResource DarkBackgroundContrastColor}"
                             CornerRadius="5">
-                            <Grid
-                                Margin="3" BackgroundColor="Transparent"
-                                BindingContext="{Binding Campaign}"
-                                VerticalOptions="FillAndExpand">
+                            <Grid Margin="3" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -181,9 +170,9 @@
                                         VerticalTextAlignment="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding SpartanCores}" />
+                                                <Span Text="{Binding Campaign.SpartanCores}" />
                                                 <Span Text="/" />
-                                                <Span Text="{Binding Defaults.TotalSpartanCores}" />
+                                                <Span Text="{Binding Campaign.Defaults.TotalSpartanCores}" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
@@ -195,10 +184,7 @@
                             Margin="5" Padding="0"
                             BackgroundColor="{StaticResource DarkBackgroundContrastColor}"
                             CornerRadius="5">
-                            <Grid
-                                Margin="3" BackgroundColor="Transparent"
-                                BindingContext="{Binding Campaign}"
-                                VerticalOptions="FillAndExpand">
+                            <Grid Margin="3" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -226,9 +212,9 @@
                                         VerticalTextAlignment="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding PropagandaTowersDestroyed}" />
+                                                <Span Text="{Binding Campaign.PropagandaTowersDestroyed}" />
                                                 <Span Text="/" />
-                                                <Span Text="{Binding Defaults.TotalPropagandaTowers}" />
+                                                <Span Text="{Binding Campaign.Defaults.TotalPropagandaTowers}" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
@@ -240,10 +226,7 @@
                             Margin="5" Padding="0"
                             BackgroundColor="{StaticResource DarkBackgroundContrastColor}"
                             CornerRadius="5">
-                            <Grid
-                                Margin="3" BackgroundColor="Transparent"
-                                BindingContext="{Binding Campaign}"
-                                VerticalOptions="FillAndExpand">
+                            <Grid Margin="3" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -282,9 +265,9 @@
                                         <Label Grid.Row="0" Grid.Column="1" TextColor="White">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{Binding AudioLogs.UNSC}" />
+                                                    <Span Text="{Binding Campaign.AudioLogs.UNSC}" />
                                                     <Span Text="/" />
-                                                    <Span Text="{Binding Defaults.TotalUnscAudioLogs}" />
+                                                    <Span Text="{Binding Campaign.Defaults.TotalUnscAudioLogs}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
@@ -294,9 +277,9 @@
                                         <Label Grid.Row="1" Grid.Column="1" TextColor="White">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{Binding AudioLogs.Banished}" />
+                                                    <Span Text="{Binding Campaign.AudioLogs.Banished}" />
                                                     <Span Text="/" />
-                                                    <Span Text="{Binding Defaults.TotalBanishedAudioLogs}" />
+                                                    <Span Text="{Binding Campaign.Defaults.TotalBanishedAudioLogs}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
@@ -306,9 +289,9 @@
                                         <Label Grid.Row="2" Grid.Column="1" TextColor="White">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{Binding AudioLogs.Spartans}" />
+                                                    <Span Text="{Binding Campaign.AudioLogs.Spartans}" />
                                                     <Span Text="/" />
-                                                    <Span Text="{Binding Defaults.TotalSpartanAudioLogs}" />
+                                                    <Span Text="{Binding Campaign.Defaults.TotalSpartanAudioLogs}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
@@ -318,9 +301,9 @@
                                         <Label Grid.Row="3" Grid.Column="1" TextColor="White">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{Binding AudioLogs.Total}" />
+                                                    <Span Text="{Binding Campaign.AudioLogs.Total}" />
                                                     <Span Text="/" />
-                                                    <Span Text="{Binding Defaults.TotalAudioLogs}" />
+                                                    <Span Text="{Binding Campaign.Defaults.TotalAudioLogs}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>

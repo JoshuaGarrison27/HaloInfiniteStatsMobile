@@ -36,7 +36,7 @@
     "characterLimit": 250,
     "filename": "ReleaseNotes.txt",
     "createInRoot": false,
-    "disable": false
+    "disable": true
   },
   "appSettings": {
     "HaloInfiniteMobileApp": [
