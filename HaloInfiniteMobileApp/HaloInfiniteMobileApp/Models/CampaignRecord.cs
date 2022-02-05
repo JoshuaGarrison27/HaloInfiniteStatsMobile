@@ -65,7 +65,8 @@ namespace HaloInfiniteMobileApp.Models
 
     public class AdditionalCampaignProperties
     {
-        public string gamertag { get; set; }
+        [JsonProperty("gamertag")]
+        public string Gamertag { get; set; }
     }
 
     public class CampaignDefaults
