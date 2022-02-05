@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="HaloInfiniteMobileApp.Views.HomePage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Welcome"
+    xmlns:helpers="clr-namespace:HaloInfiniteMobileApp.Helpers" Title="Welcome"
     BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
                                       Dark={StaticResource WindowBackgroundColorDark}}">
     <ContentPage.Content>
@@ -45,9 +45,13 @@
                     <Button
                         BackgroundColor="#171515"
                         Command="{Binding GoToGithubCommand}"
-                        FontFamily="{StaticResource Key=MaterialDesignIcons}"
-                        FontSize="{StaticResource XLargeFontSize}"
-                        Text="&#xF02a4; GitHub" />
+                        ContentLayout="Top,5" FontFamily="MDI"
+                        FontSize="{StaticResource MediumFontSize}"
+                        Text="GitHub">
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MDI" Glyph="{x:Static helpers:MaterialDesignIcons.Github}" Color="WhiteSmoke" />
+                        </Button.ImageSource>
+                    </Button>
                 </StackLayout>
             </Frame>
         </StackLayout>

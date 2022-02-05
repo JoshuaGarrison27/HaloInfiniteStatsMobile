@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Grid xmlns="http://xamarin.com/schemas/2014/forms"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              x:Class="HaloInfiniteMobileApp.Templates.FlyoutHeaderTemplate"
-              HeightRequest="150"
-              Padding="0">
+<Grid
+    x:Class="HaloInfiniteMobileApp.Templates.FlyoutHeaderTemplate" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Padding="0" HeightRequest="150">
 
-    <Image Source="{Binding PlayerAppearance.PlayerIdentity.EmblemUrl}" Aspect="AspectFill" BackgroundColor="{StaticResource WindowBackgroundColorDark}"></Image>
-    <Grid BackgroundColor="{StaticResource WindowBackgroundColorDark}" Opacity="0.8"/>
-    <Label Text="{Binding HeroText}" Style="{StaticResource MenuHeroLabelStyle}"/>
+    <Image Aspect="AspectFill" BackgroundColor="{StaticResource WindowBackgroundColorDark}" Source="{Binding PlayerAppearance.PlayerIdentity.EmblemUrl}" />
+    <Grid BackgroundColor="{StaticResource WindowBackgroundColorDark}" Opacity="0.8" />
+    <Label Style="{StaticResource MenuHeroLabelStyle}" Text="{Binding HeroText}" />
 
 </Grid>

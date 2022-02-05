@@ -16,6 +16,9 @@ namespace HaloInfiniteMobileApp
 
             Routing.RegisterRoute(nameof(OnboardingPage), typeof(OnboardingPage));
             Routing.RegisterRoute(nameof(MatchDetailsPage), typeof(MatchDetailsPage));
+
+            //TODO Force Dark Theme for now until UI cleaned up
+            Application.Current.UserAppTheme = OSAppTheme.Dark;
         }
 
         public ICommand SwitchAccountCommand => new AsyncCommand(SwitchAccount);
