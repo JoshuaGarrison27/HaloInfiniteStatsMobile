@@ -98,7 +98,7 @@
                                 </Image>
                                 <Label
                                     Grid.Row="0" Grid.RowSpan="3" Grid.Column="1"
-                                    FontFamily="MaterialDesignIcons" FontSize="40" HorizontalOptions="Center"
+                                    FontFamily="MDI" FontSize="40" HorizontalOptions="Center"
                                     Text="{x:Static helpers:MaterialDesignIcons.ArrowRight}"
                                     VerticalOptions="Center" />
                                 <Image Grid.Row="0" Grid.Column="2" VerticalOptions="Start">
