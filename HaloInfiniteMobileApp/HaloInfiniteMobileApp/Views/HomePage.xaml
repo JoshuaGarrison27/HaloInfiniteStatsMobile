@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="HaloInfiniteMobileApp.Views.HomePage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:helpers="clr-namespace:HaloInfiniteMobileApp.Helpers" Title="Welcome"
+    xmlns:controls="clr-namespace:HaloInfiniteMobileApp.Controls" xmlns:helpers="clr-namespace:HaloInfiniteMobileApp.Helpers" Title="Welcome"
     BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
                                       Dark={StaticResource WindowBackgroundColorDark}}">
     <ContentPage.Content>
@@ -30,6 +30,12 @@
                         Text="{Binding Gamertag}"
                         TextColor="White" VerticalOptions="Center" />
                     <Image Aspect="AspectFit" Source="{Binding EmblemUrl}" />
+                    <controls:CsrsControl
+                        Margin="0" Padding="10"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource CsrsControlBackgroundColorLight},
+                                                          Dark={StaticResource CsrsControlBackgroundColorDark}}"
+                        CornerRadius="5"
+                        CsrsRecord="{Binding CsrsExample}" />
                 </StackLayout>
             </Grid>
             <Frame BackgroundColor="{StaticResource DarkBackgroundContrastColor}" CornerRadius="10">

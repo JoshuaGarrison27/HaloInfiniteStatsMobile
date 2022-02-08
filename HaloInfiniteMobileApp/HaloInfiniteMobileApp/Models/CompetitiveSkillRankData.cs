@@ -11,6 +11,12 @@ namespace HaloInfiniteMobileApp.Models
     }
 
     public class PlayerCsrsRequest{
+        public PlayerCsrsRequest(string gamertag, int season = 1)
+        {
+            Gamertag = gamertag;
+            Season = season;
+        }
+
         [JsonProperty("gamertag")]
         public string Gamertag { get; set; }
         [JsonProperty("season")]
