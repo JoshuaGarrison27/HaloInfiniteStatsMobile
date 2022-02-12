@@ -30,6 +30,7 @@ namespace HaloInfiniteMobileApp.ViewModels
             else
             {
                 Gamertag = gamertag;
+                Title = $"Welcome {gamertag}";
                 await GetPlayerAppearance().ConfigureAwait(false);
                 await GetCsrsRecord().ConfigureAwait(false);
             }
@@ -56,7 +57,7 @@ namespace HaloInfiniteMobileApp.ViewModels
         {
             var csrsRequest = new PlayerCsrsRequest(Gamertag);
             var apiResponse = await _haloInfiniteService.GetPlayerCsrs(csrsRequest);
-            CsrsExample = apiResponse.Data.ToList().Find(o => o.Queue == "open").CsrGroups.AllTime;
+            CsrsOpenCrossplay = apiResponse.Data.ToList().Find(o => o.Queue == "open").CsrGroups.AllTime;
         }
 
         private async Task GoToGithub()
@@ -64,13 +65,13 @@ namespace HaloInfiniteMobileApp.ViewModels
             await Browser.OpenAsync(GeneralConstants.GithubLinkIssues);
         }
 
-        private CsrRecord _csrsExample;
-        public CsrRecord CsrsExample
+        private CsrRecord _csrsOpenCrossplay;
+        public CsrRecord CsrsOpenCrossplay
         {
-            get => _csrsExample;
+            get => _csrsOpenCrossplay;
             set
             {
-                _csrsExample = value;
+                _csrsOpenCrossplay = value;
                 OnPropertyChanged();
             }
         }
