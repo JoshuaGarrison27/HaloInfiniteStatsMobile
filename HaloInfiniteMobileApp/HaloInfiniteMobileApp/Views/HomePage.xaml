@@ -1,38 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="HaloInfiniteMobileApp.Views.HomePage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Welcome"
+    xmlns:controls="clr-namespace:HaloInfiniteMobileApp.Controls" xmlns:helpers="clr-namespace:HaloInfiniteMobileApp.Helpers" xmlns:viewmodels="clr-namespace:HaloInfiniteMobileApp.ViewModels"
+    Title="Welcome" x:DataType="viewmodels:HomeViewModel"
     BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
                                       Dark={StaticResource WindowBackgroundColorDark}}">
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Grid RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <StackLayout
-                    Grid.Row="0" Grid.Column="0" Padding="5,10,5,10"
-                    BackgroundColor="#121617">
-                    <Label
-                        Margin="5" Text="Welcome to Halo Infinite Stats" TextColor="White"
-                        TextTransform="Uppercase" />
-                </StackLayout>
-                <StackLayout
-                    Grid.Row="1" Grid.Column="0" Padding="10"
-                    BackgroundColor="#191f21">
-                    <Label
-                        HorizontalOptions="Center"
-                        Style="{StaticResource PageHeaderStyle}"
-                        Text="{Binding Gamertag}"
-                        TextColor="White" VerticalOptions="Center" />
-                    <Image Aspect="AspectFit" Source="{Binding EmblemUrl}" />
-                </StackLayout>
-            </Grid>
-            <Frame BackgroundColor="{StaticResource DarkBackgroundContrastColor}" CornerRadius="10">
+            <StackLayout
+                Grid.Row="0" Grid.Column="0" Padding="0"
+                Orientation="Horizontal">
+                <Image
+                    Aspect="AspectFit" HeightRequest="75"
+                    Source="{Binding EmblemUrl}"
+                    WidthRequest="75" />
+                <Label
+                    HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                    Style="{StaticResource PageHeaderStyle}"
+                    Text="{Binding Gamertag}"
+                    TextColor="White" VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout Padding="5">
+                <Label FontSize="{StaticResource MediumFontSize}" Text="Current Rank" />
+                <controls:CsrsControl
+                    Margin="0" Padding="10"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource CsrsControlBackgroundColorLight},
+                                                      Dark={StaticResource CsrsControlBackgroundColorDark}}"
+                    CornerRadius="5"
+                    CsrsRecord="{Binding CsrsOpenCrossplay}" />
+            </StackLayout>
+            <Frame BackgroundColor="{StaticResource DarkBackgroundContrastColor}" CornerRadius="10" VerticalOptions="End">
                 <StackLayout>
                     <Label TextColor="WhiteSmoke">
                         <Label.FormattedText>
@@ -45,9 +42,13 @@
                     <Button
                         BackgroundColor="#171515"
                         Command="{Binding GoToGithubCommand}"
-                        FontFamily="{StaticResource Key=MaterialDesignIcons}"
-                        FontSize="{StaticResource XLargeFontSize}"
-                        Text="&#xF02a4; GitHub" />
+                        ContentLayout="Top,5" FontFamily="MDI"
+                        FontSize="{StaticResource MediumFontSize}"
+                        Text="GitHub">
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MDI" Glyph="{x:Static helpers:MaterialDesignIcons.Github}" Color="WhiteSmoke" />
+                        </Button.ImageSource>
+                    </Button>
                 </StackLayout>
             </Frame>
         </StackLayout>

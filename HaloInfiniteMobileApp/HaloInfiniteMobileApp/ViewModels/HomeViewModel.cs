@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace HaloInfiniteMobileApp.ViewModels
 {
@@ -29,7 +30,9 @@ namespace HaloInfiniteMobileApp.ViewModels
             else
             {
                 Gamertag = gamertag;
+                Title = $"Welcome {gamertag}";
                 await GetPlayerAppearance().ConfigureAwait(false);
+                await GetCsrsRecord().ConfigureAwait(false);
             }
         }
 
@@ -50,12 +53,30 @@ namespace HaloInfiniteMobileApp.ViewModels
             }
         }
 
+        private async Task GetCsrsRecord()
+        {
+            var csrsRequest = new PlayerCsrsRequest(Gamertag);
+            var apiResponse = await _haloInfiniteService.GetPlayerCsrs(csrsRequest);
+            CsrsOpenCrossplay = apiResponse.Data.ToList().Find(o => o.Queue == "open").CsrGroups.AllTime;
+        }
+
         private async Task GoToGithub()
         {
             await Browser.OpenAsync(GeneralConstants.GithubLinkIssues);
         }
 
-       public string Gamertag
+        private CsrRecord _csrsOpenCrossplay;
+        public CsrRecord CsrsOpenCrossplay
+        {
+            get => _csrsOpenCrossplay;
+            set
+            {
+                _csrsOpenCrossplay = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Gamertag
         {
             get => _gamertag;
             set

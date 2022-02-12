@@ -27,7 +27,8 @@
                 Text="Welcome to the&#10; Unoffical Halo Infinite Stats App!" VerticalOptions="CenterAndExpand" />
             <Entry
                 Grid.Row="1" Grid.Column="0" ClearButtonVisibility="WhileEditing"
-                Opacity="1" Placeholder="Enter your Gamertag" PlaceholderColor="WhiteSmoke"
+                HorizontalTextAlignment="Center" Opacity="1" Placeholder="Enter your Gamertag"
+                PlaceholderColor="WhiteSmoke"
                 Text="{Binding Gamertag}"
                 TextColor="WhiteSmoke" />
             <Button

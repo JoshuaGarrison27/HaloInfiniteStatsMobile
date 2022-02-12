@@ -30,10 +30,6 @@
                 <On Platform="Android, UWP, WinRT, WinPhone" Value="9" />
             </OnPlatform>
 
-            <OnPlatform x:Key="MaterialDesignIcons" x:TypeArguments="x:String">
-                <On Platform="Android" Value="materialdesignicons-webfont.ttf#MaterialDesignIcons" />
-            </OnPlatform>
-
             <Color x:Key="Primary">#2196F3</Color>
 
             <Color x:Key="WindowBackgroundColorLight">WhiteSmoke</Color>
@@ -46,6 +42,9 @@
 
             <Color x:Key="TextColorLight">#1F1F1F</Color>
             <Color x:Key="TextColorDark">#1F1F1F</Color>
+
+            <Color x:Key="CsrsControlBackgroundColorLight">#b4b4b1</Color>
+            <Color x:Key="CsrsControlBackgroundColorDark">#2e2e2e</Color>
 
             <Color x:Key="DarkBackgroundColor">#1F1F1F</Color>
             <Color x:Key="DarkBackgroundContrastColor">#2e2e2e</Color>
@@ -145,7 +144,7 @@
                 <Setter Property="Margin" Value="1" />
                 <Setter Property="Padding" Value="1" />
                 <Setter Property="WidthRequest" Value="40" />
-                <Setter Property="FontFamily" Value="{StaticResource MaterialDesignIcons}" />
+                <Setter Property="FontFamily" Value="MDI" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="Center" />
             </Style>

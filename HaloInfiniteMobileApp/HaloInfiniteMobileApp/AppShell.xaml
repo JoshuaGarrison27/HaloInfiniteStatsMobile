@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Shell
     x:Class="HaloInfiniteMobileApp.AppShell" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:templates="clr-namespace:HaloInfiniteMobileApp.Templates" xmlns:views="clr-namespace:HaloInfiniteMobileApp.Views" x:Name="Shell"
-    Title="Halo Infinite"
+    xmlns:helpers="clr-namespace:HaloInfiniteMobileApp.Helpers" xmlns:templates="clr-namespace:HaloInfiniteMobileApp.Templates" xmlns:views="clr-namespace:HaloInfiniteMobileApp.Views"
+    x:Name="Shell" Title="Halo Infinite"
     FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource FlyoutBackgroundColorLight},
                                             Dark={StaticResource FlyoutBackgroundColorDark}}"
     FlyoutHeaderTemplate="{DataTemplate templates:FlyoutHeaderTemplate}">
@@ -22,47 +22,124 @@
             </Style>
             <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
             <Style BasedOn="{StaticResource BaseStyle}" TargetType="FlyoutItem" />
+
+            <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+                <Setter Property="HeightRequest" Value="100" />
+            </Style>
+
+            <Style ApplyToDerivedTypes="True" Class="FlyoutItemLayoutStyle" TargetType="Layout">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <!--
+                Custom Style you can apply to any Flyout Item
+            -->
+            <Style ApplyToDerivedTypes="True" Class="MenuItemLayoutStyle" TargetType="Layout">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+
         </ResourceDictionary>
     </Shell.Resources>
 
-    <FlyoutItem Title="Home" Icon="&#xF1004;">
+    <FlyoutItem Title="Home">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="MDI" Glyph="{x:Static helpers:MaterialDesignIcons.Home}" Color="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+        </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="HomePage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Halo News" Icon="&#xF02DC;">
+    <FlyoutItem Title="Halo News">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="MDI" Glyph="{x:Static helpers:MaterialDesignIcons.NewspaperVariantOutline}" Color="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+        </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:HaloNewsPage}" Route="HaloNewsPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Campaign" Icon="&#xF034D;">
+    <FlyoutItem Title="Campaign">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="MDI" Glyph="{x:Static helpers:MaterialDesignIcons.Map}" Color="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+        </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:CampaignPage}" Route="CampaignPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Service Record" Icon="&#xF042D;">
+    <FlyoutItem Title="Service Record">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="MDI" Glyph="{x:Static helpers:MaterialDesignIcons.ProfessionalHexagon}" Color="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+        </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:ServiceRecordPage}" Route="ServiceRecordPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Recent Matches" Icon="&#xF0520;">
+    <FlyoutItem Title="Recent Matches">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="MDI" Glyph="{x:Static helpers:MaterialDesignIcons.Timetable}" Color="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+        </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:PlayerMatchesPage}" Route="PlayerMatchesPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Medals" Icon="&#xF0987;">
+    <FlyoutItem Title="Medals">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="MDI" Glyph="{x:Static helpers:MaterialDesignIcons.Medal}" Color="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+        </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:MedalsPage}" Route="MedalsPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Settings" FlyoutItemIsVisible="true" Icon="&#xF0493;">
+    <FlyoutItem Title="Settings" FlyoutItemIsVisible="true">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="MDI" Glyph="{x:Static helpers:MaterialDesignIcons.Cog}" Color="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+        </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}" Route="SettingsPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="About" Icon="&#xF02fD;">
+    <FlyoutItem Title="About">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="MDI" Glyph="{x:Static helpers:MaterialDesignIcons.InformationOutline}" Color="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+        </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate views:CreditsPage}" Route="CreditsPage" />
     </FlyoutItem>
 
-    <MenuItem
-        BindingContext="{x:Reference Shell}"
-        Command="{Binding SwitchAccountCommand}"
-        IconImageSource="&#xF0343;" Text="Switch Account" />
+    <MenuItem BindingContext="{x:Reference Shell}" Command="{Binding SwitchAccountCommand}" Text="Switch Account">
+        <MenuItem.IconImageSource>
+            <FontImageSource FontFamily="MDI" Glyph="{x:Static helpers:MaterialDesignIcons.Logout}" Color="{AppThemeBinding Light={StaticResource FlyoutTextColorLight}, Dark={StaticResource FlyoutTextColorDark}}" />
+        </MenuItem.IconImageSource>
+    </MenuItem>
 
-    <Shell.ItemTemplate>
+    <!--<Shell.ItemTemplate>
         <DataTemplate>
             <ContentView>
                 <Grid Padding="10,10,0,10" ColumnSpacing="12">
@@ -90,6 +167,6 @@
                 </Grid>
             </ContentView>
         </DataTemplate>
-    </Shell.MenuItemTemplate>
+    </Shell.MenuItemTemplate>-->
 
 </Shell>

@@ -166,5 +166,26 @@ namespace HaloInfiniteMobileApp.Services
                 return playerCampaign;
             }
         }
+
+        public async Task<CompetitiveSkillRankData> GetPlayerCsrs(PlayerCsrsRequest csrsRequest)
+        {
+            var cacheKey = string.Format(CacheConstrants.PlayerCsrs, csrsRequest.Gamertag);
+            var playerCsrsFromCache = GetFromCache<CompetitiveSkillRankData>(cacheKey);
+
+            if (playerCsrsFromCache != null)
+            {
+                return playerCsrsFromCache;
+            }
+            else
+            {
+                const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.Csrs;
+
+                var playerCsrs = await _genericRepository.PostAsync<PlayerCsrsRequest, CompetitiveSkillRankData>(apiUrl, csrsRequest, _haloApiAuthToken).ConfigureAwait(false);
+
+                AddToCache(cacheKey, playerCsrs, CacheConstrants.DefaultCacheTime);
+
+                return playerCsrs;
+            }
+        }
     }
 }

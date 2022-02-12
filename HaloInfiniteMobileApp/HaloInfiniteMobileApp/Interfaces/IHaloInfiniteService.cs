@@ -12,6 +12,7 @@ namespace HaloInfiniteMobileApp.Interfaces
         Task<PlayerMatches> GetPlayerMatches(PlayerMatchListRequest request);
         Task<MatchData> GetMatchDetails(MatchDataRequest matchRequest);
         Task<CampaignRecord> GetCampaignRecord(CampaignRequest campaignRequest);
+        Task<CompetitiveSkillRankData> GetPlayerCsrs(PlayerCsrsRequest csrsRequest);
         void InvalidateCache();
     }
 }

@@ -22,5 +22,5 @@ To start debugging this application, there are a few steps you need to complete.
 
 
 ### Resources
-App Icon Generator: [AndroidAssetStudio](https://romannurik.github.io/AndroidAssetStudio/)
-Google Play Store Asset Generator: [AppLaunchPad](https://theapplaunchpad.com)
+* App Icon Generator: [AndroidAssetStudio](https://romannurik.github.io/AndroidAssetStudio/)
+* Google Play Store Asset Generator: [AppLaunchPad](https://theapplaunchpad.com)

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
     x:Class="HaloInfiniteMobileApp.Views.MatchDetailsPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:HaloInfiniteMobileApp.Helpers"
     Title="{Binding Title}"
     BackgroundColor="{AppThemeBinding Light={StaticResource WindowBackgroundColorLight},
                                       Dark={StaticResource WindowBackgroundColorDark}}">
@@ -97,8 +98,8 @@
                                 </Image>
                                 <Label
                                     Grid.Row="0" Grid.RowSpan="3" Grid.Column="1"
-                                    FontFamily="{StaticResource Key=MaterialDesignIcons}"
-                                    FontSize="40" HorizontalOptions="Center" Text="&#xF0054;"
+                                    FontFamily="MDI" FontSize="40" HorizontalOptions="Center"
+                                    Text="{x:Static helpers:MaterialDesignIcons.ArrowRight}"
                                     VerticalOptions="Center" />
                                 <Image Grid.Row="0" Grid.Column="2" VerticalOptions="Start">
                                     <Image.Source>
