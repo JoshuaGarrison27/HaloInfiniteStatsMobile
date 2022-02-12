@@ -43,6 +43,9 @@
             <Color x:Key="TextColorLight">#1F1F1F</Color>
             <Color x:Key="TextColorDark">#1F1F1F</Color>
 
+            <Color x:Key="CsrsControlBackgroundColorLight">#b4b4b1</Color>
+            <Color x:Key="CsrsControlBackgroundColorDark">#2e2e2e</Color>
+
             <Color x:Key="DarkBackgroundColor">#1F1F1F</Color>
             <Color x:Key="DarkBackgroundContrastColor">#2e2e2e</Color>
             <Color x:Key="HaloInfoGroupHeaderBackground">#121617</Color>

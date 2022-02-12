@@ -12,5 +12,6 @@ namespace HaloInfiniteMobileApp.Constants
         public const string PlayerRecentMatches = "PlayerRecentMatches-{0}";
         public const string MatchDetails = "MatchDetails-{0}";
         public const string PlayerCampaign = "PlayerCampaign-{0}";
+        public const string PlayerCsrs = "PlayerCsrs-{0}";
     }
 }

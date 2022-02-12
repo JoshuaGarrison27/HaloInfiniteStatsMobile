@@ -10,5 +10,6 @@
         public const string MatchList = "stats/matches/list/";
         public const string MatchRetrieve = "stats/matches/retrieve/";
         public const string CampaignRecord = "stats/service-record/campaign/";
+        public const string Csrs = "stats/csrs/";
     }
 }
