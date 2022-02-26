@@ -3,7 +3,7 @@ using HaloInfiniteMobileApp.Models;
 using HaloInfiniteMobileApp.ViewModels.Base;
 using HaloInfiniteMobileApp.Views;
 using System;
-using System.Linq;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -14,7 +14,6 @@ namespace HaloInfiniteMobileApp.ViewModels
 {
     public class PlayerMatchesViewModel : ViewModelBase
     {
-        private PlayerMatches _playerMatches;
         private bool _showLoadMoreMatchesButton = true;
 
         public ICommand MatchTappedCommand => new Command<Match>(OnMatchTapped);
@@ -39,7 +38,13 @@ namespace HaloInfiniteMobileApp.ViewModels
                 {
                     IgnoreCache = ignoreCache
                 };
-                PlayerMatches = await _haloInfiniteService.GetPlayerMatches(requestObject).ConfigureAwait(false);
+                var playerMatches = await _haloInfiniteService.GetPlayerMatches(requestObject).ConfigureAwait(false);
+
+                MatchesCollection.Clear();
+                foreach (var playerMatch in playerMatches.Matches)
+                {
+                    MatchesCollection.Add(playerMatch);
+                }
             }
         }
 
@@ -58,7 +63,7 @@ namespace HaloInfiniteMobileApp.ViewModels
 
         private async void LoadMoreMatches()
         {
-            var matchListCount = _playerMatches.Count;
+            var matchListCount = MatchesCollection.Count;
             var gamertag = _settingsService.GetItem(SettingsConstants.Gamertag);
 
             CheckInternetConnection();
@@ -73,9 +78,10 @@ namespace HaloInfiniteMobileApp.ViewModels
 
                     if (nextResultSet != null && nextResultSet?.Matches?.Length > 0)
                     {
-                        var mergedList = PlayerMatches.Matches.Concat(nextResultSet.Matches);
-                        PlayerMatches.Matches = mergedList.ToArray();
-                        OnPropertyChanged(nameof(PlayerMatches));
+                        foreach(var match in nextResultSet.Matches)
+                        {
+                            MatchesCollection.Add(match);
+                        }
                     }
                     else
                     {
@@ -90,12 +96,15 @@ namespace HaloInfiniteMobileApp.ViewModels
             }
         }
 
-        public PlayerMatches PlayerMatches
+        #region Page Properties
+
+        public ObservableCollection<Match> _matchesCollection = new();
+        public ObservableCollection<Match> MatchesCollection
         {
-            get => _playerMatches;
+            get => _matchesCollection;
             set
             {
-                _playerMatches = value;
+                _matchesCollection = value;
                 OnPropertyChanged();
             }
         }
@@ -109,5 +118,7 @@ namespace HaloInfiniteMobileApp.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
     }
 }

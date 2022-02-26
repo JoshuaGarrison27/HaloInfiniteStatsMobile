@@ -21,7 +21,9 @@ namespace HaloInfiniteMobileApp.Models
         public string Gamertag { get; set; }
         [JsonProperty("season")]
         public int Season { get; set; }
-        }
+        [JsonProperty("version")]
+        public int Version { get; set; }
+    }
 
     public class CompetitiveSkillRankAdditional
     {
@@ -29,6 +31,8 @@ namespace HaloInfiniteMobileApp.Models
         public string Gamertag { get; set; }
         [JsonProperty("season")]
         public int Season { get; set; }
+        [JsonProperty("version")]
+        public int Version { get; set; }
     }
 
     public class CsrQueue

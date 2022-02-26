@@ -168,6 +168,7 @@
             <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
             <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
             <xct:MathExpressionConverter x:Key="MathExpressionConverter" />
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
             <converters:PercentageConverter x:Key="LocalPercentageConverter" />
             <converters:RelativeTimeConverter x:Key="LocalRelativeTimeConverter" />
 
