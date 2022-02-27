@@ -56,8 +56,7 @@ namespace HaloInfiniteMobileApp.ViewModels
         private async Task GetCsrsRecord()
         {
             var csrsRequest = new PlayerCsrsRequest(Gamertag);
-            var apiResponse = await _haloInfiniteService.GetPlayerCsrs(csrsRequest);
-            CsrsOpenCrossplay = apiResponse.Data.ToList().Find(o => o.Queue == "open").CsrGroups.AllTime;
+            CsrsData = await _haloInfiniteService.GetPlayerCsrs(csrsRequest);
         }
 
         private async Task GoToGithub()
@@ -65,13 +64,13 @@ namespace HaloInfiniteMobileApp.ViewModels
             await Browser.OpenAsync(GeneralConstants.GithubLinkIssues);
         }
 
-        private CsrRecord _csrsOpenCrossplay;
-        public CsrRecord CsrsOpenCrossplay
+        private CompetitiveSkillRankData _csrsData;
+        public CompetitiveSkillRankData CsrsData
         {
-            get => _csrsOpenCrossplay;
+            get => _csrsData;
             set
             {
-                _csrsOpenCrossplay = value;
+                _csrsData = value;
                 OnPropertyChanged();
             }
         }

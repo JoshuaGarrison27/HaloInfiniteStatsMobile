@@ -106,24 +106,8 @@ namespace HaloInfiniteMobileApp.Services
 
         public async Task<PlayerMatches> GetPlayerMatches(PlayerMatchListRequest request)
         {
-            //TODO Cache currently breaking getting more records. Need to find another solution for this.
-            //var cacheKey = string.Format(CacheConstrants.PlayerRecentMatches, request.Gamertag);
-            //var playerMatchesFromCache = GetFromCache<PlayerMatches>(cacheKey);
-
-            //if (playerMatchesFromCache != null && !request.IgnoreCache)
-            //{
-            //    return playerMatchesFromCache;
-            //}
-            //else
-            //{
-                const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.MatchList;
-
-                var response = await _genericRepository.PostAsync<PlayerMatchListRequest, PlayerMatches>(apiUrl, request, _haloApiAuthToken).ConfigureAwait(false);
-
-                //AddToCache(cacheKey, response, CacheConstrants.DefaultCacheTime);
-
-                return response;
-            //}
+            const string apiUrl = HaloApiConstants.BaseApiUrl + HaloApiConstants.MatchList;
+            return await _genericRepository.PostAsync<PlayerMatchListRequest, PlayerMatches>(apiUrl, request, _haloApiAuthToken).ConfigureAwait(false);
         }
 
         public async Task<MatchData> GetMatchDetails(MatchDataRequest matchRequest)

@@ -21,13 +21,13 @@
                     TextColor="White" VerticalOptions="Center" />
             </StackLayout>
             <StackLayout Padding="5">
-                <Label FontSize="{StaticResource MediumFontSize}" Text="Current Rank" />
                 <controls:CsrsControl
                     Margin="0" Padding="10"
                     BackgroundColor="{AppThemeBinding Light={StaticResource CsrsControlBackgroundColorLight},
                                                       Dark={StaticResource CsrsControlBackgroundColorDark}}"
-                    CornerRadius="5"
-                    CsrsRecord="{Binding CsrsOpenCrossplay}" />
+                    CompetitiveSkillRankData="{Binding CsrsData}"
+                    CornerRadius="5" InputName="crossplay" QueueName="open"
+                    RangeName="current" TitleText="Crossplay - Current" />
             </StackLayout>
             <Frame BackgroundColor="{StaticResource DarkBackgroundContrastColor}" CornerRadius="10" VerticalOptions="End">
                 <StackLayout>

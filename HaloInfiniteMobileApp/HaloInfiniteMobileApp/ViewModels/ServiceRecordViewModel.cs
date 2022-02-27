@@ -45,7 +45,27 @@ namespace HaloInfiniteMobileApp.ViewModels
 
             SocialSR = await _haloInfiniteService.GetMultiplayerServiceRecord(socialServiceRecordRequestObject).ConfigureAwait(false);
             RankedSR = await _haloInfiniteService.GetMultiplayerServiceRecord(rankedServiceRecordRequestObject).ConfigureAwait(false);
+            await GetCsrsRecord().ConfigureAwait(false);
             IsBusy = false;
+        }
+
+        private async Task GetCsrsRecord()
+        {
+            var csrsRequest = new PlayerCsrsRequest(Gamertag);
+            CsrsData = await _haloInfiniteService.GetPlayerCsrs(csrsRequest);
+        }
+
+        #region Page Properties
+
+        private CompetitiveSkillRankData _csrsData;
+        public CompetitiveSkillRankData CsrsData
+        {
+            get => _csrsData;
+            set
+            {
+                _csrsData = value;
+                OnPropertyChanged();
+            }
         }
 
         public MultiplayerServiceRecord RankedSR
@@ -77,5 +97,7 @@ namespace HaloInfiniteMobileApp.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
     }
 }
